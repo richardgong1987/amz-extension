@@ -1,0 +1,24 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": [
+      "chrome"
+    ]
+  },
+  "files": [
+    "src/main.ts",
+    "src/plugins/background.ts",
+    "src/plugins/content_scripts.ts",
+    "src/plugins/content_scripts_login.ts",
+    "node_modules/@types/jquery/JQuery.d.ts",
+    "node_modules/@types/jquery/JQueryStatic.d.ts",
+    "node_modules/@types/jquery/legacy.d.ts",
+    "node_modules/@types/sizzle/index.d.ts",
+    "node_modules/@types/jquery/misc.d.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}

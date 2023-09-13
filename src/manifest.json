@@ -1,0 +1,57 @@
+{
+  "name": "auctions-buy-coupons",
+  "version": "3.0.0",
+  "description": "Build an Extension with Angular, auctions-buy-coupons for study",
+  "icons": {
+    "16": "assets/icon/favicon.png",
+    "48": "assets/icon/favicon48.png",
+    "128": "assets/icon/favicon128.png"
+  },
+  "manifest_version": 3,
+  "action": {
+    "default_icon": "assets/icon/favicon.png",
+    "default_title": "auctions-buy-coupons",
+    "default_popup": "index.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/AirHorn.mp3"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://idmsa.apple.com/appleauth/*"
+      ],
+      "js": [
+        "content_scripts_login.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "*://*.apple.com/*"
+      ],
+      "js": [
+        "assets/jq.js",
+        "content_scripts.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "webRequest",
+    "storage",
+    "scripting"
+  ]
+}
