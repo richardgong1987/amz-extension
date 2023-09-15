@@ -1,7 +1,7 @@
 {
-  "name": "auctions-buy-coupons",
+  "name": "auctions-yahoo",
   "version": "3.0.0",
-  "description": "Build an Extension with Angular, auctions-buy-coupons for study",
+  "description": "Build an Extension with Angular, auctions-yahoo for study",
   "icons": {
     "16": "assets/icon/favicon.png",
     "48": "assets/icon/favicon48.png",
@@ -10,7 +10,7 @@
   "manifest_version": 3,
   "action": {
     "default_icon": "assets/icon/favicon.png",
-    "default_title": "auctions-buy-coupons",
+    "default_title": "auctions-yahoo",
     "default_popup": "index.html"
   },
   "web_accessible_resources": [
@@ -30,7 +30,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://idmsa.apple.com/appleauth/*"
+        "https://login.yahoo.co.jp/*"
       ],
       "js": [
         "content_scripts_login.js"
@@ -40,7 +40,7 @@
     },
     {
       "matches": [
-        "*://*.apple.com/*"
+        "*://*.yahoo.co.jp/*"
       ],
       "js": [
         "assets/jq.js",

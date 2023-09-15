@@ -1,124 +1,14 @@
 import {io, Socket} from "socket.io-client";
-import {
-  defaultData,
-  GbPaymentmethodsEntity,
-  IData,
-  phoneCaptionMap,
-  phoneColorsMap,
-  phoneVersionMap
-} from "src/common/constant";
+import {defaultData, IData} from "src/common/constant";
 import {wsHost} from "src/config/config";
 import {AESUtil} from "src/utils/aesutil";
 
 export class Utils {
-  static storeNameList = {
-    "Apple 京都": "600-8006",
-    "Apple 心斎橋": "542-0086",
-    "Apple 名古屋栄": "460-0008",
-    "Apple 銀座": "104-0061",
-    "Apple 丸の内": "100-0005",
-    "Apple 新宿": "160-0022",
-    "Apple 渋谷": "150-0041",
-    "Apple 表参道": "150-0001",
-    "Apple 川崎": "810-0001"
-  }
-  static statePostCode = {
-    "京都府": "600-8006",
-    "大阪府": "542-0086",
-    "愛知県": "460-0008",
-    "東京都": "104-0061",
-    "神奈川県": "212-0013",
-    "福岡県": "810-0001"
-  }
 
-  static getStatePostCode(state: string) {
-    // @ts-ignore
-    return this.statePostCode[state];
-  }
 
-  static isIphoneAvaible() {
-    // return this.appleOfficeStore();
-    return this.applefranchiseStore();
-  }
-
-  static applefranchiseStore() {
-    const $form = $(".rt-storelocator-store-group .form-selector");
-    for (let i = 0; i < $form.length; i++) {
-      const htmlElements = $form.eq(i);
-      if (!htmlElements.find(".form-selector-input").is(":disabled")) {
-        console.log("******applefranchiseStore:", htmlElements);
-        return htmlElements;
-      }
-    }
-
-    return false;
-
-  }
-
-  static appleOfficeStore() {
-    let $form = $(".form-selector-title");
-    for (let i = 0; i < $form.length; i++) {
-      const storeEle = $form.eq(i);
-      // @ts-ignore
-      if (this.storeNameList[storeEle.text()]) {
-        let htmlElements = storeEle.parents(".form-selector");
-        if (!htmlElements.find(".form-selector-input").is(":disabled")) {
-          console.log("******htmlElements:", htmlElements);
-          return htmlElements;
-        }
-      }
-
-    }
-    return false;
-  }
-
-  static playSound() {
-    try {
-      // let audio = new Audio();
-      // audio.src = chrome.runtime.getURL("assets/AirHorn.mp3");
-      // audio.play();
-    } catch (e) {
-      console.log("If cann't play sound set Sound: allow")
-      console.log("chrome://settings/content/siteDetails?site=https%3A%2F%2Fwww.apple.com")
-      console.log("set Sound: allow");
-    }
-  }
-
-  static async refresh() {
-    setTimeout(() => {
-      !this.isPageShopSignIn() && location.reload();
-    }, this.range(6, 15));
-  }
-
-  static async refreshWithCustom(start = 6, end = 15) {
-    setTimeout(() => {
-      !this.isPageShopSignIn() && location.reload();
-    }, this.range(start, end));
-  }
-
-  static async refreshMins() {
-    setTimeout(() => {
-      !this.isPageShopSignIn() && location.reload();
-    }, this.range(60, 3 * 60));
-  }
-
-  static refreshByServiceTemporarilyUnavailable() {
-    this.isServiceTemporarilyUnavailable() && this.refresh();
-  }
-
-  static isServiceTemporarilyUnavailable() {
-    let s = $("title").text() + "";
-    return /Service Temporarily Unavailable/i.test(s);
-  }
 
   static refreshImmediately() {
     location.reload();
-  }
-
-  static refreshByDelay() {
-    setTimeout(() => {
-      location.reload();
-    }, this.range(6, 10));
   }
 
   static range(start: number, end: number, tag = "next time") {
@@ -127,85 +17,17 @@ export class Utils {
     return nextTime;
   }
 
-  static isJapanIphoneHomePage() {
-    return location.pathname === "/jp/iphone-14-pro/" && location.search == "";
-  }
-
-  static isPageIphone14Pro() {
-    return location.pathname === "/jp/shop/buy-iphone/iphone-14-pro" && location.search === "";
-  }
-
-  static isPageThankyou() {
-    return location.pathname == "/jp/shop/checkout/thankyou";
-  }
-
-  static isPageIphone14Pro2Option() {
-    return /^(\/jp\/shop\/buy-iphone\/iphone-14-pro)\/[\s\S]{10,}/.test(location.pathname) && location.search === "";
-  }
-
-
-  static isPageShopBag() {
-    return location.pathname === "/jp/shop/bag" && location.search === "";
-  }
-
-  static isOrderNotProcessed() {
-    return location.pathname === "/jp/shop/sorry/order_not_processed" && location.search === "";
-  }
-
-  static isPageSessionExpired(): boolean {
-    return location.pathname === "/jp/shop/sorry/session_expired" && location.search === "";
-  }
-
-  static isPageShopSignIn() {
-    return location.pathname == "/jp/shop/signIn" && location.search;
-  }
-
-  static isPageAuthorizeIframe() {
-    return location.pathname == "/appleauth/auth/authorize/signin";
-  }
-
   static isPageProductPurchaseOption() {
     return this.getParameter("product") && this.getParameter("purchaseOption") && this.getParameter("step") && location.pathname === "/jp/shop/buy-iphone/iphone-14-pro";
   }
 
-  static isShippinginit() {
-    return location.pathname === "/jp/shop/checkout" && this.getParameter("_s") === "Shipping-init"
-  }
 
-  static isPageFulfillmentinit() {
-    return location.pathname === "/jp/shop/checkout" && this.getParameter("_s") === "Fulfillment-init"
-  }
-
-  static isPageFulfillment() {
-    return location.pathname === "/jp/shop/checkout" && this.getParameter("_s") === "Fulfillment"
-  }
-
-  static isPageBilling() {
-    return location.pathname === "/jp/shop/checkout" && this.getParameter("_s") === "Billing"
-  }
-
-  static isPageReview() {
-    return location.pathname === "/jp/shop/checkout" && this.getParameter("_s") === "Review"
-  }
-
-  static isPageMessageGeneric() {
-    return location.pathname === "/jp/shop/sorry/message_generic";
-  }
-
-  static isPagePickupContactInit() {
-    return location.pathname === "/jp/shop/checkout" && this.getParameter("_s") === "PickupContact-init";
-  }
-
-  static isPageBillingInit() {
-    return location.pathname === "/jp/shop/checkout" && this.getParameter("_s") === "Billing-init";
-  }
 
   static click(ele: HTMLElement | null) {
     if (ele) {
       return ele.click();
     }
     console.trace("****[ele] not exsit:", ele);
-    this.refreshByServiceTemporarilyUnavailable();
   }
 
   static submit(ele: HTMLFormElement | null) {
@@ -213,7 +35,6 @@ export class Utils {
       return ele.submit();
     }
     console.trace("****[ele] form not exsit:", ele);
-    this.refreshByServiceTemporarilyUnavailable();
   }
 
   static getParameter(key: string) {
@@ -250,10 +71,6 @@ export class Utils {
     // firing the event properly according to StackOverflow
     // http://stackoverflow.com/questions/2856513/how-can-i-trigger-an-onchange-event-manually
     this.fireEvent(sel, "change");
-  }
-
-  static isLogin() {
-    return !document.querySelector("div.rs-fulfilment-cold-ziplabel");
   }
 
   static fireSelectChangeWithValue(sel: HTMLSelectElement | null, val: String) {
@@ -384,46 +201,12 @@ export class Utils {
     });
 
     socket.on("grab-now", (data) => {
-      if (this.data.isGrabRole) {
-        this.doAction();
-      }
+
     });
-    socket.on("card", (d: GbPaymentmethodsEntity) => {
+    socket.on("card", (d) => {
       if (this.isEmptyObject(this.data)) {
         this.data = Object.assign(this.data, defaultData)
       }
-      try {
-        this.data.Cards.cardNumber = d.cardNumber;
-        this.data.Cards.expiration = this.AesDecrypt(d.expiration);
-        this.data.Cards.CVV = this.AesDecrypt(d.ccv);
-        this.data.Cards.emailPw = d.emailPw;
-        this.data.Cards.appleidpw = d.appleidpw;
-
-        this.data.MyAddress.lastName = d.lastname;
-        this.data.MyAddress.firstName = d.firstname;
-        this.data.MyAddress.postalCode = d.postalCode;
-        this.data.MyAddress.nearbypostcode = d.nearbypostcode;
-        this.data.MyAddress.email = d.email;
-        this.data.MyAddress.state = d.state;
-        this.data.MyAddress.city = d.city;
-        this.data.MyAddress.street = d.street;
-        this.data.MyAddress.daytimePhoneAreaCode = d.daytimePhoneAreaCode;
-        this.data.MyAddress.daytimePhone = d.daytimePhone;
-
-
-        // @ts-ignore
-        this.data.iphoneOptions.phoneVersion = phoneVersionMap[d.phoneVersion];
-        // @ts-ignore
-        this.data.iphoneOptions.phoneColors = phoneColorsMap[d.phoneColors];
-        // @ts-ignore
-        this.data.iphoneOptions.phoneCaption = phoneCaptionMap[d.phoneCaption];
-
-        this.data.iphoneOptions.num = d.num;
-
-      } catch (e) {
-        this.data.isStart = false;
-      }
-
       this.save();
 
     });
@@ -450,12 +233,6 @@ export class Utils {
     this.socket.emit("card");
   }
 
-  static doAction() {
-    //1. if currect location in apple.com
-    if (location.host.includes("apple.com")) {
-      location.reload();
-    }
-  }
 
   static async doUpdateData() {
     var data = await this.storeGetAll() as IData;
