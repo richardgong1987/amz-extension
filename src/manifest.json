@@ -40,7 +40,8 @@
     },
     {
       "matches": [
-        "*://*.yahoo.co.jp/*"
+        "*://auctions.yahoo.co.jp/*",
+        "*://*.auctions.yahoo.co.jp/*"
       ],
       "js": [
         "assets/jq.js",

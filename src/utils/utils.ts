@@ -5,11 +5,10 @@ import {AESUtil} from "src/utils/aesutil";
 
 export class Utils {
 
-
-
-  static refreshImmediately() {
-    location.reload();
+  openUrl(url: string) {
+    window.location.href = url;
   }
+
 
   static range(start: number, end: number, tag = "next time") {
     const nextTime = (Math.floor(Math.random() * (end - start)) + start) * 1000;
@@ -17,17 +16,20 @@ export class Utils {
     return nextTime;
   }
 
-  static isPageProductPurchaseOption() {
-    return this.getParameter("product") && this.getParameter("purchaseOption") && this.getParameter("step") && location.pathname === "/jp/shop/buy-iphone/iphone-14-pro";
-  }
-
-
 
   static click(ele: HTMLElement | null) {
     if (ele) {
       return ele.click();
     }
     console.trace("****[ele] not exsit:", ele);
+  }
+
+  static clickWithSelector(name: string) {
+    let ele = document.querySelector(name) as HTMLElement;
+    if (ele) {
+      return ele.click();
+    }
+    console.trace(`****failure click [${name}] not exsit:`);
   }
 
   static submit(ele: HTMLFormElement | null) {
@@ -41,8 +43,6 @@ export class Utils {
     return new URLSearchParams(location.search).get(key);
   }
 
-
-  static LAST_TIME = "lastime";
 
   static async storeSet(val: { [x: string]: any }) {
     return await chrome.storage?.local?.set(val);
@@ -184,9 +184,11 @@ export class Utils {
     if (!data) {
       return true;
     }
-    for (let dataKey in data) {
+
+    for (let _ in data) {
       return false;
     }
+
     return true;
   }
 
