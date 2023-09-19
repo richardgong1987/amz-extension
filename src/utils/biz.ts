@@ -23,4 +23,12 @@ export class Biz {
     Utils.clickWithSelector(".Button--bid")
   }
 
+  static isGoodPrice(highestPrice: number): boolean {
+    let bidInput = document.querySelector("[name=\"Bid\"]") as HTMLInputElement;
+    if (!bidInput) {
+      return false;
+    }
+
+    return Number(bidInput.value) <= highestPrice;
+  }
 }

@@ -240,6 +240,23 @@ export class Utils {
     var data = await this.storeGetAll() as IData;
     Utils.data = Object.assign(Utils.data, data);
   }
+
+  static isBidExpired(dateStr: string) {
+    const from = new Date();
+    const to = this.dateParse(dateStr);
+    return from >= to;
+  }
+
+  static dateParse(dateStr: string): Date {
+    return new Date(dateStr.replace(/\（[\S\s]+?\）/g, " "))
+  }
+
+  static isTimeToBid(start: Date, end: Date): boolean {
+    let from = new Date(start);
+    let to = new Date(end);
+    to.setSeconds(to.getSeconds() - 1);
+    return from >= to;
+  }
 }
 
 
