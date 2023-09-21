@@ -1,6 +1,6 @@
 import {io, Socket} from "socket.io-client";
 import {defaultData, IData} from "src/common/constant";
-import {wsHost} from "src/config/config";
+import {HOST} from "src/config/config";
 import {AESUtil} from "src/utils/aesutil";
 
 export class Utils {
@@ -194,7 +194,7 @@ export class Utils {
 
 
   static websocketInit() {
-    const socket = this.socket = io(wsHost, {
+    const socket = this.socket = io(HOST, {
       forceNew: true,
       query: {
         user: "auctions-buy",

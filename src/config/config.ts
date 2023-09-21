@@ -1,1 +1,1 @@
-export const wsHost = "http://localhost:3000";
+export const HOST = "http://localhost:8080";

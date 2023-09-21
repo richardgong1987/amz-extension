@@ -1,28 +1,32 @@
-import {IData,} from "src/common/constant";
 import {Biz} from "src/utils/biz";
 import {Utils} from "src/utils/utils";
 
 export class JqGet {
   async init() {
-    let data = await Utils.storeGetAll() as IData;
-    Utils.data = Object.assign(Utils.data, data);
-    // Utils.websocketInit();
-    console.log(JSON.stringify(Biz.getProductInformation()));
-    // Biz.bid();
+    this.productInformation = Biz.getProductInformation() as { [p: string]: string }
+    console.log(JSON.stringify(this.productInformation));
+    await this.main();
   }
 
+  productInformation: { [x: string]: string; } = {}
+  orderDetail: { [x: string]: any; } = {}
   endDateTime: Date = new Date();
   callbackID: number = 0;
 
-  main() {
-    const productInformation = Biz.getProductInformation();
+  async main() {
+    const productInformation = this.productInformation;
     if (!productInformation) {
-      return;
+      return console.log("****productInformation is not exit:", productInformation);
     }
 
     const endTime = productInformation["終了日時"]
     if (Utils.isBidExpired(endTime)) {
-      return;
+      return console.log("****endTime終了日時:", endTime);
+    }
+
+    const orderDetail = this.orderDetail = await Biz.orderDetail(productInformation["オークションID"]);
+    if (!orderDetail || orderDetail.status != 0) {
+      return console.log("****orderDetail is failure:", orderDetail);
     }
     // prepare data
     this.endDateTime = Utils.dateParse(endTime);
@@ -46,11 +50,14 @@ export class JqGet {
       window.cancelAnimationFrame(this.callbackID);
       //1. bid
       Biz.bid();
-      //2.
-      if (!Biz.isGoodPrice(1000)) {
-        return false;
+      //2. can not upper the limit price
+      if (!Biz.isGoodPrice(this.orderDetail["limitPrice"])) {
+        return console.log("****can not upper limitPrice:", this.orderDetail["limitPrice"]);
       }
-      return window.cancelAnimationFrame(this.callbackID);
+      //3. 確認する
+      Utils.clickWithSelector('.js-validator-submit')
+
+      return true;
     }
     this.callbackID = window.requestAnimationFrame(this.notAutoBidExtension.bind(this));
   }

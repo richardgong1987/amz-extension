@@ -1,3 +1,4 @@
+import {HOST} from "src/config/config";
 import {Utils} from "src/utils/utils";
 
 export class Biz {
@@ -23,6 +24,13 @@ export class Biz {
     Utils.clickWithSelector(".Button--bid")
   }
 
+  /**
+   * 上記に同意して
+   * 入札する
+   */
+  static agreeBid() {
+    Utils.clickWithSelector(".SubmitBox__button--bid")
+  }
   static isGoodPrice(highestPrice: number): boolean {
     let bidInput = document.querySelector("[name=\"Bid\"]") as HTMLInputElement;
     if (!bidInput) {
@@ -30,5 +38,8 @@ export class Biz {
     }
 
     return Number(bidInput.value) <= highestPrice;
+  }
+  static async  orderDetail(orderId:string){
+    return await $.get(`${HOST}/api/auctions/product/${orderId}`);
   }
 }
