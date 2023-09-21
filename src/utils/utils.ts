@@ -39,7 +39,6 @@ export class Utils {
   }
 
 
-
   static async storeGetAll() {
     return await chrome?.storage?.local?.get();
   }

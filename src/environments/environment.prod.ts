@@ -1,3 +1,1 @@
-export const environment = {
-  production: true
-};
+export const HOST = "https://iphone.raku-den.shop";
