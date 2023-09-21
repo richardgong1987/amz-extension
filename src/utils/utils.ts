@@ -1,8 +1,3 @@
-import {io, Socket} from "socket.io-client";
-import {defaultData, IData} from "src/common/constant";
-import {HOST} from "src/config/config";
-import {AESUtil} from "src/utils/aesutil";
-
 export class Utils {
 
   openUrl(url: string) {
@@ -44,17 +39,6 @@ export class Utils {
   }
 
 
-  static async storeSet(val: { [x: string]: any }) {
-    return await chrome.storage?.local?.set(val);
-  }
-
-  static async storeGet(key: string) {
-    let newVar: any = await this.storeGetAll();
-    if (newVar) {
-      return newVar[key];
-    }
-    return null;
-  }
 
   static async storeGetAll() {
     return await chrome?.storage?.local?.get();
@@ -145,100 +129,6 @@ export class Utils {
 
   static fireKeyboardEnter(sel: HTMLInputElement) {
     this.fireKeyboard(sel, "keydown");
-  }
-
-  static randomOperator(callback: Function, start = 6, end = 15) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          callback();
-        } catch (e) {
-          console.log("****randomOperator:", e);
-        }
-        resolve(true);
-      }, this.range(start, end));
-    });
-  }
-
-  static async wait(start = 10, end = 20) {
-    return await this.randomOperator(() => {
-    }, start, end);
-  }
-
-  private static str = "*2@#WkdsAAkdskdsds.)lscx,x.O";
-  private static aesUtil = new AESUtil();
-
-  private static AesEncrypt(word: any) {
-    return this.aesUtil.encrypt(this.str, word);
-  }
-
-  private static AesDecrypt(word: any) {
-    return this.aesUtil.decrypt(this.str, word);
-  }
-
-  public static socket: Socket = Socket.prototype;
-
-  public static data: IData = Object.assign({}, defaultData);
-
-  static isEmptyObject(data: any): boolean {
-    if (!data) {
-      return true;
-    }
-
-    for (let _ in data) {
-      return false;
-    }
-
-    return true;
-  }
-
-
-  static websocketInit() {
-    const socket = this.socket = io(HOST, {
-      forceNew: true,
-      query: {
-        user: "auctions-buy",
-        token: this.AesEncrypt("auctions-buy-token")
-      }
-    });
-
-    socket.on("grab-now", (data) => {
-
-    });
-    socket.on("card", (d) => {
-      if (this.isEmptyObject(this.data)) {
-        this.data = Object.assign(this.data, defaultData)
-      }
-      this.save();
-
-    });
-
-    socket.on("connect", () => {
-      console.log("***Connected");
-    });
-    socket.on("disconnect", () => {
-      console.log("***Disconnected");
-    });
-    return socket;
-  }
-
-  static save() {
-    Utils.storeSet(this.data);
-  }
-
-  static saveAndNotice() {
-    Utils.storeSet(this.data);
-    this.socket.emit("notifyScriptPart")
-  }
-
-  static getCard() {
-    this.socket.emit("card");
-  }
-
-
-  static async doUpdateData() {
-    var data = await this.storeGetAll() as IData;
-    Utils.data = Object.assign(Utils.data, data);
   }
 
   static isBidExpired(dateStr: string) {
