@@ -29,7 +29,9 @@ export class Biz {
    * 入札する
    */
   static agreeBid() {
-    Utils.clickWithSelector(".SubmitBox__button--bid")
+    if (location.pathname == "/jp/show/bid_preview") {
+      Utils.clickWithSelector(".SubmitBox__button--bid")
+    }
   }
 
   static isGoodPrice(highestPrice: number): boolean {
@@ -43,5 +45,35 @@ export class Biz {
 
   static async orderDetail(orderId: string) {
     return $.get(`${HOST}/api/auctions/product/${orderId}`);
+  }
+
+  static searchPage() {
+    let element = document.querySelector("#sbn [name=\"p\"]") as HTMLInputElement;
+    if (element && location.pathname == "/search/search") {
+      $(`
+        <button id="save-keywords" style="font-size: 18px;color: white; background: green; padding: 10px 15px; border-radius: 5px;">My保存した検索条件</button>
+      `).insertBefore("#sbn");
+      $("#save-keywords").on("click", () => {
+        this.saveKeywords({keywords: element.value, url: location.href})
+      })
+    }
+  }
+
+  static async saveKeywords(data: {
+    keywords: string,
+    url: string
+  }) {
+    return $.ajax({
+      url: `${HOST}/api/auctions/product/save-keywords`,
+      method: 'POST',
+      data:JSON.stringify(data),
+      contentType: 'application/json',
+      success: function(response) {
+        // Handle the response
+      },
+      error: function(error) {
+        // Handle the error
+      }
+    });
   }
 }

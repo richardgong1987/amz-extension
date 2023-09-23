@@ -16,6 +16,7 @@ export class JqGet {
   async main() {
     const productInformation = this.productInformation;
     if (!productInformation) {
+      this.otherPage();
       return console.log("****productInformation is not exit:", productInformation);
     }
 
@@ -42,12 +43,13 @@ export class JqGet {
   }
 
   private autoBidExtension() {
-
+    this.notAutoBidExtension();
+    this.callbackID = window.setTimeout(this.init.bind(this), 10);
   }
 
   private notAutoBidExtension() {
     if (Utils.isTimeToBid(new Date(), this.endDateTime)) {
-      window.cancelAnimationFrame(this.callbackID);
+      window.clearTimeout(this.callbackID);
       //1. bid
       Biz.bid();
       //2. can not upper the limit price
@@ -55,11 +57,16 @@ export class JqGet {
         return console.log("****can not upper limitPrice:", this.orderDetail["limitPrice"]);
       }
       //3. 確認する
-      Utils.clickWithSelector('.js-validator-submit')
+      Utils.clickWithSelector(".js-validator-submit")
 
       return true;
     }
-    this.callbackID = window.requestAnimationFrame(this.notAutoBidExtension.bind(this));
+    this.callbackID = window.setTimeout(this.notAutoBidExtension.bind(this), 10);
+  }
+
+  otherPage() {
+    Biz.agreeBid();
+    Biz.searchPage();
   }
 }
 
