@@ -65,15 +65,43 @@ export class Biz {
   }) {
     return $.ajax({
       url: `${HOST}/api/auctions/product/save-keywords`,
-      method: 'POST',
-      data:JSON.stringify(data),
-      contentType: 'application/json',
-      success: function(response) {
-        // Handle the response
-      },
-      error: function(error) {
-        // Handle the error
-      }
+      method: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json"
     });
+  }
+
+  static otherPage() {
+    this.agreeBid();
+    this.searchPage();
+  }
+
+  static showAddJobButton() {
+    $(`
+        <button id="save-bidJob" style="background: linear-gradient(to bottom, #ffdb58, #ffcf40);
+    border: 1px solid #d4a12d;
+    color: #854d00;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;">タスクを追加します。</button>
+      `).insertBefore("#ProductTitle");
+    $("#save-bidJob").on("click", () => {
+      const url = location.href
+      $.ajax({
+        url: `${HOST}/api/auctions/product/product-add`,
+        method: "POST",
+        data: JSON.stringify({
+          orderId: url.split('/').pop(),
+          limitPrice: 0,
+          url: url,
+          status: 0,
+        }),
+        contentType: "application/json"
+      });
+    })
   }
 }

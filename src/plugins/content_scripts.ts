@@ -16,7 +16,7 @@ export class JqGet {
   async main() {
     const productInformation = this.productInformation;
     if (!productInformation) {
-      this.otherPage();
+      Biz.otherPage();
       return console.log("****productInformation is not exit:", productInformation);
     }
 
@@ -27,6 +27,9 @@ export class JqGet {
 
     const orderDetail = this.orderDetail = await Biz.orderDetail(productInformation["オークションID"]);
     if (!orderDetail || orderDetail.status != 0) {
+      if (!orderDetail) {
+        Biz.showAddJobButton();
+      }
       return console.log("****orderDetail is failure:", orderDetail);
     }
     // prepare data
@@ -62,11 +65,6 @@ export class JqGet {
       return true;
     }
     this.callbackID = window.setTimeout(this.notAutoBidExtension.bind(this), 10);
-  }
-
-  otherPage() {
-    Biz.agreeBid();
-    Biz.searchPage();
   }
 }
 
