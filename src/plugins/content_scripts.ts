@@ -2,10 +2,12 @@ import {Biz} from "src/utils/biz";
 import {Utils} from "src/utils/utils";
 
 export class JqGet {
-  async init() {
+  async init(fetchServer = false) {
     this.productInformation = Biz.getProductInformation() as { [p: string]: string }
-    console.log(JSON.stringify(this.productInformation));
-    await this.main();
+    if (fetchServer) {
+      console.log(JSON.stringify(this.productInformation));
+    }
+    await this.main(fetchServer);
   }
 
   productInformation: { [x: string]: string; } = {}
@@ -13,7 +15,7 @@ export class JqGet {
   endDateTime: Date = new Date();
   callbackID: number = 0;
 
-  async main() {
+  async main(fetchServer: boolean) {
     const productInformation = this.productInformation;
     if (!productInformation) {
       Biz.otherPage();
@@ -24,14 +26,16 @@ export class JqGet {
     if (Utils.isBidExpired(endTime)) {
       return console.log("****endTime終了日時:", endTime);
     }
-
-    const orderDetail = this.orderDetail = await Biz.orderDetail(productInformation["オークションID"]);
-    if (!orderDetail || orderDetail.status != 0) {
-      if (!orderDetail) {
-        Biz.showAddJobButton();
+    if (fetchServer) {
+      const orderDetail = this.orderDetail = await Biz.orderDetail(productInformation["オークションID"]);
+      if (!orderDetail || orderDetail.status != 1) {
+        if (!orderDetail) {
+          Biz.showAddJobButton();
+        }
+        return console.log("****orderDetail is failure:", orderDetail);
       }
-      return console.log("****orderDetail is failure:", orderDetail);
     }
+
     // prepare data
     this.endDateTime = Utils.dateParse(endTime);
 
@@ -47,7 +51,7 @@ export class JqGet {
 
   private autoBidExtension() {
     this.notAutoBidExtension();
-    this.callbackID = window.setTimeout(this.init.bind(this), 10);
+    this.callbackID = window.setTimeout(this.init.bind(this), 100);
   }
 
   private notAutoBidExtension() {
@@ -64,12 +68,12 @@ export class JqGet {
 
       return true;
     }
-    this.callbackID = window.setTimeout(this.notAutoBidExtension.bind(this), 10);
+    this.callbackID = window.setTimeout(this.notAutoBidExtension.bind(this), 100);
   }
 }
 
 const jqGet = new JqGet();
-jqGet.init();
+jqGet.init(true);
 
 
 
