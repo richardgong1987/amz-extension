@@ -67,7 +67,10 @@ export class Biz {
       url: `${HOST}/api/auctions/product/save-keywords`,
       method: "POST",
       data: JSON.stringify(data),
-      contentType: "application/json"
+      contentType: "application/json",
+      complete: function () {
+        $("#save-keywords").remove();
+      },
     });
   }
 
@@ -100,7 +103,10 @@ export class Biz {
           url: url,
           status: 0,
         }),
-        contentType: "application/json"
+        contentType: "application/json",
+        complete: function () {
+          $("#save-bidJob").remove();
+        },
       });
     })
   }
