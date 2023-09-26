@@ -50,7 +50,7 @@ export class Biz {
   private static resultPage() {
     if (location.pathname == "/jp/config/placebid") {
       if (location.search) {
-        $(".CompleteMain__ohterLinkItem").eq(0).find("a").trigger("click")
+        Utils.click($(".CompleteMain__ohterLinkItem").eq(0).find("a")[0])
       } else {
 
       }

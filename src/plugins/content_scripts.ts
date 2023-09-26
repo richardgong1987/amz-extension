@@ -3,17 +3,19 @@ import {Utils} from "src/utils/utils";
 
 export class JqGet {
   async init(fetchServer = false) {
-    this.productInformation = Biz.getProductInformation() as { [p: string]: string }
+    this.pInfo = Biz.getProductInformation() as { [p: string]: string }
+    if (fetchServer) {
+      console.log("****pInfo:", this.pInfo);
+    }
     await this.main(fetchServer);
   }
 
-  productInformation: { [x: string]: string; } = {}
+  pInfo: { [x: string]: string; } = {}
   orderDetail: { [x: string]: any; } = {}
   endDateTime: Date = new Date();
-  callbackID: number = 0;
 
   async main(fetchServer: boolean) {
-    const productInformation = this.productInformation;
+    const productInformation = this.pInfo;
     if (!productInformation) {
       Biz.otherPage();
       return console.log("****productInformation is not exit:", productInformation);
@@ -31,6 +33,9 @@ export class JqGet {
         }
         return console.log("****orderDetail is failure:", orderDetail);
       }
+      this.pInfo["limitPrice"] = orderDetail.limitPrice
+      // await Utils.storeSet({[orderDetail.orderId]: this.pInfo})
+      // console.log("****", await Utils.storeGet(orderDetail.orderId))
     }
 
     // prepare data
@@ -45,12 +50,24 @@ export class JqGet {
     }
   }
 
+  callbackID1: number = 0;
+  callbackID2: number = 0;
+
   private autoBidExtension() {
-    this.notAutoBidExtension();
-    this.callbackID = window.setTimeout(this.init.bind(this), 100);
+    if (this.offerBid()) {
+      return clearTimeout(this.callbackID1);
+    }
+    this.callbackID1 = window.setTimeout(this.init.bind(this), 100);
   }
 
   private notAutoBidExtension() {
+    if (this.offerBid()) {
+      return clearTimeout(this.callbackID2);
+    }
+    this.callbackID2 = window.setTimeout(this.notAutoBidExtension.bind(this), 100);
+  }
+
+  offerBid() {
     let isTime = Utils.isTimeToBid(new Date(), this.endDateTime);
     if (isTime) {
       console.log("**********:isTime", isTime);
@@ -64,9 +81,8 @@ export class JqGet {
         Utils.clickWithSelector(".js-validator-submit");
       }, 10);
       //3. 確認する
-      return window.clearTimeout(this.callbackID);
     }
-    this.callbackID = window.setTimeout(this.notAutoBidExtension.bind(this), 100);
+    return isTime;
   }
 }
 

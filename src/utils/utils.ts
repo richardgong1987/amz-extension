@@ -146,6 +146,19 @@ export class Utils {
     to.setSeconds(to.getSeconds() - 1);
     return from >= to;
   }
+
+  static async storeSet(val: { [x: string]: any }) {
+    let newVar: any = await this.storeGetAll() || {};
+    Object.assign(newVar, val);
+    return await chrome.storage?.local?.set(newVar);
+  }
+  static async storeGet(key: string) {
+    let newVar: any = await this.storeGetAll();
+    if (newVar) {
+      return newVar[key];
+    }
+    return null;
+  }
 }
 
 
