@@ -47,6 +47,16 @@ export class Biz {
     return $.get(`${HOST}/api/auctions/product/${orderId}`);
   }
 
+  private static resultPage() {
+    if (location.pathname == "/jp/config/placebid") {
+      if (location.search) {
+        $(".CompleteMain__ohterLinkItem").eq(0).find("a").trigger("click")
+      } else {
+
+      }
+    }
+  }
+
   static searchPage() {
     let element = document.querySelector("#sbn [name=\"p\"]") as HTMLInputElement;
     if (element && location.pathname == "/search/search") {
@@ -77,9 +87,10 @@ export class Biz {
   static otherPage() {
     this.agreeBid();
     this.searchPage();
+    this.resultPage();
   }
 
-  static showAddJobButton(info:any) {
+  static showAddJobButton(info: any) {
     $(`
         <button id="save-bidJob" style="background: linear-gradient(to bottom, #ffdb58, #ffcf40);
     border: 1px solid #d4a12d;
@@ -98,11 +109,11 @@ export class Biz {
         url: `${HOST}/api/auctions/product/product-add`,
         method: "POST",
         data: JSON.stringify({
-          orderId: url.split('/').pop(),
+          orderId: url.split("/").pop(),
           limitPrice: 0,
           url: url,
           status: 0,
-          info:JSON.stringify(info)
+          info: JSON.stringify(info)
         }),
         contentType: "application/json",
         complete: function () {
@@ -111,4 +122,6 @@ export class Biz {
       });
     })
   }
+
+
 }

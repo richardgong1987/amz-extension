@@ -4,9 +4,6 @@ import {Utils} from "src/utils/utils";
 export class JqGet {
   async init(fetchServer = false) {
     this.productInformation = Biz.getProductInformation() as { [p: string]: string }
-    if (fetchServer) {
-      console.log(JSON.stringify(this.productInformation));
-    }
     await this.main(fetchServer);
   }
 
@@ -38,7 +35,6 @@ export class JqGet {
 
     // prepare data
     this.endDateTime = Utils.dateParse(endTime);
-
     /**
      * 1.自動延長
      */
@@ -55,18 +51,20 @@ export class JqGet {
   }
 
   private notAutoBidExtension() {
-    if (Utils.isTimeToBid(new Date(), this.endDateTime)) {
-      window.clearTimeout(this.callbackID);
+    let isTime = Utils.isTimeToBid(new Date(), this.endDateTime);
+    if (isTime) {
+      console.log("**********:isTime", isTime);
       //1. bid
       Biz.bid();
       //2. can not upper the limit price
       if (!Biz.isGoodPrice(this.orderDetail["limitPrice"])) {
         return console.log("****can not upper limitPrice:", this.orderDetail["limitPrice"]);
       }
+      setTimeout(function () {
+        Utils.clickWithSelector(".js-validator-submit");
+      }, 10);
       //3. 確認する
-      Utils.clickWithSelector(".js-validator-submit")
-
-      return true;
+      return window.clearTimeout(this.callbackID);
     }
     this.callbackID = window.setTimeout(this.notAutoBidExtension.bind(this), 100);
   }
