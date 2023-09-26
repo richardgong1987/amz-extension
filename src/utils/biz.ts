@@ -79,7 +79,7 @@ export class Biz {
     this.searchPage();
   }
 
-  static showAddJobButton() {
+  static showAddJobButton(info:any) {
     $(`
         <button id="save-bidJob" style="background: linear-gradient(to bottom, #ffdb58, #ffcf40);
     border: 1px solid #d4a12d;
@@ -102,6 +102,7 @@ export class Biz {
           limitPrice: 0,
           url: url,
           status: 0,
+          info:JSON.stringify(info)
         }),
         contentType: "application/json",
         complete: function () {
