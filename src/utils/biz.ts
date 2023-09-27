@@ -47,14 +47,32 @@ export class Biz {
     return $.get(`${HOST}/api/auctions/product/${orderId}`);
   }
 
-  private static resultPage() {
+  static async resultPage() {
+    console.log("***/jp/config/placebid", location)
     if (location.pathname == "/jp/config/placebid") {
       if (location.search) {
-        Utils.click($(".CompleteMain__ohterLinkItem").eq(0).find("a")[0])
+        location.href = $(".CompleteMain__ohterLinkItem").eq(0).find("a").prop("href");
       } else {
-
+        this.reBid();
       }
     }
+  }
+
+  static async reBid() {
+    var orderId = $('[name="ItemID"]').val() as string;
+    let orderDetail = await Utils.storeGet(orderId);
+    if (orderDetail.remark) {
+      return console.log("*****rebid already:", orderDetail)
+    }
+    //2. can not upper the limit price
+    if (!Biz.isGoodPrice(orderDetail["limitPrice"])) {
+      return console.log("****can not upper limitPrice 222:", orderDetail["limitPrice"]);
+    }
+    orderDetail.remark = true
+    await Utils.storeSet({[orderId]: orderDetail})
+    setTimeout(function () {
+      Utils.clickWithSelector(".SubmitBox__button--rebid");
+    }, 10);
   }
 
   static searchPage() {
@@ -105,7 +123,7 @@ export class Biz {
       `).insertBefore("#ProductTitle");
     $("#save-bidJob").on("click", () => {
       const url = location.href
-      let price = prompt('私の最高額入');
+      let price = prompt("私の最高額入");
       $.ajax({
         url: `${HOST}/api/auctions/product/product-add`,
         method: "POST",

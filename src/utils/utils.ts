@@ -146,8 +146,8 @@ export class Utils {
   static isTimeToBid(start: Date, end: Date): boolean {
     let from = new Date(start);
     let to = new Date(end);
-    to.setSeconds(to.getSeconds() - 2);
-    return from > to;
+    to.setSeconds(to.getSeconds() - 1);
+    return from >= to;
   }
 
   static async storeSet(val: { [x: string]: any }) {
