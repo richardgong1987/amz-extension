@@ -34,8 +34,7 @@ export class JqGet {
         return console.log("****orderDetail is failure:", orderDetail);
       }
       this.pInfo["limitPrice"] = orderDetail.limitPrice
-      // await Utils.storeSet({[orderDetail.orderId]: this.pInfo})
-      // console.log("****", await Utils.storeGet(orderDetail.orderId))
+      await Utils.storeSet({[orderDetail.orderId]: this.pInfo})
     }
 
     // prepare data

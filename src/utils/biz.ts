@@ -105,12 +105,13 @@ export class Biz {
       `).insertBefore("#ProductTitle");
     $("#save-bidJob").on("click", () => {
       const url = location.href
+      let price = prompt('私の最高額入');
       $.ajax({
         url: `${HOST}/api/auctions/product/product-add`,
         method: "POST",
         data: JSON.stringify({
           orderId: url.split("/").pop(),
-          limitPrice: 0,
+          limitPrice: Number(price),
           url: url,
           status: 0,
           info: JSON.stringify(info)
