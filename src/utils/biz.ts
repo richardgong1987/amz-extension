@@ -72,7 +72,7 @@ export class Biz {
     await Utils.storeSet({[orderId]: orderDetail})
     setTimeout(function () {
       Utils.clickWithSelector(".SubmitBox__button--rebid");
-    }, 10);
+    }, 1);
   }
 
   static searchPage() {

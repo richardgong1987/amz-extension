@@ -83,7 +83,7 @@ export class JqGet {
       }
       setTimeout(function () {
         Utils.clickWithSelector(".js-validator-submit");
-      }, 10);
+      }, 1);
       //3. 確認する
     }
     return isTime;
