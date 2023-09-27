@@ -38,7 +38,7 @@ export class JqGet {
       this.pInfo["status"] = orderDetail.status
       await Utils.storeSet({[orderDetail.orderId]: this.pInfo})
       if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) >= orderDetail.limitPrice) {
-        Biz.updateProduct({orderId: orderDetail.orderId, status: 4})
+        Biz.updateProduct({orderId: orderDetail.orderId, status: 4, remark: "已超出最高价"})
         return alert("已超出最高价,请退出")
       }
 

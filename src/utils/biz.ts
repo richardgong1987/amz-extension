@@ -66,6 +66,8 @@ export class Biz {
     }
     //2. can not upper the limit price
     if (!Biz.isGoodPrice(orderDetail["limitPrice"])) {
+      Biz.updateProduct({orderId: orderDetail.orderId, status: 4, remark: "再入已超出最高价"})
+      alert("再入...已超出最高价,请退出")
       return console.log("****can not upper limitPrice 222:", orderDetail["limitPrice"]);
     }
     orderDetail.remark = true
