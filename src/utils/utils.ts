@@ -146,7 +146,7 @@ export class Utils {
   static isTimeToBid(start: Date, end: Date): boolean {
     let from = new Date(start);
     let to = new Date(end);
-    to.setSeconds(to.getSeconds() - 1);
+    to.setSeconds(to.getSeconds() - 2);
     return from >= to;
   }
 

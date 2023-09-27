@@ -108,6 +108,17 @@ export class Biz {
     this.resultPage();
   }
 
+  static updateProduct(data:any) {
+    $.ajax({
+      url: `${HOST}/api/auctions/product/product-update`,
+      method: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      complete: function () {
+        $("#save-bidJob").remove();
+      },
+    });
+  }
   static showAddJobButton(info: any) {
     $(`
         <button id="save-bidJob" style="background: linear-gradient(to bottom, #ffdb58, #ffcf40);
