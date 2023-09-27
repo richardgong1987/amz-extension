@@ -59,6 +59,7 @@ export class JqGet {
     if (this.offerBid()) {
       return clearTimeout(this.callbackID1);
     }
+    clearTimeout(this.callbackID1)
     this.callbackID1 = window.setTimeout(this.init.bind(this), 100);
   }
 
@@ -66,13 +67,14 @@ export class JqGet {
     if (this.offerBid()) {
       return clearTimeout(this.callbackID2);
     }
+    clearTimeout(this.callbackID2)
     this.callbackID2 = window.setTimeout(this.notAutoBidExtension.bind(this), 100);
   }
 
   offerBid() {
     let isTime = Utils.isTimeToBid(new Date(), this.endDateTime);
     if (isTime) {
-      console.log("**********:isTime", isTime);
+      console.log("**********isTime:", isTime);
       //1. bid
       Biz.bid();
       //2. can not upper the limit price
