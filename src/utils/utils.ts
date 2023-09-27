@@ -42,6 +42,9 @@ export class Utils {
   static async storeGetAll() {
     return await chrome?.storage?.local?.get();
   }
+  static async storeClear() {
+    return await chrome?.storage?.local?.clear();
+  }
 
   static dateDiffMinutes(dt2: Date, dt1: Date): number {
     var diff = (dt2.getTime() - dt1.getTime()) / 1000;

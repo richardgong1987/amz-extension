@@ -5,7 +5,7 @@ export class JqGet {
   async init(fetchServer = false) {
     this.pInfo = Biz.getProductInformation() as { [p: string]: string }
     if (fetchServer) {
-      console.log("****pInfo:", this.pInfo);
+      console.log("****pInfo:", await Utils.storeGetAll());
     }
     await this.main(fetchServer);
   }
@@ -34,6 +34,9 @@ export class JqGet {
         return console.log("****orderDetail is failure:", orderDetail);
       }
       this.pInfo["limitPrice"] = orderDetail.limitPrice
+      this.pInfo["url"] = orderDetail.url
+      this.pInfo["status"] = orderDetail.status
+
       await Utils.storeSet({[orderDetail.orderId]: this.pInfo})
     }
 
