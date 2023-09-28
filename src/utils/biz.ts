@@ -59,7 +59,7 @@ export class Biz {
   }
 
   static async reBid() {
-    var orderId = $('[name="ItemID"]').val() as string;
+    var orderId = $("[name=\"ItemID\"]").val() as string;
     let orderDetail = await Utils.storeGet(orderId);
     if (orderDetail.remark) {
       return console.log("*****rebid already:", orderDetail)
@@ -110,7 +110,7 @@ export class Biz {
     this.resultPage();
   }
 
-  static updateProduct(data:any) {
+  static updateProduct(data: any) {
     $.ajax({
       url: `${HOST}/api/auctions/product/product-update`,
       method: "POST",
@@ -121,21 +121,17 @@ export class Biz {
       },
     });
   }
+
   static showAddJobButton(info: any) {
     $(`
-        <button id="save-bidJob" style="background: linear-gradient(to bottom, #ffdb58, #ffcf40);
-    border: 1px solid #d4a12d;
-    color: #854d00;
-    font-size: 18px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;">タスクを追加します。</button>
+        <div id="save-bidJob-parent">
+            <button class="save-bidJob" data-status="0" style="font-size: 18px; border-radius: 10px; color: white; padding: 5px 10px; background: green; ">タスク追加</button>
+            <button class="save-bidJob" data-status="1" style="font-size: 18px; border-radius: 10px; color: white;padding: 5px 10px;background: red; ">今すぐ入札</button>
+        </div>
       `).insertBefore("#ProductTitle");
-    $("#save-bidJob").on("click", () => {
+    $(".save-bidJob").on("click", function () {
       const url = location.href
+      let status = $(this).data("status");
       let price = prompt("私の最高額入");
       $.ajax({
         url: `${HOST}/api/auctions/product/product-add`,
@@ -144,12 +140,16 @@ export class Biz {
           orderId: url.split("/").pop(),
           limitPrice: Number(price),
           url: url,
-          status: 0,
+          status,
           info: JSON.stringify(info)
         }),
         contentType: "application/json",
         complete: function () {
-          $("#save-bidJob").remove();
+          if (status == 1) {
+            return location.reload();
+          }
+
+          $("#save-bidJob-parent").remove();
         },
       });
     })
