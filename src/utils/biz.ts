@@ -111,14 +111,19 @@ export class Biz {
   }
 
   static updateProduct(data: any) {
+    return this.updateProdctAjax(data, function () {
+      $("#save-bidJob").remove();
+    })
+  }
+
+  static updateProdctAjax(data: any, complete = function () {
+  }) {
     $.ajax({
       url: `${HOST}/api/auctions/product/product-update`,
       method: "POST",
       data: JSON.stringify(data),
       contentType: "application/json",
-      complete: function () {
-        $("#save-bidJob").remove();
-      },
+      complete: complete,
     });
   }
 
@@ -148,7 +153,6 @@ export class Biz {
           if (status == 1) {
             return location.reload();
           }
-
           $("#save-bidJob-parent").remove();
         },
       });
@@ -156,4 +160,11 @@ export class Biz {
   }
 
 
+  static ifSuccess(orderDetail: any) {
+    let b = orderDetail.status == 1 && $(".Button--proceed").text() == "取引ナビ";
+    if (b) {
+      this.updateProdctAjax({orderId: orderDetail.orderId, status: 3})
+    }
+    return b;
+  }
 }
