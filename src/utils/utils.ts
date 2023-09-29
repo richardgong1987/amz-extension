@@ -1,24 +1,4 @@
 export class Utils {
-
-  openUrl(url: string) {
-    window.location.href = url;
-  }
-
-
-  static range(start: number, end: number, tag = "next time") {
-    const nextTime = (Math.floor(Math.random() * (end - start)) + start) * 1000;
-    console.log(`*************** ${tag}:${nextTime}`);
-    return nextTime;
-  }
-
-
-  static click(ele: HTMLElement | null) {
-    if (ele) {
-      return ele.click();
-    }
-    console.trace("****[ele] not exsit:", ele);
-  }
-
   static clickWithSelector(name: string) {
     let ele = document.querySelector(name) as HTMLElement;
     if (ele) {
@@ -27,11 +7,12 @@ export class Utils {
     console.trace(`****failure click [${name}] not exsit:`);
   }
 
-  static submit(ele: HTMLFormElement | null) {
+  static submitWithSelector(name: string) {
+    const ele = document.querySelector(name) as HTMLFormElement;
     if (ele) {
       return ele.submit();
     }
-    console.trace("****[ele] form not exsit:", ele);
+    console.trace("****failure submit:", name);
   }
 
   static getParameter(key: string) {
@@ -42,16 +23,10 @@ export class Utils {
   static async storeGetAll() {
     return await chrome?.storage?.local?.get();
   }
+
   static async storeClear() {
     return await chrome?.storage?.local?.clear();
   }
-
-  static dateDiffMinutes(dt2: Date, dt1: Date): number {
-    var diff = (dt2.getTime() - dt1.getTime()) / 1000;
-    diff /= 60;
-    return Math.abs(Math.round(diff));
-  }
-
   static fireSelectChange(sel: HTMLSelectElement, index: number) {
     sel.options.selectedIndex = index;
     // firing the event properly according to StackOverflow
@@ -143,10 +118,10 @@ export class Utils {
     return new Date(dateStr.replace(/\（[\S\s]+?\）/g, " "))
   }
 
-  static isTimeToBid(start: Date, end: Date): boolean {
-    let from = new Date(start);
+  static isTimeToBid(end: Date): boolean {
+    let from = new Date();
     let to = new Date(end);
-    to.setSeconds(to.getSeconds() - 2);
+    to.setMilliseconds(to.getMilliseconds() - 1900);
     return from >= to;
   }
 
@@ -155,6 +130,7 @@ export class Utils {
     Object.assign(newVar, val);
     return await chrome.storage?.local?.set(newVar);
   }
+
   static async storeGet(key: string) {
     let newVar: any = await this.storeGetAll();
     if (newVar) {

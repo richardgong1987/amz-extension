@@ -79,7 +79,7 @@ export class JqGet {
   }
 
   offerBid() {
-    let isTime = Utils.isTimeToBid(new Date(), this.endDateTime);
+    let isTime = Utils.isTimeToBid(this.endDateTime);
     if (isTime) {
       console.log("**********isTime:", isTime);
       //1. bid

@@ -10,8 +10,9 @@ export class Biz {
     if (productInfor.length) {
       const details: { [x: string]: string } = {}
       productInfor.each((function () {
-        details[$(this).find("th").text().trim()] = $(this).find("td").text()?.trim().replace(/[\s\\n]+/, "");
+        details[$(this).find("th").text().trim()] = $(this).find("td").text()?.trim().replace(/[\s\\n]+/, "").trim();
       }))
+      delete details['カテゴリ']
       return details;
     }
     return false;
@@ -163,7 +164,14 @@ export class Biz {
   static ifSuccess(orderDetail: any) {
     let b = orderDetail.status == 1 && $(".Button--proceed").text() == "取引ナビ";
     if (b) {
-      this.updateProdctAjax({orderId: orderDetail.orderId, status: 3})
+      $().text()
+      this.updateProdctAjax({
+        orderId: orderDetail.orderId,
+        status: 3,
+        remark: "用户名:" + $(".yjmthloginarea strong").text() + ",价格:" + $(".Price .Price__value").contents().filter(function () {
+          return this.nodeType === Node.TEXT_NODE;
+        }).text().trim()
+      })
     }
     return b;
   }
