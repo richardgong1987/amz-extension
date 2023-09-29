@@ -12,7 +12,7 @@ export class Biz {
       productInfor.each((function () {
         details[$(this).find("th").text().trim()] = $(this).find("td").text()?.trim().replace(/[\s\\n]+/, "").trim();
       }))
-      delete details['カテゴリ']
+      delete details["カテゴリ"]
       return details;
     }
     return false;
@@ -54,7 +54,12 @@ export class Biz {
       if (location.search) {
         location.href = $(".CompleteMain__ohterLinkItem").eq(0).find("a").prop("href");
       } else {
-        this.reBid();
+        if ($(".CompleteMain__title").text() == "入札を受け付けました。あなたが現在の最高額入札者です。") {
+          location.href = $(".CompleteMain__ohterLinkItem").eq(0).find("a").prop("href");
+        } else {
+          this.reBid();
+        }
+
       }
     }
   }

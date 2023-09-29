@@ -86,7 +86,8 @@ export class JqGet {
       Biz.bid();
       //2. can not upper the limit price
       if (!Biz.isGoodPrice(this.orderDetail["limitPrice"])) {
-        return console.log("****can not upper limitPrice:", this.orderDetail["limitPrice"]);
+        Biz.updateProduct({orderId: this.orderDetail['orderId'], status: 4, remark: "已超出最高价2"})
+        return alert("已超出最高价,请退出");
       }
       setTimeout(function () {
         Utils.clickWithSelector(".js-validator-submit");
