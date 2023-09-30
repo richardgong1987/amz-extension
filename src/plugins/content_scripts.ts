@@ -105,7 +105,7 @@ const OverTime = {
   min: 0,
   sec: 0,
 }
-
+let isLoad = false
 let timeLeft = 30;
 let isFirstPaint = true
 var timeSinceLast = 0;
@@ -139,6 +139,7 @@ function setPageData(xmlhttp: XMLHttpRequest) {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
       // @ts-ignore
       timeLeft = xmlhttp.responseText;
+      isLoad = true
     }
   } catch (e) {
 
@@ -152,10 +153,9 @@ function checkObject() {
   xmlhttp.onreadystatechange = function () {
     setPageData(xmlhttp)
   };
-  xmlhttp.open("GET", "https://page.auctions.yahoo.co.jp/now?aID=q1107988099&nowtime=" + nowTime, true);
+
+  xmlhttp.open("GET", "https://page.auctions.yahoo.co.jp/now?aID="+location.pathname.split('/').pop()+"&nowtime=" + nowTime, true);
   xmlhttp.send(null);
-
-
 }
 
 function timePaint() {
@@ -167,7 +167,6 @@ function timePaint() {
     isFirstPaint = false;
     timeSinceLast = 0;
   }
-
   if (timeLeft <= 0) {
     outputString = "オークション - 終了";
   } else {
