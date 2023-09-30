@@ -1,4 +1,3 @@
-
 export class Utils {
   static clickWithSelector(name: string) {
     let ele = document.querySelector(name) as HTMLElement;
@@ -108,22 +107,6 @@ export class Utils {
 
   static fireKeyboardEnter(sel: HTMLInputElement) {
     this.fireKeyboard(sel, "keydown");
-  }
-
-  static isBidExpired(dateStr: string) {
-    const from = new Date();
-    const to = this.dateParse(dateStr);
-    return from >= to;
-  }
-
-  static dateParse(dateStr: string): Date {
-    return new Date(dateStr.replace(/\（[\S\s]+?\）/g, " "))
-  }
-
-  static isTimeToBid(end: Date): boolean {
-    let from = new Date();
-    let to = new Date(end);
-    return from >= to;
   }
 
   static async storeSet(val: { [x: string]: any }) {
