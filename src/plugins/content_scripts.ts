@@ -83,7 +83,7 @@ export class JqGet {
   offerBid() {
     let isTime = Utils.isTimeToBid(this.endDateTime);
     if (isTime) {
-      console.log("**********isTime:", isTime);
+      console.log("******************************************************************************************开始抢了:", isTime);
       //1. bid
       Biz.bid();
       //2. can not upper the limit price
