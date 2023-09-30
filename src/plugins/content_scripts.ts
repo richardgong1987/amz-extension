@@ -23,7 +23,8 @@ export class JqGet {
 
     const endTime = productInformation["終了日時"]
     if (Utils.isBidExpired(endTime)) {
-      return console.log("****endTime終了日時:", endTime);
+      Utils.closeWindow30s();
+      return alert("****endTime終了日時:" + endTime);
     }
     if (fetchServer) {
       const orderDetail = this.orderDetail = await Biz.orderDetail(productInformation["オークションID"]);
@@ -31,6 +32,7 @@ export class JqGet {
         if (!orderDetail) {
           Biz.showAddJobButton(productInformation);
         }
+
         return console.log("****orderDetail is failure:", orderDetail);
       }
       this.pInfo["limitPrice"] = orderDetail.limitPrice
@@ -41,8 +43,8 @@ export class JqGet {
       }
       await Utils.storeSet({[orderDetail.orderId]: this.pInfo})
       if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) >= orderDetail.limitPrice) {
-        Biz.updateProduct({orderId: orderDetail.orderId, status: 4, remark: "已超出最高价"})
-        return alert("已超出最高价,请退出")
+        Biz.overPrice(this.orderDetail["orderId"])
+        return alert("main已超出最高价,30秒后关页面")
       }
 
     }
@@ -86,8 +88,8 @@ export class JqGet {
       Biz.bid();
       //2. can not upper the limit price
       if (!Biz.isGoodPrice(this.orderDetail["limitPrice"])) {
-        Biz.updateProduct({orderId: this.orderDetail['orderId'], status: 4, remark: "已超出最高价2"})
-        return alert("已超出最高价,请退出");
+        Biz.overPrice(this.orderDetail["orderId"])
+        return alert("offerBid已超出最高价,30秒后关闭页面");
       }
       setTimeout(function () {
         Utils.clickWithSelector(".js-validator-submit");

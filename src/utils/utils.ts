@@ -27,6 +27,7 @@ export class Utils {
   static async storeClear() {
     return await chrome?.storage?.local?.clear();
   }
+
   static fireSelectChange(sel: HTMLSelectElement, index: number) {
     sel.options.selectedIndex = index;
     // firing the event properly according to StackOverflow
@@ -137,6 +138,12 @@ export class Utils {
       return newVar[key];
     }
     return null;
+  }
+
+  static closeWindow30s() {
+    setTimeout(function () {
+      window.close();
+    }, 30 * 1000);
   }
 }
 

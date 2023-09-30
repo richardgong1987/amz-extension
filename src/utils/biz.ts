@@ -59,7 +59,6 @@ export class Biz {
         } else {
           this.reBid();
         }
-
       }
     }
   }
@@ -72,9 +71,10 @@ export class Biz {
     }
     //2. can not upper the limit price
     if (!Biz.isGoodPrice(orderDetail["limitPrice"])) {
-      Biz.updateProduct({orderId: orderDetail.orderId, status: 4, remark: "再入已超出最高价"})
-      alert("再入...已超出最高价,请退出")
-      return console.log("****can not upper limitPrice 222:", orderDetail["limitPrice"]);
+      this.overPrice(orderDetail.orderId, function () {
+        $("#save-bidJob-parent").remove();
+      })
+      return alert("再入...已超出最高价,30秒后关页面退出")
     }
     orderDetail.remark = true
     await Utils.storeSet({[orderId]: orderDetail})
@@ -116,10 +116,10 @@ export class Biz {
     this.resultPage();
   }
 
-  static updateProduct(data: any) {
-    return this.updateProdctAjax(data, function () {
-      $("#save-bidJob").remove();
-    })
+  static overPrice(id: string, complete = function () {
+  }) {
+    Utils.closeWindow30s();
+    return this.updateProdctAjax({orderId: id, status: 4, remark: "已超出最高价"}, complete)
   }
 
   static updateProdctAjax(data: any, complete = function () {
