@@ -1,3 +1,4 @@
+import {retry} from "rxjs";
 import {Biz} from "src/utils/biz";
 import {Utils} from "src/utils/utils";
 
@@ -79,6 +80,7 @@ var outputString = "";
 var xmlhttp = createXMLHttp();
 const myInstance = new JqGet();
 myInstance.init();
+setInterval(timePaint, 1000);
 
 
 function createXMLHttp() {
@@ -124,7 +126,7 @@ function checkObject() {
 }
 
 function timePaint() {
-  if (!/^\/jp\/auction\/[a-z][0-9]{10}$/.test(location.pathname)) {
+  if (!/^\/jp\/auction\/[a-z][0-9]{10}$/.test(location.pathname) || $(".ClosedHeader__tag").text() == "このオークションは終了しています") {
     return;
   }
   if (isFirstPaint || timeLeft == -1 || (timeLeft < 300 && timeSinceLast >= 60)) {
@@ -161,4 +163,4 @@ function timePaint() {
   console.log("****残り時間:", outputString)
 }
 
-setInterval(timePaint, 1000);
+
