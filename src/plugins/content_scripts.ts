@@ -69,7 +69,7 @@ export class JqGet {
       return clearTimeout(this.callbackID1);
     }
     clearTimeout(this.callbackID1)
-    this.callbackID1 = window.setTimeout(this.init.bind(this), 100);
+    this.callbackID1 = window.setTimeout(this.init.bind(this), 200);
   }
 
   private notAutoBidExtension() {
@@ -77,7 +77,7 @@ export class JqGet {
       return clearTimeout(this.callbackID2);
     }
     clearTimeout(this.callbackID2)
-    this.callbackID2 = window.setTimeout(this.notAutoBidExtension.bind(this), 100);
+    this.callbackID2 = window.setTimeout(this.notAutoBidExtension.bind(this), 200);
   }
 
   offerBid() {
