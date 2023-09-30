@@ -122,6 +122,7 @@ export class Utils {
   static isTimeToBid(end: Date): boolean {
     let from = new Date();
     let to = new Date(end);
+    to.setMinutes(to.getMinutes() + 1)
     to.setMilliseconds(to.getMilliseconds() - 1300);
     return from >= to;
   }

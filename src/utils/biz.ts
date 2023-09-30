@@ -60,6 +60,10 @@ export class Biz {
           this.reBid();
         }
       }
+    } else if (location.pathname == "/jp/config/undefined") {
+      if (!location.search) {
+        history.back();
+      }
     }
   }
 
@@ -133,7 +137,7 @@ export class Biz {
     });
   }
 
-  static showAddJobButton(info: any) {
+  static showAddJobButton() {
     $(`
         <div id="save-bidJob-parent">
             <button class="save-bidJob" data-status="0" style="font-size: 18px; border-radius: 10px; color: white; padding: 5px 10px; background: green; ">タスク追加</button>
@@ -152,7 +156,6 @@ export class Biz {
           limitPrice: Number(price),
           url: url,
           status,
-          info: JSON.stringify(info)
         }),
         contentType: "application/json",
         complete: function () {
