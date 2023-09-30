@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export class Utils {
   static clickWithSelector(name: string) {
     let ele = document.querySelector(name) as HTMLElement;
@@ -122,10 +124,26 @@ export class Utils {
   static isTimeToBid(end: Date): boolean {
     let from = new Date();
     let to = new Date(end);
+    to.setSeconds(0)
     to.setMinutes(to.getMinutes() + 1)
-    to.setMilliseconds(to.getMilliseconds() - 1300);
+    this.printLeftTime(from, to);
     return from >= to;
   }
+
+  static printLeftTime(time1: any, time2: any) {
+    // Convert the times to Date objects.
+    const date1 = new Date(time1).getTime();
+    const date2 = new Date(time2).getTime();
+    var time = date2 - date1;
+    var seconds = moment.duration(time).seconds();
+    var minutes = moment.duration(time).minutes();
+    var hours = moment.duration(time).hours();
+    var days = moment.duration(time).days();
+    console.log(`******${hours}:${minutes}:${seconds}`)
+    // Return the difference in hours, minutes, and seconds.
+    return {hours, minutes, seconds};
+  }
+
 
   static async storeSet(val: { [x: string]: any }) {
     let newVar: any = await this.storeGetAll() || {};

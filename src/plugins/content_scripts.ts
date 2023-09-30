@@ -23,8 +23,7 @@ export class JqGet {
 
     const endTime = productInformation["終了日時"]
     if (Utils.isBidExpired(endTime)) {
-      Utils.closeWindow30s();
-      return alert("****endTime終了日時:" + endTime);
+      return console.log("****endTime終了日時:" + endTime);
     }
     if (fetchServer) {
       const orderDetail = this.orderDetail = await Biz.orderDetail(productInformation["オークションID"]);
