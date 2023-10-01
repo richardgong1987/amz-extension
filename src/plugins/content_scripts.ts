@@ -48,8 +48,15 @@ export class JqGet {
 
   offerBid(day: number, hour: number, min: number, sec: number) {
     //  check if the time is correct
-    if (!(day == 0 && hour == 0 && min == 0 && sec <= 4)) {
-      return;
+    const othersBidCount = Number($(".Count .Count__link .Count__detail").text().slice(0, -1))
+    if (othersBidCount > 1) {
+      if (!(day == 0 && hour == 0 && min == 0 && sec <= 5)) {
+        return;
+      }
+    } else {
+      if (!(day == 0 && hour == 0 && min == 0 && sec <= 3)) {
+        return;
+      }
     }
     // check order status
     // @ts-ignore
@@ -87,6 +94,7 @@ let isFirstPaint = true
 let timeSinceLast = 0;
 let outputString = "";
 var setTmp = setInterval(timePaint, 1000);
+
 function clearJob() {
   clearInterval(setTmp);
 }
@@ -156,7 +164,7 @@ function timePaint() {
     return clearInterval(setTmp);
   }
   if (isFirstPaint || timeLeft == -1 || (timeLeft < 300 && timeSinceLast >= 60)) {
-    if ((timeLeft < 300 && timeSinceLast >= 60)) {
+    if ((timeLeft < 80 && timeSinceLast >= 60)) {
       return window.location.reload();
     }
 
