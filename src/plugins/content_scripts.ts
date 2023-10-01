@@ -74,12 +74,12 @@ export class JqGet {
 
 let timeLeft = -10;
 let isFirstPaint = true
-var timeSinceLast = 0;
-var outputString = "";
-var xmlhttp = createXMLHttp();
+let timeSinceLast = 0;
+let outputString = "";
+const xmlhttp = createXMLHttp();
 const myInstance = new JqGet();
 myInstance.init();
-setInterval(timePaint, 1000);
+const setTmp = setInterval(timePaint, 1000);
 
 
 function createXMLHttp() {
@@ -126,7 +126,7 @@ function checkObject() {
 
 function timePaint() {
   if (!/^\/jp\/auction\/[a-z][0-9]{10}$/.test(location.pathname) || $(".ClosedHeader__tag").text() == "このオークションは終了しています") {
-    return;
+    return clearInterval(setTmp);
   }
   if (isFirstPaint || timeLeft == -1 || (timeLeft < 300 && timeSinceLast >= 60)) {
     checkObject();
