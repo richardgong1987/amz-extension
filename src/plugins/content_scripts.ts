@@ -21,7 +21,7 @@ export class JqGet {
     const orderDetail = this.orderDetail = await Biz.orderDetail(productInformation["オークションID"]);
     if (!orderDetail || orderDetail.status != 1) {
       if (!orderDetail) {
-        Biz.showAddJobButton();
+        Biz.showAddJobButton(productInformation);
       }
       clearJob()
       return console.log("****orderDetail is failure:", orderDetail);

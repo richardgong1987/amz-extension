@@ -137,7 +137,7 @@ export class Biz {
     });
   }
 
-  static showAddJobButton() {
+  static showAddJobButton(productInformation: any) {
     $(`
         <div id="save-bidJob-parent">
             <button class="save-bidJob" data-status="0" style="font-size: 18px; border-radius: 10px; color: white; padding: 5px 10px; background: green; ">タスク追加</button>
@@ -154,6 +154,7 @@ export class Biz {
         data: JSON.stringify({
           orderId: url.split("/").pop(),
           limitPrice: Number(price),
+          updateTime: Utils.formatDateStr(productInformation["終了日時"]),
           url: url,
           status,
         }),
