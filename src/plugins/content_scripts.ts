@@ -23,38 +23,43 @@ export class JqGet {
       if (!orderDetail) {
         Biz.showAddJobButton();
       }
+      clearJob()
       return console.log("****orderDetail is failure:", orderDetail);
     }
     this.pInfo["limitPrice"] = orderDetail.limitPrice
     this.pInfo["url"] = orderDetail.url
     this.pInfo["status"] = orderDetail.status
     if (Biz.ifSuccess(orderDetail)) {
+      clearJob()
       return console.log("****this order already success:", orderDetail);
     }
 
     await Utils.storeSet({[orderDetail.orderId]: this.pInfo})
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) >= orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
+      clearJob()
       return alert("main已超出最高价,30秒后关页面")
     }
   }
 
   offerBid(day: number, hour: number, min: number, sec: number) {
-    // 1. check order status
+    //  check if the time is correct
+    if (!(day == 0 && hour == 0 && min == 0 && sec <= 2)) {
+      return;
+    }
+    // check order status
     // @ts-ignore
     if (!this.orderDetail || this.orderDetail.status != 1) {
       return;
     }
-    // 2. check currently prices
+    // check currently prices
     // @ts-ignore
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) >= this.orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
+      clearJob()
       return alert("offerBid已超出最高价,30秒后关页面")
     }
-    // 3. check if the time is correct
-    if (!(day == 0 && hour == 0 && min == 0 && sec <= 2)) {
-      return;
-    }
+
 
     console.log("******************************************************************************************开始抢了:");
     //1. bid
@@ -62,6 +67,7 @@ export class JqGet {
     //2. can not upper the limit price
     if (!Biz.isGoodPrice(this.orderDetail["limitPrice"])) {
       Biz.overPrice(this.orderDetail["orderId"])
+      clearJob()
       return alert("offerBid已超出最高价,30秒后关闭页面");
     }
     setTimeout(function () {
@@ -76,10 +82,14 @@ let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
 let outputString = "";
+const setTmp = setInterval(timePaint, 1000);
+function clearJob() {
+  clearInterval(setTmp);
+}
+
 const xmlhttp = createXMLHttp();
 const myInstance = new JqGet();
 myInstance.init();
-const setTmp = setInterval(timePaint, 1000);
 
 
 function createXMLHttp() {
