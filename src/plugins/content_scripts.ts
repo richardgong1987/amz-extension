@@ -86,8 +86,7 @@ let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
 let outputString = "";
-const setTmp = setInterval(timePaint, 1000);
-
+var setTmp = setInterval(timePaint, 1000);
 function clearJob() {
   clearInterval(setTmp);
 }
@@ -96,6 +95,7 @@ const xmlhttp = createXMLHttp();
 const myInstance = new JqGet();
 myInstance.init();
 
+timePaint();
 
 function createXMLHttp() {
   try {
