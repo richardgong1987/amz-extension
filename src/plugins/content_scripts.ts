@@ -40,6 +40,7 @@ export class JqGet {
       clearJob()
       return alert("main已超出最高价,30秒后关页面")
     }
+    return Biz.updateProdctAjax({orderId:orderDetail.orderId, updateTime:Utils.formatDateStr(productInformation['終了日時'])})
   }
 
   offerBid(day: number, hour: number, min: number, sec: number) {

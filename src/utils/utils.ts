@@ -105,6 +105,10 @@ export class Utils {
     }
   }
 
+  static formatDateStr(dateStr: string) {
+    return dateStr.replace(/\（[\S\s]+?\）/g, " ").replace(/\./g, "-") + ":00"
+  }
+
   static fireKeyboardEnter(sel: HTMLInputElement) {
     this.fireKeyboard(sel, "keydown");
   }
