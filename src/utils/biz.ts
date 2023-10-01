@@ -123,7 +123,7 @@ export class Biz {
   static overPrice(id: string, complete = function () {
   }) {
     Utils.closeWindow30s();
-    return this.updateProdctAjax({orderId: id, status: 4, remark: "已超出最高价"}, complete)
+    return this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"}, complete)
   }
 
   static updateProdctAjax(data: any, complete = function () {
@@ -176,7 +176,7 @@ export class Biz {
       $().text()
       this.updateProdctAjax({
         orderId: orderDetail.orderId,
-        status: 3,
+        status: 2,
         remark: "用户名:" + $(".yjmthloginarea strong").text() + ",价格:" + $(".Price .Price__value").contents().filter(function () {
           return this.nodeType === Node.TEXT_NODE;
         }).text().trim()
