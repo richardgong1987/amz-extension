@@ -157,7 +157,7 @@ function timePaint() {
   }
   if (isFirstPaint || timeLeft == -1 || (timeLeft < 300 && timeSinceLast >= 60)) {
     if ((timeLeft < 300 && timeSinceLast >= 60)) {
-      window.location.reload();
+      return window.location.reload();
     }
 
     checkObject();
