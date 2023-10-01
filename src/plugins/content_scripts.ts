@@ -40,7 +40,10 @@ export class JqGet {
       clearJob()
       return alert("main已超出最高价,30秒后关页面")
     }
-    return Biz.updateProdctAjax({orderId:orderDetail.orderId, updateTime:Utils.formatDateStr(productInformation['終了日時'])})
+    return Biz.updateProdctAjax({
+      orderId: orderDetail.orderId,
+      updateTime: Utils.formatDateStr(productInformation["終了日時"])
+    })
   }
 
   offerBid(day: number, hour: number, min: number, sec: number) {
@@ -84,6 +87,7 @@ let isFirstPaint = true
 let timeSinceLast = 0;
 let outputString = "";
 const setTmp = setInterval(timePaint, 1000);
+
 function clearJob() {
   clearInterval(setTmp);
 }
@@ -124,15 +128,27 @@ function setPageData(xmlhttp: XMLHttpRequest) {
 }
 
 function checkObject() {
+  if (xmlhttp) {
+    try {
+      xmlhttp.abort();
+      var nowTime = new Date().getTime();
+      xmlhttp.onreadystatechange = function () {
+        setPageData(xmlhttp)
+      };
+      xmlhttp.open("GET", "https://page.auctions.yahoo.co.jp/now?aID=" + location.pathname.split("/").pop() + "&nowtime=" + nowTime, true);
+      xmlhttp.send(null);
 
-  xmlhttp.abort();
-  var nowTime = new Date().getTime();
-  xmlhttp.onreadystatechange = function () {
-    setPageData(xmlhttp)
-  };
+    } catch (e) {
+      if (!isFirstPaint) {
+        window.location.reload();
+      }
+    }
 
-  xmlhttp.open("GET", "https://page.auctions.yahoo.co.jp/now?aID=" + location.pathname.split("/").pop() + "&nowtime=" + nowTime, true);
-  xmlhttp.send(null);
+  } else {
+    if (!isFirstPaint) {
+      window.location.reload();
+    }
+  }
 }
 
 function timePaint() {
@@ -140,6 +156,10 @@ function timePaint() {
     return clearInterval(setTmp);
   }
   if (isFirstPaint || timeLeft == -1 || (timeLeft < 300 && timeSinceLast >= 60)) {
+    if ((timeLeft < 300 && timeSinceLast >= 60)) {
+      window.location.reload();
+    }
+
     checkObject();
     isFirstPaint = false;
     timeSinceLast = 0;
