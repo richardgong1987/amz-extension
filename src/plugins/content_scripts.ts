@@ -48,7 +48,7 @@ export class JqGet {
 
   offerBid(day: number, hour: number, min: number, sec: number) {
     //  check if the time is correct
-    if (!(day == 0 && hour == 0 && min == 0 && sec <= 2)) {
+    if (!(day == 0 && hour == 0 && min == 0 && sec <= 4)) {
       return;
     }
     // check order status
