@@ -163,9 +163,6 @@ function timePaint() {
   if (!/^\/jp\/auction\/[a-z][0-9]{10}$/.test(location.pathname) || $(".ClosedHeader__tag").text() == "このオークションは終了しています") {
     return clearInterval(setTmp);
   }
-  if (timeSinceLast >= 60 * 8) {
-    checkObject();
-  }
 
   if (isFirstPaint || timeLeft == -1 || (timeLeft < 300 && timeSinceLast >= 60)) {
     if ((timeLeft < 75 && timeSinceLast >= 60)) {
