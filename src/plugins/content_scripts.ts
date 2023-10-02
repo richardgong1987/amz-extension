@@ -164,7 +164,7 @@ function timePaint() {
     return clearInterval(setTmp);
   }
   if (isFirstPaint || timeLeft == -1 || (timeLeft < 300 && timeSinceLast >= 60)) {
-    if ((timeLeft < 80 && timeSinceLast >= 60)) {
+    if ((timeLeft < 40 && timeSinceLast >= 60)) {
       return window.location.reload();
     }
 
