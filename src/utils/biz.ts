@@ -10,7 +10,7 @@ export class Biz {
     if (productInfor.length) {
       const details: { [x: string]: string } = {}
       productInfor.each((function () {
-        details[$(this).find("th").text().trim()] = $(this).find("td").text()?.trim().replace(/[\s\\n]+/, "").trim();
+        details[$(this).find("th").text().trim()] = $(this).find("td").text()?.trim().replace(/[\s\\\n]+/, "").trim();
       }))
       delete details["カテゴリ"]
       return details;
