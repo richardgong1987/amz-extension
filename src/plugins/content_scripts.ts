@@ -33,8 +33,8 @@ export class JqGet {
       clearJob()
       return console.log("****this order already success:", orderDetail);
     }
-
-    await Utils.storePut(orderDetail.orderId, this.pInfo)
+    let old = await Utils.storeGet(orderDetail.orderId) || {};
+    await Utils.storePut(orderDetail.orderId, Object.assign(old, this.pInfo));
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) >= orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
       clearJob()

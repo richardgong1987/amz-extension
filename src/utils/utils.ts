@@ -141,4 +141,8 @@ export class Utils {
       window.close();
     }, 30 * 1000);
   }
+
+  static range(start: number, end: number) {
+    return (Math.floor(Math.random() * (end - start)) + start) * 1000;
+  }
 }
