@@ -29,6 +29,7 @@ function refreshTab(tab: chrome.tabs.Tab) {
 }
 
 let refreshInterval: any
+
 function refreshInactiveTabs() {
   getAllTabs();
 }
