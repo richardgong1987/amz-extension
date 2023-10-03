@@ -17,15 +17,14 @@ export class JqGet {
             Biz.otherPage();
             return console.log("****productInformation is not exit:", productInformation);
         }
-
-        const orderDetail = this.orderDetail = await Biz.orderDetail(productInformation["オークションID"]);
+        let infoId = productInformation["オークションID"];
+        const orderDetail = this.orderDetail = await Biz.orderDetail(infoId);
         if (!orderDetail || orderDetail.status != 1) {
-            if (orderDetail) {
-                Biz.deleteStoreById(orderDetail.orderId)
-            } else {
+            if (!orderDetail) {
                 Biz.showAddJobButton(productInformation);
             }
             clearJob();
+            Biz.deleteStoreById(infoId)
             return console.log("****orderDetail is failure:", orderDetail);
         }
         this.pInfo["limitPrice"] = orderDetail.limitPrice
