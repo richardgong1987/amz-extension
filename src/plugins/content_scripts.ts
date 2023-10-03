@@ -2,17 +2,12 @@ import {Biz} from "src/utils/biz";
 import {Utils} from "src/utils/utils";
 
 export class JqGet {
-    async init() {
-        this.pInfo = Biz.getProductInformation() as { [p: string]: string }
-        console.log("****pInfo:", await Utils.storeGetAll());
-        await this.main();
-    }
-
     pInfo: { [x: string]: string; } = {}
     orderDetail: { [x: string]: any; } = {}
 
     async main() {
-        const productInformation = this.pInfo;
+        const productInformation = this.pInfo = Biz.getProductInformation() as { [p: string]: string }
+        console.log("****pInfo:", await Utils.storeGetAll());
         if (!productInformation) {
             Biz.otherPage();
             return console.log("****productInformation is not exit:", productInformation);
@@ -72,7 +67,6 @@ export class JqGet {
             return alert("offerBid已超出最高价,30秒后关页面")
         }
 
-
         console.log("******************************************************************************************开始抢了:");
         //1. bid
         Biz.bid();
@@ -102,7 +96,7 @@ function clearJob() {
 
 const xmlhttp = createXMLHttp();
 const myInstance = new JqGet();
-myInstance.init();
+myInstance.main();
 
 timePaint();
 
@@ -130,7 +124,7 @@ function setPageData(xmlhttp: XMLHttpRequest) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             // @ts-ignore
             timeLeft = xmlhttp.responseText;
-            Biz.saveAuctionLefttime(auctionId, +timeLeft)
+            Biz.saveAuctionLefttime(auctionId, +timeLeft);
         }
     } catch (e) {
 

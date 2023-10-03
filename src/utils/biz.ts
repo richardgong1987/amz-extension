@@ -129,7 +129,8 @@ export class Biz {
     static async deleteStoreById(id: string) {
         let allStore = await Utils.storeGetAll();
         delete allStore[id];
-        return await Utils.storeSaveAll(allStore);
+        await Utils.storeClear();
+        await Utils.storeSaveAll(allStore);
     }
 
     static updateProdctAjax(data: any, complete = function () {
