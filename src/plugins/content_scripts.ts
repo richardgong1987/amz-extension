@@ -88,7 +88,7 @@ export class JqGet {
   }
 }
 
-
+let auctionId = location.pathname.split("/").pop() as string;
 let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
@@ -129,6 +129,7 @@ function setPageData(xmlhttp: XMLHttpRequest) {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
       // @ts-ignore
       timeLeft = xmlhttp.responseText;
+      Biz.saveAuctionLefttime(auctionId, +timeLeft)
     }
   } catch (e) {
 
@@ -143,7 +144,7 @@ function checkObject() {
       xmlhttp.onreadystatechange = function () {
         setPageData(xmlhttp)
       };
-      xmlhttp.open("GET", "https://page.auctions.yahoo.co.jp/now?aID=" + location.pathname.split("/").pop() + "&nowtime=" + nowTime, true);
+      xmlhttp.open("GET", "https://page.auctions.yahoo.co.jp/now?aID=" + auctionId + "&nowtime=" + nowTime, true);
       xmlhttp.send(null);
 
     } catch (e) {

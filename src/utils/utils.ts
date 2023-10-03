@@ -31,7 +31,7 @@ export class Utils {
     return await this.synclocal()?.clear();
   }
 
-  static async storeSet(val: { [x: string]: any }) {
+  private static async storeSet(val: { [x: string]: any }) {
     let newVar: any = await this.storeGetAll() || {};
     Object.assign(newVar, val);
     return await this.synclocal()?.set(newVar);
