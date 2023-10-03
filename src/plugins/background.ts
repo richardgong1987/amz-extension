@@ -67,7 +67,7 @@ function mysetTimeOut(tab: chrome.tabs.Tab) {
         if (tab.id) {
             chrome.tabs.reload(tab.id);
         }
-    }, Utils.range(1, 8));
+    }, Utils.range(1, 10));
     // @ts-ignore
     setTimeoutMap.set(tab.id, st)
 
