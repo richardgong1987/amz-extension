@@ -80,7 +80,7 @@ export class Biz {
             return alert("再入...已超出最高价,30秒后关页面退出")
         }
         orderDetail.remark = true
-        await Utils.storePut(orderId, orderDetail)
+        Utils.storePut(orderId, orderDetail)
         setTimeout(function () {
             Utils.clickWithSelector(".SubmitBox__button--rebid");
         }, 1);
@@ -122,7 +122,14 @@ export class Biz {
     static overPrice(id: string, complete = function () {
     }) {
         Utils.closeWindow30s();
-        return this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"}, complete)
+        this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"}, complete)
+        return this.deleteStoreById(id);
+    }
+
+    static async deleteStoreById(id: string) {
+        let allStore = await Utils.storeGetAll();
+        delete allStore[id];
+        return await Utils.storeSaveAll(allStore);
     }
 
     static updateProdctAjax(data: any, complete = function () {

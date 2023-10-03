@@ -20,10 +20,12 @@ export class JqGet {
 
         const orderDetail = this.orderDetail = await Biz.orderDetail(productInformation["オークションID"]);
         if (!orderDetail || orderDetail.status != 1) {
-            if (!orderDetail) {
+            if (orderDetail) {
+                Biz.deleteStoreById(orderDetail.orderId)
+            } else {
                 Biz.showAddJobButton(productInformation);
             }
-            clearJob()
+            clearJob();
             return console.log("****orderDetail is failure:", orderDetail);
         }
         this.pInfo["limitPrice"] = orderDetail.limitPrice
@@ -168,7 +170,7 @@ function timePaint() {
     if (timeLeft > 300 && timeSinceLast >= 60 * 5) {
         return window.location.reload();
     }
-    
+
     if (isFirstPaint || timeLeft == -1 || (timeLeft < 300 && timeSinceLast >= 60)) {
 
         if ((timeLeft < 75 && timeSinceLast >= 60)) {
@@ -185,6 +187,7 @@ function timePaint() {
 
     if (timeLeft <= 0) {
         outputString = "オークション - 終了";
+        Biz.deleteStoreById(auctionId);
     } else {
         var day = Math.floor(timeLeft / 86400);
         var hour = Math.floor((timeLeft - day * 86400) / 3600);
