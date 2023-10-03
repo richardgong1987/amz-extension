@@ -80,7 +80,7 @@ export class Biz {
       return alert("再入...已超出最高价,30秒后关页面退出")
     }
     orderDetail.remark = true
-    await Utils.storeSet({[orderId]: orderDetail})
+    await Utils.storePut(orderId, orderDetail)
     setTimeout(function () {
       Utils.clickWithSelector(".SubmitBox__button--rebid");
     }, 1);

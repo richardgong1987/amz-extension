@@ -19,14 +19,36 @@ export class Utils {
     return new URLSearchParams(location.search).get(key);
   }
 
+  static synclocal() {
+    return chrome?.storage?.local
+  }
 
   static async storeGetAll() {
-    return await chrome?.storage?.local?.get();
+    return await this.synclocal()?.get();
   }
 
   static async storeClear() {
-    return await chrome?.storage?.local?.clear();
+    return await this.synclocal()?.clear();
   }
+
+  static async storeSet(val: { [x: string]: any }) {
+    let newVar: any = await this.storeGetAll() || {};
+    Object.assign(newVar, val);
+    return await this.synclocal()?.set(newVar);
+  }
+
+  static async storePut(key: string, value: any) {
+    return this.storeSet({[key]: value})
+  }
+
+  static async storeGet(key: string) {
+    let newVar: any = await this.storeGetAll();
+    if (newVar) {
+      return newVar[key];
+    }
+    return null;
+  }
+
 
   static fireSelectChange(sel: HTMLSelectElement, index: number) {
     sel.options.selectedIndex = index;
@@ -113,19 +135,6 @@ export class Utils {
     this.fireKeyboard(sel, "keydown");
   }
 
-  static async storeSet(val: { [x: string]: any }) {
-    let newVar: any = await this.storeGetAll() || {};
-    Object.assign(newVar, val);
-    return await chrome.storage?.local?.set(newVar);
-  }
-
-  static async storeGet(key: string) {
-    let newVar: any = await this.storeGetAll();
-    if (newVar) {
-      return newVar[key];
-    }
-    return null;
-  }
 
   static closeWindow30s() {
     setTimeout(function () {
