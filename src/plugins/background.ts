@@ -12,7 +12,17 @@ async function activateTheUpComingTab(tabs: chrome.tabs.Tab[]) {
     console.log("***Tabs:", tabs);
     let id = await getUpcommingInfo();
     if (id) {
-        activateTab(searchTabByUrl(id, tabs) as chrome.tabs.Tab)
+        let tabByUrl = searchTabByUrl(id, tabs) as chrome.tabs.Tab;
+        activateTab(tabByUrl);
+        refreshCurrentTabWhenTriggerActived(tabByUrl);
+    }
+}
+
+function refreshCurrentTabWhenTriggerActived(tab: chrome.tabs.Tab) {
+    if (!tab.active) {
+        setTimeout(() => {
+            reloadTab(tab)
+        }, 80);
     }
 }
 
@@ -53,7 +63,7 @@ function refreshTab(tabs: chrome.tabs.Tab[]) {
     for (const tab of tabs) {
         if (tab.id && !tab.active && isinAuction(tab)) {
             myClearTimeOut(tab);
-            mysetTimeOut(tab)
+            mySetTimeOut(tab)
         }
     }
 }
@@ -62,17 +72,19 @@ function myClearTimeOut(tab: chrome.tabs.Tab) {
     clearTimeout(setTimeoutMap.get(String(tab.id)))
 }
 
-function mysetTimeOut(tab: chrome.tabs.Tab) {
+function mySetTimeOut(tab: chrome.tabs.Tab) {
     const st = setTimeout(() => {
-        if (tab.id) {
-            chrome.tabs.reload(tab.id);
-        }
+        reloadTab(tab);
     }, Utils.range(1, 10));
     // @ts-ignore
     setTimeoutMap.set(tab.id, st)
-
 }
 
+function reloadTab(tab: chrome.tabs.Tab) {
+    if (tab.id) {
+        chrome.tabs.reload(tab.id);
+    }
+}
 
 function refreshInactiveTabs() {
     getAllTabs(refreshTab);
@@ -103,19 +115,28 @@ function getURL(tab: chrome.tabs.Tab) {
 
 }
 
-const REFRESH_TIME = 2 * 60 * 1000;
-const UPCOMMING_TIME = 3 * 1000;
-let refreshInterval = setInterval(refreshInactiveTabs, REFRESH_TIME);
-let upCommingInterval = setInterval(activeUpComingTabs, UPCOMMING_TIME);
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log("****message:", message)
     if (message.action === "startRefresh") {
-        clearInterval(refreshInterval);
-        clearInterval(upCommingInterval);
-        refreshInterval = setInterval(refreshInactiveTabs, REFRESH_TIME);
-        upCommingInterval = setInterval(activeUpComingTabs, UPCOMMING_TIME);
+        clearAllInterval();
+        startAllInterval();
     } else {
-        clearInterval(refreshInterval);
-        clearInterval(upCommingInterval);
+        clearAllInterval();
     }
 });
+
+const REFRESH_TIME = 2 * 60 * 1000;
+const UPCOMMING_TIME = 6 * 1000;
+let refreshInterval: any;
+let upCommingInterval: any;
+startAllInterval();
+
+function startAllInterval() {
+    refreshInterval = setInterval(refreshInactiveTabs, REFRESH_TIME);
+    upCommingInterval = setInterval(activeUpComingTabs, UPCOMMING_TIME);
+}
+
+function clearAllInterval() {
+    clearInterval(refreshInterval);
+    clearInterval(upCommingInterval);
+}
