@@ -1,11 +1,10 @@
 <div class="content" role="main">
-  <button style="border: black solid 5px; border-radius: 10px; padding:10px;font-weight: bold; font-size: 25px;"
-          (click)="storeClear()">清除本地缓存
-  </button>
-  <div>
-    <textarea rows="30" cols="50">
-      {{storeString}}
-    </textarea>
+  <h2>Auto Refresh Inactive Tabs</h2>
+  <button (click)="startRefresh()">Start Refreshing</button>
+  <button (click)="stopRefresh()">Stop Refreshing</button>
+  <button (click)="storeClear()">清除本地缓存</button>
+  <div contentEditable="true">
+    {{storeString}}
   </div>
 </div>
 

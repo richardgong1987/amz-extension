@@ -53,6 +53,7 @@
   "permissions": [
     "webRequest",
     "storage",
-    "scripting"
+    "scripting",
+    "tabs"
   ]
 }

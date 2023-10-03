@@ -23,4 +23,12 @@ export class AppComponent implements OnInit {
     let newVar = await Utils.storeGetAll();
     this.storeString = JSON.stringify(newVar);
   }
+
+  startRefresh() {
+    chrome.runtime.sendMessage({action: "startRefresh"});
+  }
+
+  stopRefresh() {
+    chrome.runtime.sendMessage({action: "stopRefresh"});
+  }
 }

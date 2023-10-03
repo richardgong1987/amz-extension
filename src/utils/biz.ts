@@ -49,7 +49,6 @@ export class Biz {
   }
 
   static async resultPage() {
-    console.log("***/jp/config/placebid", location)
     if (location.pathname == "/jp/config/placebid") {
       if (location.search) {
         location.href = $(".CompleteMain__ohterLinkItem").eq(0).find("a").prop("href");
@@ -140,7 +139,6 @@ export class Biz {
   static showAddJobButton(productInformation: any) {
     $(`
         <div id="save-bidJob-parent">
-            <button class="save-bidJob" data-status="0" style="font-size: 18px; border-radius: 10px; color: white; padding: 5px 10px; background: green; ">タスク追加</button>
             <button class="save-bidJob" data-status="1" style="font-size: 18px; border-radius: 10px; color: white;padding: 5px 10px;background: red; ">今すぐ入札</button>
         </div>
       `).insertBefore("#ProductTitle");
