@@ -73,22 +73,12 @@ function mysetTimeOut(tab: chrome.tabs.Tab) {
 
 }
 
-let refreshInterval: any
+let refreshInterval = setInterval(refreshInactiveTabs, 2 * 60 * 1000);
 
 function refreshInactiveTabs() {
     getAllTabs();
 }
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log("****message:", message)
-    if (message.action === "startRefresh") {
-        // Start refreshing tabs every 5 seconds
-        refreshInterval = setInterval(refreshInactiveTabs, 5000);
-    } else if (message.action === "stopRefresh") {
-        // Stop the refreshing
-        clearInterval(refreshInterval);
-    }
-});
 
 function isinAuction(tab: chrome.tabs.Tab) {
     if (tab.id) {
@@ -98,3 +88,14 @@ function isinAuction(tab: chrome.tabs.Tab) {
     return false;
 }
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    console.log("****message:", message)
+    if (message.action === "startRefresh") {
+        // Start refreshing tabs every 5 seconds
+        clearInterval(refreshInterval);
+        refreshInterval = setInterval(refreshInactiveTabs, 2 * 60 * 1000);
+    } else if (message.action === "stopRefresh") {
+        // Stop the refreshing
+        clearInterval(refreshInterval);
+    }
+});
