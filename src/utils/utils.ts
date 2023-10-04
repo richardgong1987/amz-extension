@@ -31,7 +31,7 @@ export class Utils {
 
     static async STORE_GET_ITEM(key: string) {
         const oldData = await this.GET_AUCTION_STORAGE();
-        return oldData[key];
+        return oldData[key] || {};
     }
 
     static async STORE_SET_ITEM(key: string, value: any) {
@@ -155,5 +155,9 @@ export class Utils {
 
     static range(start: number, end: number) {
         return (Math.floor(Math.random() * (end - start)) + start) * 1000;
+    }
+
+    static isAuctionUrl(pathname: any) {
+        return /^\/jp\/auction\/[0-9a-z][0-9]{10}$/.test(pathname)
     }
 }

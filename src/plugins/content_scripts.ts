@@ -2,7 +2,7 @@ import {Biz} from "src/utils/biz";
 import {Utils} from "src/utils/utils";
 
 export class JqGet {
-    pInfo: { [x: string]: string; } = {}
+    pInfo: { [x: string]: string | number; } = {}
     orderDetail: { [x: string]: any; } = {}
 
     async main() {
@@ -25,11 +25,16 @@ export class JqGet {
         this.pInfo["limitPrice"] = orderDetail.limitPrice
         this.pInfo["url"] = orderDetail.url
         this.pInfo["status"] = orderDetail.status
+
         if (Biz.ifSuccess(orderDetail)) {
             clearJob()
             return console.log("****this order already success:", orderDetail);
         }
-        let old = await Utils.STORE_GET_ITEM(orderDetail.orderId) || {};
+        let old = await Utils.STORE_GET_ITEM(orderDetail.orderId);
+        if (timeLeft != -10) {
+            this.pInfo["timeLeft"] = +timeLeft;
+        }
+
         await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
         if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) >= orderDetail.limitPrice) {
             Biz.overPrice(this.orderDetail["orderId"])
@@ -67,7 +72,7 @@ export class JqGet {
             return alert("offerBid已超出最高价,30秒后关页面")
         }
 
-        console.log("******************************************************************************************开始抢了:");
+        console.log("******开始抢了:");
         //1. bid
         Biz.bid();
         //2. can not upper the limit price
@@ -156,7 +161,8 @@ function checkObject() {
 }
 
 function timePaint() {
-    if (!/^\/jp\/auction\/[a-z][0-9]{10}$/.test(location.pathname) || $(".ClosedHeader__tag").text() == "このオークションは終了しています") {
+
+    if (!Utils.isAuctionUrl(location.pathname) || $(".ClosedHeader__tag").text() == "このオークションは終了しています") {
         return clearInterval(setTmp);
     }
 
@@ -200,6 +206,7 @@ function timePaint() {
             myInstance.offerBid(day, hour, min, sec);
         }
     }
+    Biz.saveAuctionLefttime(auctionId, timeLeft);
     console.log("****残り時間:", outputString)
 }
 

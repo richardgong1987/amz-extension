@@ -142,30 +142,36 @@ export class Biz {
         $(`
         <div id="save-bidJob-parent">
             <button class="save-bidJob" data-status="1" style="font-size: 18px; border-radius: 10px; color: white;padding: 5px 10px;background: red; ">今すぐ入札</button>
+            <input type="number" style="border: red solid 3px;" id="save-bidJob-input" placeholder="私の最高額入">
         </div>
       `).insertBefore("#ProductTitle");
         $(".save-bidJob").on("click", function () {
             const url = location.href
             let status = $(this).data("status");
-            let price = prompt("私の最高額入");
-            $.ajax({
-                url: `${HOST}/api/auctions/product/product-add`,
-                method: "POST",
-                data: JSON.stringify({
-                    orderId: url.split("/").pop(),
-                    limitPrice: Number(price),
-                    updateTime: Utils.formatDateStr(productInformation["終了日時"]),
-                    url: url,
-                    status,
-                }),
-                contentType: "application/json",
-                complete: function () {
-                    if (status == 1) {
-                        return location.reload();
-                    }
-                    $("#save-bidJob-parent").remove();
-                },
-            });
+            let price = Number($("#save-bidJob-input").val());
+            if (price > 0) {
+                $.ajax({
+                    url: `${HOST}/api/auctions/product/product-add`,
+                    method: "POST",
+                    data: JSON.stringify({
+                        orderId: url.split("/").pop(),
+                        limitPrice: price,
+                        updateTime: Utils.formatDateStr(productInformation["終了日時"]),
+                        url: url,
+                        status,
+                    }),
+                    contentType: "application/json",
+                    complete: function () {
+                        if (status == 1) {
+                            return location.reload();
+                        }
+                        $("#save-bidJob-parent").remove();
+                    },
+                });
+            } else {
+                alert(`私の最高額入:${price} 再入力`)
+            }
+
         })
     }
 
@@ -187,10 +193,7 @@ export class Biz {
 
     static async saveAuctionLefttime(id: string, timeLeft: any) {
         let data = await Utils.STORE_GET_ITEM(id);
-        if (data) {
-            data.timeLeft = timeLeft;
-            await Utils.STORE_SET_ITEM(id, data);
-        }
-
+        data.timeLeft = timeLeft;
+        await Utils.STORE_SET_ITEM(id, data);
     }
 }

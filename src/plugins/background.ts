@@ -126,7 +126,7 @@ function isinAuction(tab: chrome.tabs.Tab) {
     if (tab.id) {
         getURL(tab);
         let locate = getURL(tab);
-        return /^\/jp\/auction\/[a-z][0-9]{10}$/.test(locate.pathname)
+        return Utils.isAuctionUrl(locate.pathname)
     }
     return false;
 }
