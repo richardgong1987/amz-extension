@@ -161,8 +161,11 @@ function checkObject() {
 }
 
 function timePaint() {
-
-    if (!Utils.isAuctionUrl(location.pathname) || $(".ClosedHeader__tag").text() == "このオークションは終了しています") {
+    let isTitleFinish = $(".ClosedHeader__tag").text() == "このオークションは終了しています";
+    if (!Utils.isAuctionUrl(location.pathname) || isTitleFinish) {
+        if (isTitleFinish) {
+            Utils.STORE_DELETE_ITEM(auctionId)
+        }
         return clearInterval(setTmp);
     }
 
