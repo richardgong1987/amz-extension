@@ -111,13 +111,19 @@ async function customRefreshPoint(tab: chrome.tabs.Tab) {
             timeLeft: auctionItem["timeLeft"] as number,
             waiting: false
         };
-        if (!refreshInfo.waiting && refreshInfo.timeLeft > 5) {
+        refreshInfo.timeLeft = auctionItem["timeLeft"] as number;
+        refreshInfo.tabId = tab.id + "";
+        refreshInfo.timeLeft = auctionItem["timeLeft"] as number;
+        refreshInfo.auctionId = auctionId;
+        if (!refreshInfo.waiting && refreshInfo.timeLeft > 50) {
             refreshInfo.waiting = true;
-            refreshInfo.setTimeOutTime = (refreshInfo.timeLeft % 300) / 5
+            let t = refreshInfo.timeLeft >= 300 ? 300 : refreshInfo.timeLeft
+
+            refreshInfo.setTimeOutTime = (t) / 5
             refreshInfo.setTimeOutSet = setTimeout(() => {
                 refreshInfo.waiting = false;
                 setTimeoutMap.set(auctionId, refreshInfo)
-                console.log("*****setTimeoutMap2222:", setTimeoutMap);
+                console.log("*****do refreshInfo:", refreshInfo);
                 reloadTab(tab);
             }, refreshInfo.setTimeOutTime * 1000);
             setTimeoutMap.set(auctionId, refreshInfo)
