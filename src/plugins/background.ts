@@ -112,7 +112,7 @@ async function customRefreshPoint(tab: chrome.tabs.Tab) {
             timeLeft: auctionItem["timeLeft"] as number,
             waiting: false
         };
-        if (!refreshInfo.waiting && refreshInfo.timeLeft > 0) {
+        if (!refreshInfo.waiting && refreshInfo.timeLeft > 5) {
             refreshInfo.waiting = true;
             refreshInfo.setTimeOutTime = (refreshInfo.timeLeft % 300) / 5
             refreshInfo.setTimeOutSet = setTimeout(() => {
