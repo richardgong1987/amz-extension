@@ -1,7 +1,5 @@
 import {Utils} from "src/utils/utils";
 
-const setTimeoutMap = new Map<string, any>()
-
 
 function getAllTabs(complete = function (tabs: chrome.tabs.Tab[]) {
 }) {
@@ -63,35 +61,64 @@ function refreshTab(tabs: chrome.tabs.Tab[]) {
     for (const tab of tabs) {
         if (tab.id && !tab.active && isinAuction(tab)) {
             myClearTimeOut(tab);
-            mySetTimeOut(tab)
+            customRefreshPoint(tab)
         }
     }
 }
 
 function myClearTimeOut(tab: chrome.tabs.Tab) {
-    clearTimeout(setTimeoutMap.get(String(tab.id)))
+    let newVar = setTimeoutMap.get(getAuctionIdByTab(tab));
+    if (newVar) {
+        clearTimeout(newVar.setTimeOutSet)
+    }
 }
 
-function mySetTimeOut(tab: chrome.tabs.Tab) {
-    const st = setTimeout(() => {
-        reloadTab(tab);
-    }, Utils.range(1, 10));
-    // @ts-ignore
-    setTimeoutMap.set(tab.id, st)
+interface IRefreshInfo {
+    waiting: boolean,
+    tabId: string,
+    setTimeOutTime: number,
+    setTimeOutSet: any,
+    auctionId: string,
+    timeLeft: number
+}
+
+const setTimeoutMap = new Map<string, IRefreshInfo>()
+
+function getAuctionIdByTab(tab: chrome.tabs.Tab) {
+    return tab.url?.split("/").pop() as string
+}
+
+async function customRefreshPoint(tab: chrome.tabs.Tab) {
+    let auctionObj = await Utils.STORE_GET_ALL();
+    const auctionId = getAuctionIdByTab(tab);
+    let auctionItem = auctionObj[auctionId];
+    if (auctionItem) {
+        let refreshInfo = setTimeoutMap.get(auctionId) || {
+            auctionId: auctionId,
+            setTimeOutSet: undefined,
+            setTimeOutTime: 0,
+            tabId: tab.id + "",
+            timeLeft: auctionItem["timeLeft"] as number,
+            waiting: false
+        };
+        if (!refreshInfo.waiting && refreshInfo.timeLeft > 0) {
+            refreshInfo.waiting = true;
+            refreshInfo.setTimeOutTime = (refreshInfo.timeLeft % 300) / 5
+            refreshInfo.setTimeOutSet = setTimeout(() => {
+                refreshInfo.waiting = false;
+                setTimeoutMap.set(auctionId, refreshInfo)
+                console.log("*****setTimeoutMap:", setTimeoutMap);
+                reloadTab(tab);
+            }, refreshInfo.setTimeOutTime);
+            setTimeoutMap.set(auctionId, refreshInfo)
+        }
+    }
 }
 
 function reloadTab(tab: chrome.tabs.Tab) {
     if (tab.id) {
         chrome.tabs.reload(tab.id);
     }
-}
-
-function refreshInactiveTabs() {
-    getAllTabs(refreshTab);
-}
-
-function activeUpComingTabs() {
-    getAllTabs(activateTheUpComingTab);
 }
 
 
@@ -125,11 +152,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 });
 
-const REFRESH_TIME =  60 * 1000;
-const UPCOMMING_TIME = 10 * 1000;
+const REFRESH_TIME = 5 * 60 * 1000;
+const UPCOMMING_TIME = 8 * 1000;
 let refreshInterval: any;
 let upCommingInterval: any;
 startAllInterval();
+
+function refreshInactiveTabs() {
+    getAllTabs(refreshTab);
+}
+
+function activeUpComingTabs() {
+    getAllTabs(activateTheUpComingTab);
+}
 
 function startAllInterval() {
     refreshInterval = setInterval(refreshInactiveTabs, REFRESH_TIME);
