@@ -125,7 +125,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 });
 
-const REFRESH_TIME = 2 * 60 * 1000;
+const REFRESH_TIME =  60 * 1000;
 const UPCOMMING_TIME = 6 * 1000;
 let refreshInterval: any;
 let upCommingInterval: any;

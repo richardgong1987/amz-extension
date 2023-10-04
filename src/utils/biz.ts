@@ -2,6 +2,7 @@ import {HOST} from "src/environments/environment";
 import {Utils} from "src/utils/utils";
 
 export class Biz {
+
     /**
      * 1.商品情報
      */
@@ -68,7 +69,7 @@ export class Biz {
 
     static async reBid() {
         var orderId = $("[name=\"ItemID\"]").val() as string;
-        let orderDetail = await Utils.storeGet(orderId);
+        let orderDetail = await Utils.STORE_GET_ITEM(orderId);
         if (orderDetail.remark) {
             return console.log("*****rebid already:", orderDetail)
         }
@@ -192,7 +193,7 @@ export class Biz {
     }
 
     static async saveAuctionLefttime(id: string, timeLeft: any) {
-        let data = await Utils.storeGet(id);
+        let data = await Utils.STORE_GET_ITEM(id);
         if (data) {
             data.timeLeft = timeLeft;
             await Utils.storePut(id, data);

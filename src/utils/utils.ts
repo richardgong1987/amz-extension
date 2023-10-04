@@ -19,40 +19,63 @@ export class Utils {
         return new URLSearchParams(location.search).get(key);
     }
 
-    static synclocal() {
+    static local() {
         return chrome?.storage?.local
     }
 
     static async storeGetAll() {
-        return await this.synclocal()?.get();
+        return await this.local()?.get();
     }
 
     static async storeClear() {
-        return await this.synclocal()?.clear();
+        return await this.local()?.clear();
     }
 
     private static async storeSet(val: { [x: string]: any }) {
         let newVar: any = await this.storeGetAll() || {};
         Object.assign(newVar, val);
-        return await this.synclocal()?.set(newVar);
+        return await this.local()?.set(newVar);
     }
 
     static async storeSaveAll(data: any) {
-        return await this.synclocal()?.set(data);
+        return await this.local()?.set(data);
     }
 
     static async storePut(key: string, value: any) {
         return this.storeSet({[key]: value})
     }
 
-    static async storeGet(key: string) {
-        let newVar: any = await this.storeGetAll();
-        if (newVar) {
-            return newVar[key];
-        }
-        return null;
+    static AUCTIONS_STORE_KEY = "AUCTIONS_STORE_KEY"
+
+    static async STORE_GET_ITEM(key: string) {
+        const oldData = await this.GET_AUCTION_STORAGE();
+        return oldData[key];
     }
 
+    static async STORE_SET_ITEM(key: string, value: any) {
+        const oldData = await this.GET_AUCTION_STORAGE();
+        Object.assign(oldData, {[key]: value});
+        await this.SET_AUCTION_STORAGE(oldData);
+    }
+
+    static async STORE_DELETE_ITEM(key: string) {
+        const oldData = await this.GET_AUCTION_STORAGE();
+        delete oldData[key]
+        await this.SET_AUCTION_STORAGE(oldData);
+
+    }
+
+    static async STORE_CLEAR_ALL() {
+        await this.SET_AUCTION_STORAGE({});
+    }
+
+    private static async GET_AUCTION_STORAGE() {
+        return await this.local()?.get([this.AUCTIONS_STORE_KEY]) || {}
+    }
+
+    private static async SET_AUCTION_STORAGE(data: any) {
+        return this.local()?.set({[this.AUCTIONS_STORE_KEY]: data})
+    }
 
     static fireSelectChange(sel: HTMLSelectElement, index: number) {
         sel.options.selectedIndex = index;
