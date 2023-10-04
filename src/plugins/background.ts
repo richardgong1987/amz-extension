@@ -101,9 +101,8 @@ function getAuctionIdByTab(tab: chrome.tabs.Tab) {
 async function customRefreshPoint(tab: chrome.tabs.Tab) {
     let auctionObj = await Utils.STORE_GET_ALL();
     const auctionId = getAuctionIdByTab(tab);
-    console.log("***auctionId:", auctionId);
     let auctionItem = auctionObj[auctionId];
-    console.log("*****auctionObj:", auctionObj)
+    console.log("*****setTimeoutMap:", setTimeoutMap);
     if (auctionItem) {
         let refreshInfo = setTimeoutMap.get(auctionId) || {
             auctionId: auctionId,
@@ -119,9 +118,9 @@ async function customRefreshPoint(tab: chrome.tabs.Tab) {
             refreshInfo.setTimeOutSet = setTimeout(() => {
                 refreshInfo.waiting = false;
                 setTimeoutMap.set(auctionId, refreshInfo)
-                console.log("*****setTimeoutMap:", setTimeoutMap);
+                console.log("*****setTimeoutMap2222:", setTimeoutMap);
                 reloadTab(tab);
-            }, refreshInfo.setTimeOutTime);
+            }, refreshInfo.setTimeOutTime * 1000);
             setTimeoutMap.set(auctionId, refreshInfo)
         }
     }
