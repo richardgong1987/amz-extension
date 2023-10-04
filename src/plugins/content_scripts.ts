@@ -19,7 +19,7 @@ export class JqGet {
                 Biz.showAddJobButton(productInformation);
             }
             clearJob();
-            Utils.STORE_DELETE_ITEM(infoId)
+            await Utils.STORE_DELETE_ITEM(infoId)
             return console.log("****orderDetail is failure:", orderDetail);
         }
         this.pInfo["limitPrice"] = orderDetail.limitPrice

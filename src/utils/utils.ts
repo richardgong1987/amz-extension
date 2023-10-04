@@ -43,12 +43,7 @@ export class Utils {
     static async STORE_DELETE_ITEM(key: string) {
         const oldData = await this.GET_AUCTION_STORAGE();
         delete oldData[key]
-        await this.SET_AUCTION_STORAGE(oldData);
-
-    }
-
-    static async STORE_CLEAR_ALL() {
-        await this.SET_AUCTION_STORAGE({});
+        return await this.SET_AUCTION_ONLY(oldData);
     }
 
     private static async GET_AUCTION_STORAGE() {
@@ -59,7 +54,11 @@ export class Utils {
     private static async SET_AUCTION_STORAGE(data: any) {
         const oldData = await this.GET_AUCTION_STORAGE();
         Object.assign(oldData, data);
-        return this.local()?.set({AUCTIONS_STORE_KEY: oldData})
+        return await this.SET_AUCTION_ONLY(oldData);
+    }
+
+    private static async SET_AUCTION_ONLY(data: any) {
+        return await this.local()?.set({AUCTIONS_STORE_KEY: data})
     }
 
     static fireSelectChange(sel: HTMLSelectElement, index: number) {
