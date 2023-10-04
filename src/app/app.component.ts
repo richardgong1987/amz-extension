@@ -12,7 +12,8 @@ export class AppComponent implements OnInit {
   async storeClear() {
     var isclear = confirm("确定要清除缓存吗?")
     if (isclear) {
-      Utils.STORE_CLEAR_ALL();
+      // Utils.STORE_CLEAR_ALL();
+      chrome.storage.local.clear();
       this.ngOnInit();
     }
   }

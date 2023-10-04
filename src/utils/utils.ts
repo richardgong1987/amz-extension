@@ -22,7 +22,7 @@ export class Utils {
     static local() {
         return chrome?.storage?.local
     }
-    
+
     static AUCTIONS_STORE_KEY = "AUCTIONS_STORE_KEY"
 
     static async STORE_GET_ALL() {
@@ -52,11 +52,14 @@ export class Utils {
     }
 
     private static async GET_AUCTION_STORAGE() {
-        return await this.local()?.get([this.AUCTIONS_STORE_KEY]) || {}
+        const allStore = await this.local()?.get() || {}
+        return allStore["AUCTIONS_STORE_KEY"] || {}
     }
 
     private static async SET_AUCTION_STORAGE(data: any) {
-        return this.local()?.set({[this.AUCTIONS_STORE_KEY]: data})
+        const oldData = await this.GET_AUCTION_STORAGE();
+        Object.assign(oldData, data);
+        return this.local()?.set({AUCTIONS_STORE_KEY: oldData})
     }
 
     static fireSelectChange(sel: HTMLSelectElement, index: number) {
