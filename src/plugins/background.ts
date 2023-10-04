@@ -7,7 +7,6 @@ function getAllTabs(complete = function (tabs: chrome.tabs.Tab[]) {
 }
 
 async function activateTheUpComingTab(tabs: chrome.tabs.Tab[]) {
-    console.log("***Tabs:", tabs);
     let id = await getUpcommingInfo();
     if (id) {
         let tabByUrl = searchTabByUrl(id, tabs) as chrome.tabs.Tab;
