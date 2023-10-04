@@ -39,7 +39,7 @@ function searchTabByUrl(id: string, tabs: chrome.tabs.Tab[]) {
 }
 
 async function getUpcommingInfo() {
-    let auctionObj = await Utils.storeGetAll();
+    let auctionObj = await Utils.STORE_GET_ALL();
     let minTime = Number.MAX_VALUE
     let upComingId: string = ""
     for (let id in auctionObj) {

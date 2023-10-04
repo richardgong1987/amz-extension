@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   async storeClear() {
     var isclear = confirm("确定要清除缓存吗?")
     if (isclear) {
-      Utils.storeClear();
+      Utils.STORE_CLEAR_ALL();
       this.ngOnInit();
     }
   }
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   storeString = "";
 
   async ngOnInit() {
-    let newVar = await Utils.storeGetAll();
+    let newVar = await Utils.STORE_GET_ALL();
     this.storeString = JSON.stringify(newVar);
   }
 

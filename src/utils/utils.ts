@@ -22,30 +22,12 @@ export class Utils {
     static local() {
         return chrome?.storage?.local
     }
-
-    static async storeGetAll() {
-        return await this.local()?.get();
-    }
-
-    static async storeClear() {
-        return await this.local()?.clear();
-    }
-
-    private static async storeSet(val: { [x: string]: any }) {
-        let newVar: any = await this.storeGetAll() || {};
-        Object.assign(newVar, val);
-        return await this.local()?.set(newVar);
-    }
-
-    static async storeSaveAll(data: any) {
-        return await this.local()?.set(data);
-    }
-
-    static async storePut(key: string, value: any) {
-        return this.storeSet({[key]: value})
-    }
-
+    
     static AUCTIONS_STORE_KEY = "AUCTIONS_STORE_KEY"
+
+    static async STORE_GET_ALL() {
+        return await this.GET_AUCTION_STORAGE();
+    }
 
     static async STORE_GET_ITEM(key: string) {
         const oldData = await this.GET_AUCTION_STORAGE();

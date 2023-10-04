@@ -7,7 +7,7 @@ export class JqGet {
 
     async main() {
         const productInformation = this.pInfo = Biz.getProductInformation() as { [p: string]: string }
-        console.log("****pInfo:", await Utils.storeGetAll());
+        console.log("****pInfo:", await Utils.STORE_GET_ALL());
         if (!productInformation) {
             Biz.otherPage();
             return console.log("****productInformation is not exit:", productInformation);
@@ -19,7 +19,7 @@ export class JqGet {
                 Biz.showAddJobButton(productInformation);
             }
             clearJob();
-            Biz.deleteStoreById(infoId)
+            Utils.STORE_DELETE_ITEM(infoId)
             return console.log("****orderDetail is failure:", orderDetail);
         }
         this.pInfo["limitPrice"] = orderDetail.limitPrice
@@ -30,7 +30,7 @@ export class JqGet {
             return console.log("****this order already success:", orderDetail);
         }
         let old = await Utils.STORE_GET_ITEM(orderDetail.orderId) || {};
-        await Utils.storePut(orderDetail.orderId, Object.assign(old, this.pInfo));
+        await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
         if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) >= orderDetail.limitPrice) {
             Biz.overPrice(this.orderDetail["orderId"])
             clearJob()
@@ -180,7 +180,7 @@ function timePaint() {
 
     if (timeLeft <= 0) {
         outputString = "オークション - 終了";
-        Biz.deleteStoreById(auctionId);
+        Utils.STORE_DELETE_ITEM(auctionId)
     } else {
         var day = Math.floor(timeLeft / 86400);
         var hour = Math.floor((timeLeft - day * 86400) / 3600);
