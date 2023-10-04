@@ -158,6 +158,6 @@ export class Utils {
     }
 
     static isAuctionUrl(pathname: any) {
-        return /^\/jp\/auction\/[0-9a-z][0-9]{10}$/.test(pathname)
+        return /^\/jp\/auction\/[0-9a-z][0-9]{9,10}$/.test(pathname)
     }
 }

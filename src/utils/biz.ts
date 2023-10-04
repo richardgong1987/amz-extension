@@ -174,8 +174,7 @@ export class Biz {
 
         })
     }
-
-
+    
     static ifSuccess(orderDetail: any) {
         let b = orderDetail.status == 1 && $(".Button--proceed").text() == "取引ナビ";
         if (b) {

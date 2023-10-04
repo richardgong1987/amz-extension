@@ -57,13 +57,23 @@ function activateTab(tab: chrome.tabs.Tab) {
     }
 }
 
+async function cleanupMap(tabs: chrome.tabs.Tab[]) {
+    let auctionObj = await Utils.STORE_GET_ALL();
+    setTimeoutMap.forEach((value, id) => {
+        if (!auctionObj[id]) {
+            setTimeoutMap.delete(id);
+        }
+    })
+}
+
 function refreshTab(tabs: chrome.tabs.Tab[]) {
+    cleanupMap(tabs)
     for (const tab of tabs) {
         if (tab.id && !tab.active && isinAuction(tab)) {
-            myClearTimeOut(tab);
             customRefreshPoint(tab)
         }
     }
+
 }
 
 function myClearTimeOut(tab: chrome.tabs.Tab) {
@@ -91,7 +101,9 @@ function getAuctionIdByTab(tab: chrome.tabs.Tab) {
 async function customRefreshPoint(tab: chrome.tabs.Tab) {
     let auctionObj = await Utils.STORE_GET_ALL();
     const auctionId = getAuctionIdByTab(tab);
+    console.log("***auctionId:", auctionId);
     let auctionItem = auctionObj[auctionId];
+    console.log("*****auctionObj:", auctionObj)
     if (auctionItem) {
         let refreshInfo = setTimeoutMap.get(auctionId) || {
             auctionId: auctionId,
@@ -124,7 +136,6 @@ function reloadTab(tab: chrome.tabs.Tab) {
 
 function isinAuction(tab: chrome.tabs.Tab) {
     if (tab.id) {
-        getURL(tab);
         let locate = getURL(tab);
         return Utils.isAuctionUrl(locate.pathname)
     }
@@ -152,8 +163,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 });
 
-const REFRESH_TIME = 5 * 60 * 1000;
-const UPCOMMING_TIME = 8 * 1000;
+const REFRESH_TIME = 3 * 1000;
+const UPCOMMING_TIME = 5 * 1000;
 let refreshInterval: any;
 let upCommingInterval: any;
 startAllInterval();
@@ -172,6 +183,7 @@ function startAllInterval() {
 }
 
 function clearAllInterval() {
+    setTimeoutMap.clear();
     clearInterval(refreshInterval);
     clearInterval(upCommingInterval);
 }
