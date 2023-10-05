@@ -1,144 +1,6 @@
 import {Utils} from "src/utils/utils";
 
-
-function getAllTabs(complete = function (tabs: chrome.tabs.Tab[]) {
-}) {
-  chrome.tabs.query({}, complete)
-}
-
-async function activateTheUpComingTab(tabs: chrome.tabs.Tab[]) {
-  let id = await getUpcommingInfo();
-  if (id) {
-    let tabByUrl = searchTabByUrl(id, tabs) as chrome.tabs.Tab;
-    activateTab(tabByUrl);
-    refreshCurrentTabWhenTriggerActived(tabByUrl);
-  }
-}
-
-function refreshCurrentTabWhenTriggerActived(tab: chrome.tabs.Tab) {
-  if (!tab.active) {
-    setTimeout(() => {
-      reloadTab(tab)
-    }, 80);
-  }
-}
-
-function searchTabByUrl(id: string, tabs: chrome.tabs.Tab[]) {
-  for (const tab of tabs) {
-    if (tab.id && isinAuction(tab)) {
-      let locate = getURL(tab);
-      if (locate.pathname.split("/").pop() == id) {
-        return tab
-      }
-    }
-  }
-  return null
-}
-
-async function getUpcommingInfo() {
-  let auctionObj = await Utils.STORE_GET_ALL();
-  let minTime = Number.MAX_VALUE
-  let upComingId: string = ""
-  for (let id in auctionObj) {
-    let v = auctionObj[id];
-    if (v.timeLeft > 0 && v.timeLeft < minTime) {
-      minTime = v.timeLeft
-      upComingId = id
-    }
-  }
-  return upComingId;
-}
-
-function activateTab(tab: chrome.tabs.Tab) {
-  if (tab && tab.id) {
-    myClearTimeOut(tab)
-    chrome.tabs.update(tab.id, {active: true});
-  }
-}
-
-async function cleanupMap(tabs: chrome.tabs.Tab[]) {
-  let auctionObj = await Utils.STORE_GET_ALL();
-  setTimeoutMap.forEach((value, id) => {
-    if (!auctionObj[id]) {
-      setTimeoutMap.delete(id);
-    }
-  })
-}
-
-function refreshTab(tabs: chrome.tabs.Tab[]) {
-  cleanupMap(tabs)
-  for (const tab of tabs) {
-    if (tab.id && !tab.active && isinAuction(tab)) {
-      customRefreshPoint(tab)
-    }
-  }
-
-}
-
-function myClearTimeOut(tab: chrome.tabs.Tab) {
-  let newVar = setTimeoutMap.get(getAuctionIdByTab(tab));
-  if (newVar) {
-    clearTimeout(newVar.setTimeOutSet)
-  }
-}
-
-interface IRefreshInfo {
-  waiting: boolean,
-  tabId: string,
-  setTimeOutTime: number,
-  setTimeOutSet: any,
-  auctionId: string,
-  timeLeft: number
-}
-
-const setTimeoutMap = new Map<string, IRefreshInfo>()
-
-function getAuctionIdByTab(tab: chrome.tabs.Tab) {
-  return tab.url?.split("/").pop() as string
-}
-
-async function customRefreshPoint(tab: chrome.tabs.Tab) {
-  let auctionObj = await Utils.STORE_GET_ALL();
-  const auctionId = getAuctionIdByTab(tab);
-  let auctionItem = auctionObj[auctionId];
-
-  if (!auctionItem) {
-    return;
-  }
-  console.log("*****setTimeoutMap:", setTimeoutMap);
-
-  const timeLeft = auctionItem["timeLeft"];
-  let refreshInfo = setTimeoutMap.get(auctionId) || {
-    auctionId: "",
-    setTimeOutSet: undefined,
-    setTimeOutTime: 0,
-    tabId: "",
-    timeLeft: 0,
-    waiting: false
-  };
-  if (refreshInfo.waiting || timeLeft < 20) {
-    return;
-  }
-
-  refreshInfo.tabId = tab.id + "";
-  refreshInfo.auctionId = auctionId;
-  refreshInfo.timeLeft = timeLeft;
-
-  if (timeLeft >= 300) {
-    refreshInfo.setTimeOutTime = Math.floor(timeLeft / 10)
-  } else {
-    refreshInfo.setTimeOutTime = Math.floor(timeLeft / 5)
-  }
-  refreshInfo.waiting = true;
-  refreshInfo.setTimeOutSet = setTimeout(() => {
-    refreshInfo.waiting = false;
-    setTimeoutMap.set(auctionId, refreshInfo)
-    console.log("*****do refreshInfo:", refreshInfo);
-    reloadTab(tab);
-  }, refreshInfo.setTimeOutTime * 1000);
-  setTimeoutMap.set(auctionId, refreshInfo);
-
-}
+const LASTACTIONURLKEY = "lastActionUrl";
 
 function reloadTab(tab: chrome.tabs.Tab) {
   if (tab.id) {
@@ -146,6 +8,29 @@ function reloadTab(tab: chrome.tabs.Tab) {
   }
 }
 
+function activateTab(tab: chrome.tabs.Tab) {
+  if (tab) {
+    if (tab.id) {
+      chrome.tabs.update(tab.id, {active: true});
+    } else {
+      activateTabByRecord();
+    }
+  }
+}
+
+async function activateTabByRecord() {
+  let url = await Utils.STORE_GET_ITEM(LASTACTIONURLKEY);
+  chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
+    for (const tab of tabs) {
+      if (tab.url == url && isinAuction(tab)) {
+        currentTabInfo.tab = tab;
+        activateTab(currentTabInfo.tab);
+        break;
+      }
+    }
+
+  })
+}
 
 function isinAuction(tab: chrome.tabs.Tab) {
   if (tab.id) {
@@ -170,30 +55,68 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "startRefresh") {
     clearAllInterval();
     startAllInterval();
-  } else {
+  } else if (message.action == "stopRefresh") {
     clearAllInterval();
+  } else if (message.action == "auction_timeLeft") {
+    activeUPComingAuction(message);
   }
 });
 
-let auctionInterval: any;
+let currentTabInfo = {
+  timeLeft: Number.MAX_VALUE,
+  tab: ({} as chrome.tabs.Tab),
+}
+
+function activeUPComingAuction(message: { url: string, timeLeft: number, action: string }) {
+  chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
+    console.log("****tabs:", tabs, message);
+    for (const tab of tabs) {
+      if (tab.url == message.url && isinAuction(tab) && message.timeLeft <= currentTabInfo.timeLeft) {
+        currentTabInfo.timeLeft = message.timeLeft;
+        currentTabInfo.tab = tab;
+        Utils.STORE_SET_ITEM(LASTACTIONURLKEY, message.url);
+        break;
+      }
+    }
+    activateTab(currentTabInfo.tab);
+  })
+}
 
 function callAuction() {
-  getAllTabs(function (tabs: chrome.tabs.Tab[]) {
+  chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
     for (const tab of tabs) {
       if (tab.id && isinAuction(tab)) {
         chrome.tabs.sendMessage(tab.id, {action: "do_auction"})
       }
     }
-  });
+  })
 }
 
+let activeTabInterval: any;
 startAllInterval()
 
 function startAllInterval() {
-  auctionInterval = setInterval(callAuction, 1000);
+  setInterval(callAuction, 1000);
+  activeTabInterval = setInterval(function () {
+    activateTab(currentTabInfo.tab);
+  }, 3000);
 }
 
 function clearAllInterval() {
-  setTimeoutMap.clear();
-  clearInterval(auctionInterval);
+  // clearInterval(auctionInterval);
+  clearInterval(activeTabInterval);
 }
+
+chrome.runtime.onInstalled.addListener(function (details) {
+  if (details.reason === "update") {
+    console.log("Extension has been updated.");
+    // Reload all tabs to apply changes
+    chrome.tabs.query({}, function (tabs) {
+      for (const tab of tabs) {
+        if (isinAuction(tab)) {
+          reloadTab(tab)
+        }
+      }
+    });
+  }
+});
