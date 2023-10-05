@@ -125,9 +125,9 @@ async function customRefreshPoint(tab: chrome.tabs.Tab) {
   refreshInfo.timeLeft = timeLeft;
 
   if (timeLeft >= 300) {
-    refreshInfo.setTimeOutTime = (timeLeft / 300) * 60
+    refreshInfo.setTimeOutTime = Math.floor(timeLeft / 10)
   } else {
-    refreshInfo.setTimeOutTime = timeLeft / 5
+    refreshInfo.setTimeOutTime = Math.floor(timeLeft / 5)
   }
   refreshInfo.waiting = true;
   refreshInfo.setTimeOutSet = setTimeout(() => {
