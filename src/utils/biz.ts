@@ -174,13 +174,16 @@ export class Biz {
 
         })
     }
-    
-    static ifSuccess(orderDetail: any) {
-        let b = orderDetail.status == 1 && $(".Button--proceed").text() == "取引ナビ";
+
+    static ifSuccess(pInfo: any) {
+        let b = false
+        if (pInfo.status == 1) {
+            b = pInfo["落札者"] && !((pInfo["落札者"] + "").includes("***")) || $(".Button--proceed").text() == "取引ナビ"
+        }
+
         if (b) {
-            $().text()
             this.updateProdctAjax({
-                orderId: orderDetail.orderId,
+                orderId: pInfo.orderId,
                 status: 2,
                 remark: "用户名:" + $(".yjmthloginarea strong").text() + ",价格:" + $(".Price .Price__value").contents().filter(function () {
                     return this.nodeType === Node.TEXT_NODE;

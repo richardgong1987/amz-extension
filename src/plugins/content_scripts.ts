@@ -7,7 +7,7 @@ export class JqGet {
 
     async main() {
         const productInformation = this.pInfo = Biz.getProductInformation() as { [p: string]: string }
-        console.log("****pInfo:", await Utils.STORE_GET_ALL());
+        console.log("****all  store:", await Utils.STORE_GET_ALL());
         if (!productInformation) {
             Biz.otherPage();
             return console.log("****productInformation is not exit:", productInformation);
@@ -25,8 +25,9 @@ export class JqGet {
         this.pInfo["limitPrice"] = orderDetail.limitPrice
         this.pInfo["url"] = orderDetail.url
         this.pInfo["status"] = orderDetail.status
+        this.pInfo["orderId"] = orderDetail.orderId
 
-        if (Biz.ifSuccess(orderDetail)) {
+        if (Biz.ifSuccess(this.pInfo)) {
             clearJob()
             return console.log("****this order already success:", orderDetail);
         }
