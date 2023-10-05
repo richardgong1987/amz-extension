@@ -150,7 +150,7 @@ export class Utils {
     static closeWindow30s() {
         setTimeout(function () {
             window.close();
-        }, 30 * 1000);
+        }, 10 * 1000);
     }
 
     static range(start: number, end: number) {

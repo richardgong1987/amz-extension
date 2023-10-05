@@ -177,7 +177,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 const REFRESH_TIME = 3 * 1000;
-const UPCOMMING_TIME = 5 * 1000;
+const UPCOMMING_TIME = 3 * 1000;
 let refreshInterval: any;
 let upCommingInterval: any;
 startAllInterval();
