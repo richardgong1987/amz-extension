@@ -167,7 +167,6 @@ function getURL(tab: chrome.tabs.Tab) {
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log("****message:", message)
   if (message.action === "startRefresh") {
     clearAllInterval();
     startAllInterval();
@@ -176,27 +175,25 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-const REFRESH_TIME = 3 * 1000;
-const UPCOMMING_TIME = 3 * 1000;
-let refreshInterval: any;
-let upCommingInterval: any;
-startAllInterval();
+let auctionInterval: any;
 
-function refreshInactiveTabs() {
-  getAllTabs(refreshTab);
+function callAuction() {
+  getAllTabs(function (tabs: chrome.tabs.Tab[]) {
+    for (const tab of tabs) {
+      if (tab.id && isinAuction(tab)) {
+        chrome.tabs.sendMessage(tab.id, {action: "do_auction"})
+      }
+    }
+  });
 }
 
-function activeUpComingTabs() {
-  getAllTabs(activateTheUpComingTab);
-}
+startAllInterval()
 
 function startAllInterval() {
-  refreshInterval = setInterval(refreshInactiveTabs, REFRESH_TIME);
-  upCommingInterval = setInterval(activeUpComingTabs, UPCOMMING_TIME);
+  auctionInterval = setInterval(callAuction, 1000);
 }
 
 function clearAllInterval() {
   setTimeoutMap.clear();
-  clearInterval(refreshInterval);
-  clearInterval(upCommingInterval);
+  clearInterval(auctionInterval);
 }

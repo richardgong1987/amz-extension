@@ -18,7 +18,7 @@ export class JqGet {
       if (!orderDetail) {
         Biz.showAddJobButton(productInformation);
       }
-      clearJob();
+      ;
       await Utils.STORE_DELETE_ITEM(infoId)
       return console.log("****orderDetail is failure:", orderDetail);
     }
@@ -28,7 +28,7 @@ export class JqGet {
     this.pInfo["orderId"] = orderDetail.orderId
 
     if (Biz.ifSuccess(this.pInfo)) {
-      clearJob()
+
       return console.log("****this order already success:", orderDetail);
     }
     let old = await Utils.STORE_GET_ITEM(orderDetail.orderId);
@@ -39,7 +39,6 @@ export class JqGet {
     await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) >= orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
-      clearJob()
       return alert("main已超出最高价,30秒后关页面")
     }
     return Biz.updateProdctAjax({
@@ -69,7 +68,7 @@ export class JqGet {
     // @ts-ignore
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) >= this.orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
-      clearJob()
+
       return alert("offerBid已超出最高价,30秒后关页面")
     }
 
@@ -79,7 +78,7 @@ export class JqGet {
     //2. can not upper the limit price
     if (!Biz.isGoodPrice(this.orderDetail["limitPrice"])) {
       Biz.overPrice(this.orderDetail["orderId"])
-      clearJob()
+
       return alert("offerBid已超出最高价,30秒后关闭页面");
     }
     setTimeout(function () {
@@ -94,11 +93,11 @@ let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
 let outputString = "";
-var setTmp = setInterval(timePaint, 1000);
-
-function clearJob() {
-  clearInterval(setTmp);
-}
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "do_auction") {
+    timePaint();
+  }
+});
 
 const xmlhttp = createXMLHttp();
 const myInstance = new JqGet();
@@ -130,7 +129,6 @@ function setPageData(xmlhttp: XMLHttpRequest) {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
       // @ts-ignore
       timeLeft = xmlhttp.responseText;
-      Biz.saveAuctionLefttime(auctionId, +timeLeft);
     }
   } catch (e) {
 
@@ -167,7 +165,6 @@ function timePaint() {
     if (isTitleFinish) {
       Utils.STORE_DELETE_ITEM(auctionId)
     }
-    return clearInterval(setTmp);
   }
 
   if (timeLeft > 300 && timeSinceLast >= 60 * 5) {
@@ -190,7 +187,6 @@ function timePaint() {
 
   if (timeLeft <= 0) {
     outputString = "オークション - 終了";
-    clearInterval(setTmp);
     Utils.STORE_DELETE_ITEM(auctionId)
   } else {
     var day = Math.floor(timeLeft / 86400);
@@ -211,8 +207,8 @@ function timePaint() {
       myInstance.offerBid(day, hour, min, sec);
     }
   }
-  Biz.saveAuctionLefttime(auctionId, timeLeft);
   console.log("****残り時間:", outputString)
 }
+
 
 

@@ -192,12 +192,4 @@ export class Biz {
         }
         return b;
     }
-
-    static async saveAuctionLefttime(id: string, timeLeft: any) {
-        let data = await Utils.STORE_GET_ITEM(id);
-        if (data.url) {
-            data.timeLeft = timeLeft;
-            await Utils.STORE_SET_ITEM(id, data);
-        }
-    }
 }
