@@ -18,7 +18,6 @@ export class JqGet {
       if (!orderDetail) {
         Biz.showAddJobButton(productInformation);
       }
-      ;
       await Utils.STORE_DELETE_ITEM(infoId)
       return console.log("****orderDetail is failure:", orderDetail);
     }
