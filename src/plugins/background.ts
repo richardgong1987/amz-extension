@@ -92,18 +92,17 @@ function callAuction() {
   })
 }
 
+callAuction();
+setInterval(callAuction, 1000);
 let activeTabInterval: any;
-startAllInterval()
 
 function startAllInterval() {
-  setInterval(callAuction, 1000);
   activeTabInterval = setInterval(function () {
     activateTab(currentTabInfo.tab);
   }, 3000);
 }
 
 function clearAllInterval() {
-  // clearInterval(auctionInterval);
   clearInterval(activeTabInterval);
 }
 
@@ -114,9 +113,15 @@ chrome.runtime.onInstalled.addListener(function (details) {
     chrome.tabs.query({}, function (tabs) {
       for (const tab of tabs) {
         if (isinAuction(tab)) {
-          reloadTab(tab)
+          refreshByRandomTime(tab)
         }
       }
     });
   }
 });
+
+function refreshByRandomTime(tab: chrome.tabs.Tab) {
+  setTimeout(function () {
+    reloadTab(tab)
+  }, Utils.range(1, 5));
+}
