@@ -86,7 +86,12 @@ function callAuction() {
   chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
     for (const tab of tabs) {
       if (tab.id && isinAuction(tab)) {
-        chrome.tabs.sendMessage(tab.id, {action: "do_auction"})
+        try {
+          chrome.tabs.sendMessage(tab.id, {action: "do_auction"}, function () {
+          })
+        } catch (e) {
+          console.log("*****backgroud.js e:", e);
+        }
       }
     }
   })

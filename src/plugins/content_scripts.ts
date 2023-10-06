@@ -93,11 +93,16 @@ let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
 let outputString = "";
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "do_auction") {
-    timePaint();
-  }
-});
+try {
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === "do_auction") {
+      timePaint();
+    }
+    sendResponse(true);
+  });
+} catch (e) {
+  console.log("******content_script e:", e);
+}
 
 const xmlhttp = createXMLHttp();
 const myInstance = new JqGet();
