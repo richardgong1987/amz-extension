@@ -168,6 +168,9 @@ function checkObject() {
 }
 
 function timePaint() {
+  if (outputString == "オークション - 終了") {
+    return Utils.STORE_DELETE_ITEM(auctionId);
+  }
   let isTitleFinish = $(".ClosedHeader__tag").text() == "このオークションは終了しています";
   if (!Utils.isAuctionUrl(location.pathname) || isTitleFinish) {
     if (isTitleFinish) {
@@ -195,7 +198,7 @@ function timePaint() {
 
   if (timeLeft <= 0) {
     outputString = "オークション - 終了";
-    Utils.STORE_DELETE_ITEM(auctionId)
+    Utils.STORE_DELETE_ITEM(auctionId);
   } else {
     var day = Math.floor(timeLeft / 86400);
     var hour = Math.floor((timeLeft - day * 86400) / 3600);
