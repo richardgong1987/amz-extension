@@ -178,7 +178,7 @@ function timePaint() {
     }
   }
 
-  if (timeLeft > 300 && timeSinceLast >= 60 * 5) {
+  if (timeLeft > 300 && timeSinceLast >= 60 * 3) {
     return window.location.reload();
   }
 
