@@ -129,7 +129,14 @@ function setPageData(xmlhttp: XMLHttpRequest) {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
       // @ts-ignore
       timeLeft = xmlhttp.responseText;
-      chrome.runtime.sendMessage({action: "auction_timeLeft", timeLeft: +timeLeft, url: location.href});
+      try {
+        chrome.runtime.sendMessage({action: "auction_timeLeft", timeLeft: +timeLeft, url: location.href});
+        Biz.updateProdctAjax({
+          orderId: auctionId,
+          timeLeft: +timeLeft
+        })
+      } catch (e) {
+      }
     }
   } catch (e) {
 
