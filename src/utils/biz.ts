@@ -186,6 +186,8 @@ export class Biz {
         remark: "用户名:" + $(".yjmthloginarea strong").text() + ",价格:" + $(".Price .Price__value").contents().filter(function () {
           return this.nodeType === Node.TEXT_NODE;
         }).text().trim()
+      }, function () {
+        window.close();
       })
     }
     return b;
