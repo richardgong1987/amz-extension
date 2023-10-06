@@ -120,7 +120,7 @@ export class Biz {
   static overPrice(id: string) {
     Utils.STORE_DELETE_ITEM(id);
     return this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"}, function () {
-      window.close();
+      chrome.runtime.sendMessage({action: "auction_closeTab", msg: "已超出最高价", url: location.href})
     })
 
   }
@@ -191,6 +191,7 @@ export class Biz {
           return this.nodeType === Node.TEXT_NODE;
         }).text().trim()
       }, function () {
+        chrome.runtime.sendMessage({action: "auction_closeTab", msg: "已成功", url: location.href})
       })
     }
     return b;

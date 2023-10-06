@@ -219,5 +219,3 @@ function timePaint() {
   console.log("****残り時間:", outputString)
 }
 
-
-

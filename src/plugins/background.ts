@@ -34,6 +34,26 @@ function getURL(tab: chrome.tabs.Tab) {
 
 }
 
+function removeTabByMsg(message: { url: string, msg: number, action: string }) {
+  chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
+    for (const tab of tabs) {
+      if (tab.url == message.url && isinAuction(tab)) {
+        console.log(`*****${message.msg},15秒后关闭, ${tab.title},${tab.url}`);
+        removeTabTimeOut(tab);
+        break;
+      }
+    }
+  })
+}
+
+function removeTabTimeOut(tab: chrome.tabs.Tab) {
+  setTimeout(function () {
+    if (tab.id != null) {
+      chrome.tabs.remove(tab.id);
+    }
+  }, 15 * 1000);
+}
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "startRefresh") {
     startAllInterval();
@@ -41,6 +61,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     clearAllInterval();
   } else if (message.action == "auction_timeLeft") {
     activeUPComingAuction(message);
+  } else if (message.action == "auction_closeTab") {
+    removeTabByMsg(message);
   }
 });
 
@@ -51,7 +73,6 @@ let currentTabInfo = {
 
 function activeUPComingAuction(message: { url: string, timeLeft: number, action: string }) {
   chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
-    console.log("****tabs:", tabs, message);
     for (const tab of tabs) {
       if (tab.url == message.url && isinAuction(tab) && message.timeLeft <= currentTabInfo.timeLeft) {
         currentTabInfo.timeLeft = message.timeLeft;
