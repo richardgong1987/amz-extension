@@ -42,7 +42,7 @@ export class Biz {
             return false;
         }
 
-        return Number(bidInput.value) <= highestPrice;
+        return Number(bidInput.value) < highestPrice;
     }
 
     static async orderDetail(orderId: string) {
