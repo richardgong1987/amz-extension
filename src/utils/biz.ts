@@ -141,8 +141,8 @@ export class Biz {
     static showAddJobButton(productInformation: any) {
         $(`
         <div id="save-bidJob-parent">
-            <button class="save-bidJob" data-status="1" style="font-size: 28px; height: 80px; width: 89%; border-radius: 10px; color: white;background: red; ">今すぐ入札</button>
             <input type="number" style="border: red solid 5px;font-size:35px;height: 60px; width: 89%; " id="save-bidJob-input" placeholder="私の最高額入">
+            <button class="save-bidJob" data-status="1" style="font-size: 28px; height: 80px; width: 89%; border-radius: 10px; color: white;background: red; ">今すぐ入札</button>
         </div>
       `).insertBefore("#ProductTitle");
         $(".save-bidJob").on("click", function () {
