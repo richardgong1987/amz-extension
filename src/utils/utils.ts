@@ -146,13 +146,6 @@ export class Utils {
     this.fireKeyboard(sel, "keydown");
   }
 
-
-  static closeWindow30s() {
-    setTimeout(function () {
-      window.close();
-    }, 10 * 1000);
-  }
-
   static range(start: number, end: number) {
     return (Math.floor(Math.random() * (end - start)) + start) * 1000;
   }

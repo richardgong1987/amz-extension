@@ -38,8 +38,7 @@ export class JqGet {
 
     await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) > orderDetail.limitPrice) {
-      Biz.overPrice(this.orderDetail["orderId"])
-      return alert("main已超出最高价,30秒后关页面")
+      return Biz.overPrice(this.orderDetail["orderId"])
     }
     return Biz.updateProdctAjax({
       orderId: orderDetail.orderId,
@@ -67,19 +66,13 @@ export class JqGet {
     // check currently prices
     // @ts-ignore
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) > this.orderDetail.limitPrice) {
-      Biz.overPrice(this.orderDetail["orderId"])
-
-      return alert("offerBid已超出最高价,30秒后关页面")
+      return Biz.overPrice(this.orderDetail["orderId"])
     }
-
-    console.log("******开始抢了:");
     //1. bid
     Biz.bid();
     //2. can not upper the limit price
     if (!Biz.isGoodPrice(this.orderDetail["limitPrice"])) {
-      Biz.overPrice(this.orderDetail["orderId"])
-
-      return alert("offerBid已超出最高价,30秒后关闭页面");
+      return Biz.overPrice(this.orderDetail["orderId"])
     }
     setTimeout(function () {
       Utils.clickWithSelector(".js-validator-submit");
