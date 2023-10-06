@@ -174,9 +174,13 @@ export class Biz {
   }
 
   static ifSuccess(pInfo: any) {
-    let b = false
+    let b = $(".Button--proceed").text() == "取引ナビ"
     if (pInfo.status == 1) {
-      b = pInfo["落札者"] && !((pInfo["落札者"] + "").includes("***")) || $(".Button--proceed").text() == "取引ナビ"
+      if (pInfo["落札者"] != "なし") {
+        if (!(pInfo["落札者"] + "").includes("***")) {
+          b = true;
+        }
+      }
     }
 
     if (b) {
@@ -187,7 +191,6 @@ export class Biz {
           return this.nodeType === Node.TEXT_NODE;
         }).text().trim()
       }, function () {
-        window.close();
       })
     }
     return b;
