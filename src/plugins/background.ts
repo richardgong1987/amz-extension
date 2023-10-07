@@ -3,14 +3,21 @@ import {Utils} from "src/utils/utils";
 
 function reloadTab(tab: chrome.tabs.Tab) {
   if (tab.id) {
-    chrome.tabs.reload(tab.id);
+    try {
+      chrome.tabs.reload(tab.id);
+    } catch (e) {
+
+    }
   }
 }
 
 function activateTab(tab: chrome.tabs.Tab) {
   if (tab) {
     if (tab.id) {
-      chrome.tabs.update(tab.id, {active: true});
+      try {
+        chrome.tabs.update(tab.id, {active: true});
+      } catch (e) {
+      }
     }
   }
 }
@@ -113,6 +120,24 @@ function callAuction() {
 callAuction();
 setInterval(callAuction, 1000);
 let activeTabInterval: any;
+setInterval(function () {
+  chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
+    for (const tab of tabs) {
+      if (tab.id && isinAuction(tab)) {
+        try {
+          setTimeout(function () {
+            if (tab.id != null) {
+              chrome.tabs.sendMessage(tab.id, {action: "call_checkObject"}, function () {
+              })
+            }
+          }, Utils.range(1, 15));
+        } catch (e) {
+          console.log("*****backgroud.js e:", e);
+        }
+      }
+    }
+  })
+}, 2 * 60 * 1000);
 
 function startAllInterval() {
   clearAllInterval();

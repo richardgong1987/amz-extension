@@ -177,7 +177,7 @@ export class Biz {
   static ifSuccess(pInfo: any) {
     let b = $(".Button--proceed").text() == "取引ナビ"
     if (pInfo && pInfo.status == 1) {
-      if (pInfo["落札者"] != "なし") {
+      if (pInfo["落札者"] && pInfo["落札者"] != "なし") {
         if (!(pInfo["落札者"] + "").includes("***")) {
           b = true;
         }

@@ -27,7 +27,6 @@ export class JqGet {
     this.pInfo["orderId"] = orderDetail.orderId
 
     if (Biz.ifSuccess(this.pInfo)) {
-
       return console.log("****this order already success:", orderDetail);
     }
     let old = await Utils.STORE_GET_ITEM(orderDetail.orderId);
@@ -93,6 +92,8 @@ try {
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "do_auction") {
       timePaint();
+    } else if (message.action === "call_checkObject") {
+      checkObject();
     }
   });
 } catch (e) {
