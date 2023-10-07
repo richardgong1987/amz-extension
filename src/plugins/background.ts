@@ -38,7 +38,7 @@ function removeTabByMsg(message: { url: string, msg: number, action: string }) {
   chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
     for (const tab of tabs) {
       if (tab.url == message.url && isinAuction(tab)) {
-        console.log(`*****${message.msg},15秒后关闭, ${tab.title},${tab.url}`);
+        console.log(`*****${message.msg},1分钟后关闭, ${tab.title},${tab.url}`);
         removeTabTimeOut(tab);
         break;
       }
@@ -51,7 +51,7 @@ function removeTabTimeOut(tab: chrome.tabs.Tab) {
     if (tab.id != null) {
       chrome.tabs.remove(tab.id);
     }
-  }, 15 * 1000);
+  }, 60 * 1000);
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
