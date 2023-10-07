@@ -37,7 +37,8 @@ export class JqGet {
 
     await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) > orderDetail.limitPrice) {
-      return Biz.overPrice(this.orderDetail["orderId"])
+      Biz.overPrice(this.orderDetail["orderId"])
+      return alert("***main() 超价")
     }
     return Biz.updateProdctAjax({
       orderId: orderDetail.orderId,
@@ -65,13 +66,16 @@ export class JqGet {
     // check currently prices
     // @ts-ignore
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) > this.orderDetail.limitPrice) {
-      return Biz.overPrice(this.orderDetail["orderId"])
+      Biz.overPrice(this.orderDetail["orderId"])
+      return alert("***offerBid超价check currently prices")
     }
     //1. bid
     Biz.bid();
     //2. can not upper the limit price
     if (!Biz.isGoodPrice(this.orderDetail["limitPrice"])) {
-      return Biz.overPrice(this.orderDetail["orderId"])
+
+      Biz.overPrice(this.orderDetail["orderId"])
+      return alert("***offerBid超价can not upper the limit price")
     }
     setTimeout(function () {
       Utils.clickWithSelector(".js-validator-submit");
@@ -164,14 +168,12 @@ function checkObject() {
 }
 
 function timePaint() {
+  if (!Utils.isAuctionUrl(location.pathname)) {
+    return;
+  }
+
   if (outputString == "オークション - 終了") {
     return Utils.STORE_DELETE_ITEM(auctionId);
-  }
-  let isTitleFinish = $(".ClosedHeader__tag").text() == "このオークションは終了しています";
-  if (!Utils.isAuctionUrl(location.pathname) || isTitleFinish) {
-    if (isTitleFinish) {
-      Utils.STORE_DELETE_ITEM(auctionId)
-    }
   }
 
   if (timeLeft > 300 && timeSinceLast >= 60 * 3) {

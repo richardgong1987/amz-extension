@@ -75,7 +75,8 @@ export class Biz {
     }
     //2. can not upper the limit price
     if (!Biz.isGoodPrice(orderDetail["limitPrice"])) {
-      return this.overPrice(orderDetail.orderId)
+      this.overPrice(orderDetail.orderId)
+      return alert("*****reBid()超价");
     }
     orderDetail.remark = true
     Utils.STORE_SET_ITEM(orderId, orderDetail)
@@ -175,7 +176,7 @@ export class Biz {
 
   static ifSuccess(pInfo: any) {
     let b = $(".Button--proceed").text() == "取引ナビ"
-    if (pInfo.status == 1) {
+    if (pInfo && pInfo.status == 1) {
       if (pInfo["落札者"] != "なし") {
         if (!(pInfo["落札者"] + "").includes("***")) {
           b = true;
