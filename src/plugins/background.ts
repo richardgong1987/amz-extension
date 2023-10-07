@@ -49,7 +49,7 @@ function removeTabByMsg(message: { url: string, msg: number, action: string }) {
 function removeTabTimeOut(tab: chrome.tabs.Tab) {
   setTimeout(function () {
     if (tab.id != null) {
-      chrome.tabs.remove(tab.id);
+      // chrome.tabs.remove(tab.id);
     }
   }, 60 * 1000);
 }
