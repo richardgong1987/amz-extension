@@ -90,7 +90,6 @@ try {
     if (message.action === "do_auction") {
       timePaint();
     }
-    sendResponse(true);
   });
 } catch (e) {
   console.log("******content_script e:", e);
