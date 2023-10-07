@@ -21,13 +21,6 @@ export class AppComponent implements OnInit {
   storeString = "";
 
   async ngOnInit() {
-    let newVar = await Utils.STORE_GET_ALL();
-    this.storeString = JSON.stringify(newVar);
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-      debugger
-      if (message.action === "do_auction") {
-      }
-    });
   }
 
   startRefresh() {

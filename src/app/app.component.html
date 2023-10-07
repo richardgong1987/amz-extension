@@ -1,8 +1,26 @@
 <div class="content" role="main">
   <h2>Auto Refresh Inactive Tabs</h2>
-  <button (click)="startRefresh()">Start Refreshing</button>
-  <button (click)="stopRefresh()">Stop Refreshing</button>
-  <button (click)="storeClear()">清除本地缓存</button>
+  <button type="button"
+          style="background: green;color: white; border-radius: 5px; padding: 10px 150px; font-size: 28px;"
+          (click)="startRefresh()">Start
+  </button>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <button type="button" style="background: red;color: white; border-radius: 5px; padding: 10px 150px; font-size: 28px;"
+          (click)="stopRefresh()">Stop
+  </button>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <button style="border: red solid 5px; border-radius: 5px;background: yellow; padding: 10px; font-size: 28px;"
+          (click)="storeClear()">
+    清除本地缓存
+  </button>
   <div contentEditable="true">
     {{storeString}}
   </div>
