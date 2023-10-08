@@ -88,18 +88,14 @@ let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
 let outputString = "";
-try {
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === "do_auction") {
-      timePaint();
-    } else if (message.action === "call_checkObject") {
-      console.log("*******call_checkObject", message);
-      checkObject();
-    }
-  });
-} catch (e) {
-  console.log("******content_script e:", e);
-}
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "do_auction") {
+    timePaint();
+  } else if (message.action === "call_checkObject") {
+    console.log("*******call_checkObject", message);
+    checkObject();
+  }
+});
 
 const xmlhttp = createXMLHttp();
 const myInstance = new JqGet();
