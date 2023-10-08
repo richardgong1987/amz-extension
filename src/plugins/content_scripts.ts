@@ -92,7 +92,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "do_auction") {
     timePaint();
   } else if (message.action === "call_checkObject") {
-    console.log("*******call_checkObject", message);
     checkObject();
   }
 });
