@@ -1,6 +1,7 @@
 import {Biz} from "src/utils/biz";
 import {Utils} from "src/utils/utils";
 
+
 export class JqGet {
   pInfo: { [x: string]: string | number; } = {}
   orderDetail: { [x: string]: any; } = {}
@@ -88,7 +89,11 @@ let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
 let outputString = "";
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+// Connect to the background script
+const port = chrome.runtime.connect({name: "GHJ-port"});
+Biz.port = port;
+// Listen for messages from the background script
+port.onMessage.addListener(function (message) {
   if (message.action === "do_auction") {
     timePaint();
   } else if (message.action === "call_checkObject") {
@@ -127,7 +132,7 @@ function setPageData(xmlhttp: XMLHttpRequest) {
       // @ts-ignore
       timeLeft = xmlhttp.responseText;
       try {
-        chrome.runtime.sendMessage({action: "auction_timeLeft", timeLeft: +timeLeft, url: location.href});
+        Biz.port?.postMessage({action: "auction_timeLeft", timeLeft: +timeLeft, url: location.href});
         Biz.updateProdctAjax({
           orderId: auctionId,
           timeLeft: +timeLeft

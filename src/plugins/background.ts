@@ -1,14 +1,50 @@
 import {Utils} from "src/utils/utils";
 
+const connectedPorts: chrome.runtime.Port[] = [];
+chrome.runtime.onConnect.addListener(function (port) {
+  if (port.name === "GHJ-port") {
+    // Add the port to the list of connected ports
+    connectedPorts.push(port);
+    port.onMessage.addListener((message) => {
+      if (message.action === "startRefresh") {
+        startAllInterval();
+      } else if (message.action == "stopRefresh") {
+        clearAllInterval();
+      } else if (message.action == "auction_timeLeft") {
+        activeUPComingAuction(message);
+      } else if (message.action == "auction_closeTab") {
+        removeTabByMsg(message);
+      }
+    });
+    // Handle disconnections
+    port.onDisconnect.addListener(function () {
+      const index = connectedPorts.indexOf(port);
+      if (index !== -1) {
+        connectedPorts.splice(index, 1);
+      }
+    });
+  }
+});
+
+function broadcastMessage(message: any) {
+  console.log("*****connectedPorts:", connectedPorts);
+  connectedPorts.forEach(function (port) {
+    if (isAuctionPage(port.sender?.url)) {
+      port.postMessage(message);
+    }
+  });
+}
+
+const doAuction = {action: "do_auction"};
+setInterval(function () {
+  broadcastMessage(doAuction);
+}, 1000);
+
 let currentTabInfo = {
   timeLeft: Number.MAX_VALUE,
   url: "",
 }
 let activeTabInterval: any;
-
-callAuction();
-setInterval(callAuction, 1000);
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "startRefresh") {
     startAllInterval();
@@ -22,8 +58,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 setInterval(function () {
-  // @ts-ignore
-  AUCTIONS_TABS_ALL(tab => isinAuction(tab) && chrome.tabs.sendMessage(tab.id, {action: "call_checkObject"}));
+  broadcastMessage({action: "call_checkObject"});
 }, 2 * 60 * 1000);
 
 function reloadTab(tab: chrome.tabs.Tab) {
@@ -39,6 +74,15 @@ function activateTab(tab: chrome.tabs.Tab) {
 function isinAuction(tab: chrome.tabs.Tab) {
   let locate = getURL(tab);
   return Utils.isAuctionUrl(locate.pathname)
+}
+
+function isAuctionPage(url: string | undefined) {
+  try {
+    let locate = new URL(url as string);
+    return Utils.isAuctionUrl(locate.pathname)
+  } catch (e) {
+  }
+  return false;
 }
 
 function getURL(tab: chrome.tabs.Tab) {
@@ -85,11 +129,6 @@ function startAllInterval() {
 
 function clearAllInterval() {
   clearInterval(activeTabInterval);
-}
-
-function callAuction() {
-  // @ts-ignore
-  AUCTIONS_TABS_ALL(tab => isinAuction(tab) && chrome.tabs.sendMessage(tab.id, {action: "do_auction"}));
 }
 
 chrome.runtime.onInstalled.addListener(details => details.reason === "update" && AUCTIONS_TABS_ALL(tab => isinAuction(tab) && reloadTab(tab)));

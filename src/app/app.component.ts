@@ -7,7 +7,6 @@ import {Utils} from "src/utils/utils";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-  title = "auctions-yahoo-extension";
 
   async storeClear() {
     var isclear = confirm("确定要清除缓存吗?")
@@ -19,15 +18,16 @@ export class AppComponent implements OnInit {
   }
 
   storeString = "";
+  port = chrome.runtime.connect({name: "GHJ-port"});
 
   async ngOnInit() {
   }
 
   startRefresh() {
-    chrome.runtime.sendMessage({action: "startRefresh"});
+    this.port.postMessage({action: "startRefresh"});
   }
 
   stopRefresh() {
-    chrome.runtime.sendMessage({action: "stopRefresh"});
+    this.port.postMessage({action: "stopRefresh"});
   }
 }

@@ -118,10 +118,12 @@ export class Biz {
     this.resultPage();
   }
 
+  static port: chrome.runtime.Port
+
   static overPrice(id: string) {
     Utils.STORE_DELETE_ITEM(id);
-    return this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"}, function () {
-      chrome.runtime.sendMessage({action: "auction_closeTab", msg: "已超出最高价", url: location.href})
+    return this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"}, () => {
+      this.port?.postMessage({action: "auction_closeTab", msg: "已超出最高价", url: location.href})
     })
 
   }
@@ -191,8 +193,8 @@ export class Biz {
         remark: "用户名:" + $(".yjmthloginarea strong").text() + ",价格:" + $(".Price .Price__value").contents().filter(function () {
           return this.nodeType === Node.TEXT_NODE;
         }).text().trim()
-      }, function () {
-        chrome.runtime.sendMessage({action: "auction_closeTab", msg: "已成功", url: location.href})
+      }, () => {
+        this.port?.postMessage({action: "auction_closeTab", msg: "已成功", url: location.href})
       })
     }
     return b;
