@@ -62,6 +62,11 @@ export class Biz {
       }
     } else if (location.pathname == "/jp/config/undefined") {
       if (!location.search) {
+        let prop = $(".l-contentsFoot .u-TextCenter a").prop("href");
+        if (prop) {
+          return location.href = prop;
+        }
+
         history.back();
       }
     }
@@ -71,6 +76,7 @@ export class Biz {
     var orderId = $("[name=\"ItemID\"]").val() as string;
     let orderDetail = await Utils.STORE_GET_ITEM(orderId);
     if (orderDetail.remark) {
+      location.href = $(".l-contentsFoot .u-TextCenter a").prop("href")
       return console.log("*****rebid already:", orderDetail)
     }
     //2. can not upper the limit price

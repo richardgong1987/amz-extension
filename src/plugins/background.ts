@@ -11,6 +11,7 @@ chrome.runtime.onConnect.addListener(function (port) {
       } else if (message.action == "stopRefresh") {
         clearAllInterval();
       } else if (message.action == "auction_timeLeft") {
+        console.log("***** new new  auction_timeLeft:",message)
         activeUPComingAuction(message);
       } else if (message.action == "auction_closeTab") {
         removeTabByMsg(message);
@@ -45,17 +46,6 @@ let currentTabInfo = {
   url: "",
 }
 let activeTabInterval: any;
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "startRefresh") {
-    startAllInterval();
-  } else if (message.action == "stopRefresh") {
-    clearAllInterval();
-  } else if (message.action == "auction_timeLeft") {
-    activeUPComingAuction(message);
-  } else if (message.action == "auction_closeTab") {
-    removeTabByMsg(message);
-  }
-});
 
 setInterval(function () {
   broadcastMessage({action: "call_checkObject"});
@@ -113,7 +103,7 @@ function removeTabTimeOut(tab: chrome.tabs.Tab) {
 
 function activeUPComingAuction(message: { url: string, timeLeft: number, action: string }) {
   AUCTIONS_TABS_ALL(tab => {
-    if (tab.url == message.url && isinAuction(tab) && message.timeLeft <= currentTabInfo.timeLeft) {
+    if (tab.url == message.url && isinAuction(tab) && message.timeLeft < currentTabInfo.timeLeft) {
       currentTabInfo.timeLeft = message.timeLeft;
       currentTabInfo.url = message.url;
       activateTab(tab);
