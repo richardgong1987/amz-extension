@@ -1,5 +1,30 @@
 import {Utils} from "src/utils/utils";
 
+let currentTabInfo = {
+  timeLeft: Number.MAX_VALUE,
+  url: "",
+}
+let activeTabInterval: any;
+
+callAuction();
+setInterval(callAuction, 1000);
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "startRefresh") {
+    startAllInterval();
+  } else if (message.action == "stopRefresh") {
+    clearAllInterval();
+  } else if (message.action == "auction_timeLeft") {
+    activeUPComingAuction(message);
+  } else if (message.action == "auction_closeTab") {
+    removeTabByMsg(message);
+  }
+});
+
+setInterval(function () {
+  // @ts-ignore
+  AUCTIONS_TABS_ALL(tab => isinAuction(tab) && chrome.tabs.sendMessage(tab.id, {action: "call_checkObject"}));
+}, 2 * 60 * 1000);
 
 function reloadTab(tab: chrome.tabs.Tab) {
   // @ts-ignore
@@ -37,29 +62,10 @@ function removeTabByMsg(message: { url: string, msg: number, action: string }) {
 }
 
 function removeTabTimeOut(tab: chrome.tabs.Tab) {
-  setTimeout(function () {
-    if (tab.id != null) {
-      // chrome.tabs.remove(tab.id);
-    }
-  }, 60 * 1000);
+  // @ts-ignore
+  setTimeout(() => chrome.tabs.remove(tab.id), 60 * 1000);
 }
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "startRefresh") {
-    startAllInterval();
-  } else if (message.action == "stopRefresh") {
-    clearAllInterval();
-  } else if (message.action == "auction_timeLeft") {
-    activeUPComingAuction(message);
-  } else if (message.action == "auction_closeTab") {
-    removeTabByMsg(message);
-  }
-});
-
-let currentTabInfo = {
-  timeLeft: Number.MAX_VALUE,
-  url: "",
-}
 
 function activeUPComingAuction(message: { url: string, timeLeft: number, action: string }) {
   AUCTIONS_TABS_ALL(tab => {
@@ -71,19 +77,10 @@ function activeUPComingAuction(message: { url: string, timeLeft: number, action:
   })
 }
 
-callAuction();
-setInterval(callAuction, 1000);
-let activeTabInterval: any;
-setInterval(function () {
-  // @ts-ignore
-  AUCTIONS_TABS_ALL(tab => isinAuction(tab) && chrome.tabs.sendMessage(tab.id, {action: "call_checkObject"}));
-}, 2 * 60 * 1000);
 
 function startAllInterval() {
   clearAllInterval();
-  activeTabInterval = setInterval(function () {
-    AUCTIONS_TABS_ALL(tab => tab.url == currentTabInfo.url && isinAuction(tab) && activateTab(tab));
-  }, 3000);
+  activeTabInterval = setInterval(() => AUCTIONS_TABS_ALL(tab => tab.url == currentTabInfo.url && isinAuction(tab) && activateTab(tab)), 3000);
 }
 
 function clearAllInterval() {
