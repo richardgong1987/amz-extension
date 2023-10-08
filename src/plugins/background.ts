@@ -11,8 +11,9 @@ chrome.runtime.onConnect.addListener(function (port) {
       } else if (message.action == "stopRefresh") {
         clearAllInterval();
       } else if (message.action == "auction_timeLeft") {
-        console.log("***** new new  auction_timeLeft:",message)
-        activeUPComingAuction(message);
+        // @ts-ignore
+        port.mydata = message;
+        activeUPComingAuction();
       } else if (message.action == "auction_closeTab") {
         removeTabByMsg(message);
       }
@@ -101,27 +102,30 @@ function removeTabTimeOut(tab: chrome.tabs.Tab) {
 }
 
 
-function activeUPComingAuction(message: { url: string, timeLeft: number, action: string }) {
-  AUCTIONS_TABS_ALL(tab => {
-    if (tab.url == message.url && isinAuction(tab) && message.timeLeft < currentTabInfo.timeLeft) {
-      currentTabInfo.timeLeft = message.timeLeft;
-      currentTabInfo.url = message.url;
-      activateTab(tab);
+function activeUPComingAuction() {
+  let minTab = connectedPorts[0]
+  connectedPorts.forEach(port => {
+    // @ts-ignore
+    if (minTab.mydata && port.mydata && port.mydata.timeLeft < minTab.mydata.timeLeft) {
+      minTab = port;
     }
-  })
+  });
+  if (minTab.sender?.tab) {
+    activateTab(minTab.sender?.tab);
+  }
 }
 
 
 function startAllInterval() {
   clearAllInterval();
-  activeTabInterval = setInterval(() => AUCTIONS_TABS_ALL(tab => tab.url == currentTabInfo.url && isinAuction(tab) && activateTab(tab)), 3000);
+  activeTabInterval = setInterval(() => activeUPComingAuction());
 }
 
 function clearAllInterval() {
   clearInterval(activeTabInterval);
 }
 
-chrome.runtime.onInstalled.addListener(details => details.reason === "update" && AUCTIONS_TABS_ALL(tab => isinAuction(tab) && reloadTab(tab)));
+chrome.runtime.onInstalled.addListener(details => details.reason === "update" && AUCTIONS_TABS_ALL(tab => reloadTab(tab)));
 
 function AUCTIONS_TABS_ALL(callback: (tab: chrome.tabs.Tab) => any) {
   chrome.tabs.query({url: "https://page.auctions.yahoo.co.jp/jp/auction/*"}, function (tabs) {
