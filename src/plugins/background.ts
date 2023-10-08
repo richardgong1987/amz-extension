@@ -2,32 +2,18 @@ import {Utils} from "src/utils/utils";
 
 
 function reloadTab(tab: chrome.tabs.Tab) {
-  if (tab.id) {
-    try {
-      chrome.tabs.reload(tab.id);
-    } catch (e) {
-
-    }
-  }
+  // @ts-ignore
+  chrome.tabs.reload(tab.id);
 }
 
 function activateTab(tab: chrome.tabs.Tab) {
-  if (tab) {
-    if (tab.id) {
-      try {
-        chrome.tabs.update(tab.id, {active: true});
-      } catch (e) {
-      }
-    }
-  }
+  // @ts-ignore
+  chrome.tabs.update(tab.id, {active: true});
 }
 
 function isinAuction(tab: chrome.tabs.Tab) {
-  if (tab.id) {
-    let locate = getURL(tab);
-    return Utils.isAuctionUrl(locate.pathname)
-  }
-  return false;
+  let locate = getURL(tab);
+  return Utils.isAuctionUrl(locate.pathname)
 }
 
 function getURL(tab: chrome.tabs.Tab) {
