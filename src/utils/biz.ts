@@ -120,10 +120,14 @@ export class Biz {
 
   static port: chrome.runtime.Port
 
+  static postMessage(msg: any) {
+    this.port?.postMessage(msg);
+  }
+
   static overPrice(id: string) {
     Utils.STORE_DELETE_ITEM(id);
     return this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"}, () => {
-      this.port?.postMessage({action: "auction_closeTab", msg: "已超出最高价", url: location.href})
+      this.postMessage({action: "auction_closeTab", msg: "已超出最高价", url: location.href})
     })
 
   }
@@ -194,7 +198,7 @@ export class Biz {
           return this.nodeType === Node.TEXT_NODE;
         }).text().trim()
       }, () => {
-        this.port?.postMessage({action: "auction_closeTab", msg: "已成功", url: location.href})
+        this.postMessage({action: "auction_closeTab", msg: "已成功", url: location.href})
       })
     }
     return b;
