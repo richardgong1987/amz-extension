@@ -42,13 +42,10 @@ function getURL(tab: chrome.tabs.Tab) {
 }
 
 function removeTabByMsg(message: { url: string, msg: number, action: string }) {
-  chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
-    for (const tab of tabs) {
-      if (tab.url == message.url && isinAuction(tab)) {
-        console.log(`*****${message.msg},1分钟后关闭, ${tab.title},${tab.url}`);
-        removeTabTimeOut(tab);
-        break;
-      }
+  AUCTIONS_TABS_ALL(tab => {
+    if (tab.url == message.url && isinAuction(tab)) {
+      console.log(`*****${message.msg},1分钟后关闭, ${tab.title},${tab.url}`);
+      removeTabTimeOut(tab);
     }
   })
 }
@@ -79,40 +76,11 @@ let currentTabInfo = {
 }
 
 function activeUPComingAuction(message: { url: string, timeLeft: number, action: string }) {
-  chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
-    for (const tab of tabs) {
-      if (tab.url == message.url && isinAuction(tab) && message.timeLeft <= currentTabInfo.timeLeft) {
-        currentTabInfo.timeLeft = message.timeLeft;
-        currentTabInfo.url = message.url;
-        activateTab(tab);
-        break;
-      }
-    }
-  })
-}
-
-function activeTabByCurrentTabInfo() {
-  chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
-    for (const tab of tabs) {
-      if (tab.url == currentTabInfo.url && isinAuction(tab)) {
-        activateTab(tab);
-        break;
-      }
-    }
-  })
-}
-
-function callAuction() {
-  chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
-    for (const tab of tabs) {
-      if (tab.id && isinAuction(tab)) {
-        try {
-          chrome.tabs.sendMessage(tab.id, {action: "do_auction"}, function () {
-          })
-        } catch (e) {
-          console.log("*****backgroud.js e:", e);
-        }
-      }
+  AUCTIONS_TABS_ALL(tab => {
+    if (tab.url == message.url && isinAuction(tab) && message.timeLeft <= currentTabInfo.timeLeft) {
+      currentTabInfo.timeLeft = message.timeLeft;
+      currentTabInfo.url = message.url;
+      activateTab(tab);
     }
   })
 }
@@ -121,28 +89,14 @@ callAuction();
 setInterval(callAuction, 1000);
 let activeTabInterval: any;
 setInterval(function () {
-  chrome.tabs.query({}, function (tabs: chrome.tabs.Tab[]) {
-    for (const tab of tabs) {
-      if (tab.id && isinAuction(tab)) {
-        try {
-          setTimeout(function () {
-            if (tab.id != null) {
-              chrome.tabs.sendMessage(tab.id, {action: "call_checkObject"}, function () {
-              })
-            }
-          }, Utils.range(1, 15));
-        } catch (e) {
-          console.log("*****backgroud.js e:", e);
-        }
-      }
-    }
-  })
+  // @ts-ignore
+  AUCTIONS_TABS_ALL(tab => isinAuction(tab) && chrome.tabs.sendMessage(tab.id, {action: "call_checkObject"}));
 }, 2 * 60 * 1000);
 
 function startAllInterval() {
   clearAllInterval();
   activeTabInterval = setInterval(function () {
-    activeTabByCurrentTabInfo();
+    AUCTIONS_TABS_ALL(tab => tab.url == currentTabInfo.url && isinAuction(tab) && activateTab(tab));
   }, 3000);
 }
 
@@ -150,14 +104,24 @@ function clearAllInterval() {
   clearInterval(activeTabInterval);
 }
 
-chrome.runtime.onInstalled.addListener(function (details) {
-  if (details.reason === "update") {
-    chrome.tabs.query({}, function (tabs) {
-      for (const tab of tabs) {
-        if (isinAuction(tab)) {
-          reloadTab(tab)
+function callAuction() {
+  // @ts-ignore
+  AUCTIONS_TABS_ALL(tab => isinAuction(tab) && chrome.tabs.sendMessage(tab.id, {action: "do_auction"}));
+}
+
+chrome.runtime.onInstalled.addListener(details => details.reason === "update" && AUCTIONS_TABS_ALL(tab => isinAuction(tab) && reloadTab(tab)));
+
+function AUCTIONS_TABS_ALL(callback: (tab: chrome.tabs.Tab) => any) {
+  chrome.tabs.query({url: "https://page.auctions.yahoo.co.jp/jp/auction/*"}, function (tabs) {
+    // tabs is an array of tab objects that match the URL pattern
+    tabs.forEach(function (tab) {
+      if (isinAuction(tab)) {
+        try {
+          callback(tab)
+        } catch (e) {
+          console.log("*****custome e:", e);
         }
       }
     });
-  }
-});
+  });
+}
