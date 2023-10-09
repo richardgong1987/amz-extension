@@ -103,19 +103,24 @@ export class Biz {
     }
   }
 
+  static POST(url: string, data: any, complete = () => {
+  }) {
+    return $.ajax({
+      url: `${HOST}${url}`,
+      method: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      complete: complete,
+    })
+  }
+
   static async saveKeywords(data: {
     keywords: string,
     url: string
   }) {
-    return $.ajax({
-      url: `${HOST}/api/auctions/product/save-keywords`,
-      method: "POST",
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      complete: function () {
-        $("#save-keywords").remove();
-      },
-    });
+    return this.POST("/api/auctions/product/save-keywords", data, function () {
+      $("#save-keywords").remove();
+    })
   }
 
   static otherPage() {
@@ -138,15 +143,9 @@ export class Biz {
 
   }
 
-  static updateProdctAjax(data: any, complete = function () {
+  static updateProdctAjax(data: any, complete = () => {
   }) {
-    $.ajax({
-      url: `${HOST}/api/auctions/product/product-update`,
-      method: "POST",
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      complete: complete,
-    });
+    return this.POST("/api/auctions/product/product-update", data, complete)
   }
 
   static showAddJobButton(productInformation: any) {
@@ -156,29 +155,23 @@ export class Biz {
             <button class="save-bidJob" data-status="1" style="font-size: 28px; height: 80px; width: 89%; border-radius: 10px; color: white;background: red; ">今すぐ入札</button>
         </div>
       `).insertBefore("#ProductTitle");
-    $(".save-bidJob").on("click", function () {
+    $(".save-bidJob").on("click", () => {
       const url = location.href
       let status = $(this).data("status");
       let price = Number($("#save-bidJob-input").val());
       if (price > 0) {
-        $.ajax({
-          url: `${HOST}/api/auctions/product/product-add`,
-          method: "POST",
-          data: JSON.stringify({
-            orderId: url.split("/").pop(),
-            limitPrice: price,
-            updateTime: Utils.formatDateStr(productInformation["終了日時"]),
-            url: url,
-            status,
-          }),
-          contentType: "application/json",
-          complete: function () {
-            if (status == 1) {
-              return location.reload();
-            }
-            $("#save-bidJob-parent").remove();
-          },
-        });
+        this.POST("/api/auctions/product/product-add", {
+          orderId: url.split("/").pop(),
+          limitPrice: price,
+          updateTime: Utils.formatDateStr(productInformation["終了日時"]),
+          url: url,
+          status,
+        }, () => {
+          if (status == 1) {
+            return location.reload();
+          }
+          $("#save-bidJob-parent").remove();
+        })
       } else {
         alert(`私の最高額入:${price} 再入力`)
       }
