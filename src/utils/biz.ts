@@ -33,6 +33,9 @@ export class Biz {
   static agreeBid() {
     if (location.pathname == "/jp/show/bid_preview") {
       Utils.clickWithSelector(".SubmitBox__button--bid")
+      if (!document.querySelector(".SubmitBox__button--bid")) {
+        location.href = $("#3DmodFootLink a").prop("href");
+      }
     }
   }
 
@@ -157,7 +160,7 @@ export class Biz {
       `).insertBefore("#ProductTitle");
     $(".save-bidJob").on("click", () => {
       const url = location.href
-      let status = $('.save-bidJob').data("status");
+      let status = $(".save-bidJob").data("status");
       let price = Number($("#save-bidJob-input").val());
       if (price > 0) {
         this.POST("/api/auctions/product/product-add", {
