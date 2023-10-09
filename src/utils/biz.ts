@@ -137,10 +137,12 @@ export class Biz {
   static postMessage(msg: any) {
     this.port?.postMessage(msg);
   }
-
-  static overPrice(id: string) {
+  static disconnect(id:any){
     Utils.STORE_DELETE_ITEM(id);
     this.port?.disconnect();
+  }
+  static overPrice(id: string) {
+    this.disconnect(id)
     return this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"}, () => {
       this.postMessage({action: "auction_closeTab", msg: "已超出最高价", url: location.href})
     })
@@ -194,6 +196,7 @@ export class Biz {
     }
 
     if (b) {
+      this.disconnect(pInfo.orderId);
       this.updateProdctAjax({
         orderId: pInfo.orderId,
         status: 2,
