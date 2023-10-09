@@ -135,7 +135,12 @@ export class Biz {
   static port: chrome.runtime.Port
 
   static postMessage(msg: any) {
-    this.port?.postMessage(msg);
+    try {
+      this.port?.postMessage(msg);  
+    } catch (e) {
+      
+    }
+    
   }
   static disconnect(id:any){
     Utils.STORE_DELETE_ITEM(id);
