@@ -37,6 +37,16 @@ function broadcastMessage(message: any) {
   });
 }
 
+function broadcastMessageRandom(message: any) {
+  connectedPorts.forEach(function (port) {
+    if (isAuctionPage(port.sender?.url)) {
+      setTimeout(() => {
+        port.postMessage(message);
+      }, Utils.range(1, 8));
+    }
+  });
+}
+
 const doAuction = {action: "do_auction"};
 setInterval(function () {
   broadcastMessage(doAuction);
@@ -49,7 +59,7 @@ let currentTabInfo = {
 let activeTabInterval: any;
 
 setInterval(function () {
-  broadcastMessage({action: "call_checkObject"});
+  broadcastMessageRandom({action: "call_checkObject"})
 }, 2 * 60 * 1000);
 
 function reloadTab(tab: chrome.tabs.Tab) {
@@ -101,7 +111,7 @@ function removeTabTimeOut(tab: chrome.tabs.Tab) {
     try {
       // @ts-ignore
       chrome.tabs.remove(tab.id)
-      broadcastMessage({action: "call_checkObject"});
+      broadcastMessageRandom({action: "call_checkObject"})
     } catch (e) {
     }
   }, 15 * 1000);

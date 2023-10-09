@@ -136,11 +136,11 @@ export class Biz {
 
   static postMessage(msg: any) {
     try {
-      this.port?.postMessage(msg);  
+      this.port?.postMessage(msg);
     } catch (e) {
-      
+
     }
-    
+
   }
   static disconnect(id:any){
     Utils.STORE_DELETE_ITEM(id);
