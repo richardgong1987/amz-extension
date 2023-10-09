@@ -179,7 +179,9 @@ function timePaint() {
   if (outputString == "オークション - 終了") {
     return Utils.STORE_DELETE_ITEM(auctionId);
   }
-
+  if (timeLeft == 20 && $(".ProductImage__labelTitle").text() == "高値更新されました") {
+    return window.location.reload();
+  }
   if (timeLeft > 300 && timeSinceLast >= 60 * 3) {
     return window.location.reload();
   }
