@@ -97,8 +97,14 @@ function removeTabByMsg(message: { url: string, msg: number, action: string }) {
 }
 
 function removeTabTimeOut(tab: chrome.tabs.Tab) {
-  // @ts-ignore
-  setTimeout(() => chrome.tabs.remove(tab.id), 60 * 1000);
+  setTimeout(() => {
+    try {
+      // @ts-ignore
+      chrome.tabs.remove(tab.id)
+      broadcastMessage({action: "call_checkObject"});
+    } catch (e) {
+    }
+  }, 15 * 1000);
 }
 
 

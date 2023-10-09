@@ -204,6 +204,7 @@ function timePaint() {
     outputString = "オークション - 終了";
     Utils.STORE_DELETE_ITEM(auctionId);
     Biz.ifSuccess(myInstance.pInfo);
+    Biz.port?.disconnect();
   } else {
     var day = Math.floor(timeLeft / 86400);
     var hour = Math.floor((timeLeft - day * 86400) / 3600);

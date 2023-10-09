@@ -140,6 +140,7 @@ export class Biz {
 
   static overPrice(id: string) {
     Utils.STORE_DELETE_ITEM(id);
+    this.port?.disconnect();
     return this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"}, () => {
       this.postMessage({action: "auction_closeTab", msg: "已超出最高价", url: location.href})
     })
