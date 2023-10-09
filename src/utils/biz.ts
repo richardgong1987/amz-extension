@@ -157,7 +157,7 @@ export class Biz {
       `).insertBefore("#ProductTitle");
     $(".save-bidJob").on("click", () => {
       const url = location.href
-      let status = $(this).data("status");
+      let status = $('.save-bidJob').data("status");
       let price = Number($("#save-bidJob-input").val());
       if (price > 0) {
         this.POST("/api/auctions/product/product-add", {
@@ -165,7 +165,7 @@ export class Biz {
           limitPrice: price,
           updateTime: Utils.formatDateStr(productInformation["終了日時"]),
           url: url,
-          status,
+          status: status,
         }, () => {
           if (status == 1) {
             return location.reload();
