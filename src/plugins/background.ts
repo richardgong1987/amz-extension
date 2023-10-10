@@ -108,7 +108,7 @@ function getURL(tab: chrome.tabs.Tab) {
 
 function removeTabByMsg(port: chrome.runtime.Port, message: { url: string, msg: number, action: string }) {
   const tab = port.sender?.tab as chrome.tabs.Tab;
-  console.log(`*****${message.msg},10秒后关闭, ${tab.title},${tab.url}`);
+  console.log(`*****msg:${message.msg}, 10秒后关闭, ${tab.title},${tab.url}`);
   removeTabTimeOut(tab);
 }
 
@@ -123,7 +123,7 @@ function removeTabTimeOut(tab: chrome.tabs.Tab) {
       }, 20);
     } catch (e) {
     }
-  }, 10 * 1000);
+  }, 8 * 1000);
 }
 
 
@@ -135,8 +135,8 @@ function activeUPComingAuction() {
       minTab = port;
     }
   });
-  if (minTab.sender?.tab) {
-    activateTab(minTab.sender?.tab);
+  if (minTab?.sender?.tab) {
+    activateTab(minTab.sender.tab);
   }
 }
 
