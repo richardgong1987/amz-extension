@@ -36,7 +36,9 @@ export class JqGet {
     }
 
     await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
-    if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) > orderDetail.limitPrice) {
+    let  regExpExecArray = /"price": "(\d+)",/.exec($(`script:contains('var pageData = {')`).text());
+    console.log("****regExpExecArray:", regExpExecArray && Number(regExpExecArray[1]), orderDetail.limitPrice);
+    if (regExpExecArray && Number(regExpExecArray[1]) > orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
       return Biz.dialog("***main() 超价")
     }
