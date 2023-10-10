@@ -85,6 +85,7 @@ export class JqGet {
 }
 
 let auctionId = location.pathname.split("/").pop() as string;
+const reloadTime = Utils.rangeNumber(150, 260);
 let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
@@ -171,7 +172,7 @@ function checkObject() {
   }
 }
 
-const reloadTime = Utils.rangeNumber(150, 260);
+
 
 function timePaint() {
   if (!Utils.isAuctionUrl(location.pathname)) {
