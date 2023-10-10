@@ -149,6 +149,7 @@ export class Utils {
   static range(start: number, end: number) {
     return (Math.floor(Math.random() * (end - start)) + start) * 1000;
   }
+
   static rangeNumber(start: number, end: number) {
     return (Math.floor(Math.random() * (end - start)) + start);
   }
@@ -157,4 +158,28 @@ export class Utils {
     return /^\/jp\/auction\/[0-9a-z][0-9]{9,10}$/.test(pathname)
   }
 
+  static getPageDataJSON() {
+    const inputCode = $(`script:contains('var pageData = {')`).text();
+    if (inputCode) {
+      // Define a regular expression to match the pageData JSON with line breaks and escaped characters
+      var regex = /var\s+pageData\s+=\s+({[\s\S]+?});/;
+
+// Use the regular expression to extract the pageData JSON
+      var match = regex.exec(inputCode);
+      if (match && match[1]) {
+        // Remove escape characters and line breaks
+        var cleanPageData = match[1]
+          .replace(/\\n/g, "")
+          .replace(/\\t/g, "")
+          .replace(/\\r/g, "")
+          .replace(/\s+/g, " ");
+        var extractedPageData = JSON.parse(cleanPageData);
+        return extractedPageData;
+      } else {
+        console.log("PageData not found in the input code.");
+      }
+
+    }
+    return null;
+  }
 }

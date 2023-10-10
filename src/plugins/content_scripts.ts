@@ -36,9 +36,9 @@ export class JqGet {
     }
 
     await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
-    let  regExpExecArray = /"price": "(\d+)",/.exec($(`script:contains('var pageData = {')`).text());
-    console.log("****regExpExecArray:", regExpExecArray && Number(regExpExecArray[1]), orderDetail.limitPrice);
-    if (regExpExecArray && Number(regExpExecArray[1]) > orderDetail.limitPrice) {
+    const pageData = Utils.getPageDataJSON();
+    console.log("****pageData.items.price:", Number(pageData?.items?.price), orderDetail.limitPrice);
+    if (Number(pageData?.items?.price) > orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
       return Biz.dialog("***main() 超价")
     }
