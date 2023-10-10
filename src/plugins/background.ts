@@ -15,7 +15,7 @@ chrome.runtime.onConnect.addListener(function (port) {
         port.mydata = message;
         activeUPComingAuction();
       } else if (message.action == "auction_closeTab") {
-        removeTabByMsg(message);
+        removeTabByMsg(port, message);
       }
     });
     // Handle disconnections
@@ -97,13 +97,10 @@ function getURL(tab: chrome.tabs.Tab) {
 
 }
 
-function removeTabByMsg(message: { url: string, msg: number, action: string }) {
-  AUCTIONS_TABS_ALL(tab => {
-    if (tab.url == message.url && isinAuction(tab)) {
-      console.log(`*****${message.msg},1分钟后关闭, ${tab.title},${tab.url}`);
-      removeTabTimeOut(tab);
-    }
-  })
+function removeTabByMsg(port: chrome.runtime.Port, message: { url: string, msg: number, action: string }) {
+  const tab = port.sender?.tab as chrome.tabs.Tab;
+  console.log(`*****${message.msg},1分钟后关闭, ${tab.title},${tab.url}`);
+  removeTabTimeOut(tab);
 }
 
 function removeTabTimeOut(tab: chrome.tabs.Tab) {
