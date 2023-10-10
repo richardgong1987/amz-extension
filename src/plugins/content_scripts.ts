@@ -18,6 +18,12 @@ export class JqGet {
     if (!orderDetail || orderDetail.status != 1) {
       if (!orderDetail) {
         Biz.showAddJobButton(productInformation);
+      } else {
+        if (orderDetail.status == 5) {
+          this.pInfo["status"] = orderDetail.status
+          Biz.ifSuccess(this.pInfo);
+        }
+
       }
       await Utils.STORE_DELETE_ITEM(infoId)
       return console.log("****orderDetail is failure:", orderDetail);
@@ -38,10 +44,6 @@ export class JqGet {
       Biz.overPrice(this.orderDetail["orderId"])
       return Biz.dialog("***main() 超价")
     }
-    return Biz.updateProdctAjax({
-      orderId: orderDetail.orderId,
-      updateTime: Utils.formatDateStr(productInformation["終了日時"])
-    })
   }
 
   offerBid(day: number, hour: number, min: number, sec: number) {
@@ -174,7 +176,7 @@ function timePaint() {
   }
 
   if (outputString == "オークション - 終了") {
-    return Utils.STORE_DELETE_ITEM(auctionId);
+    return Biz.disconnect(auctionId, outputString);;
   }
   if (timeLeft == 20) {
     return window.location.reload();

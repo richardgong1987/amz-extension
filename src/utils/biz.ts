@@ -152,6 +152,9 @@ export class Biz {
     Utils.STORE_DELETE_ITEM(id);
     this.postMessage({action: "auction_closeTab", msg: msg, url: location.href})
     this.port?.disconnect();
+    if (msg == "オークション - 終了") {
+      this.updateProdctAjax({orderId: id, status: 5, remark: msg+',不知道成功与否'})
+    }
   }
 
   static overPrice(id: string) {
@@ -200,7 +203,7 @@ export class Biz {
 
   static ifSuccess(pInfo: any) {
     let b = $(".Button--proceed").text() == "取引ナビ"
-    if (pInfo && pInfo.status == 1) {
+    if (pInfo && (pInfo.status == 1 || pInfo.status == 5)) {
       if (pInfo["落札者"] && pInfo["落札者"] != "なし") {
         if (!(pInfo["落札者"] + "").includes("***")) {
           b = true;
