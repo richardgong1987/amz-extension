@@ -164,7 +164,7 @@ export class Utils {
       // Define a regular expression to match the pageData JSON with line breaks and escaped characters
       var regex = /var\s+pageData\s+=\s+({[\s\S]+?});/;
 
-// Use the regular expression to extract the pageData JSON
+      // Use the regular expression to extract the pageData JSON
       var match = regex.exec(inputCode);
       if (match && match[1]) {
         // Remove escape characters and line breaks
@@ -173,13 +173,9 @@ export class Utils {
           .replace(/\\t/g, "")
           .replace(/\\r/g, "")
           .replace(/\s+/g, " ");
-        var extractedPageData = JSON.parse(cleanPageData);
-        return extractedPageData;
-      } else {
-        console.log("PageData not found in the input code.");
+        return JSON.parse(cleanPageData);
       }
-
+      console.log("*****PageData not found in the input code.");
     }
-    return null;
   }
 }
