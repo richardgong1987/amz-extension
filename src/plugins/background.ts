@@ -106,12 +106,13 @@ function removeTabByMsg(port: chrome.runtime.Port, message: { url: string, msg: 
 function removeTabTimeOut(tab: chrome.tabs.Tab) {
   setTimeout(() => {
     try {
-      // @ts-ignore
-      chrome.tabs.remove(tab.id)
+      if (tab?.id != null) {
+        chrome.tabs.remove(tab.id)
+      }
       broadcastMessageRandom({action: "call_checkObject"})
     } catch (e) {
     }
-  }, 15 * 1000);
+  }, 10 * 1000);
 }
 
 
