@@ -117,7 +117,9 @@ function removeTabTimeOut(tab: chrome.tabs.Tab) {
       if (tab?.id != null) {
         chrome.tabs.remove(tab.id)
       }
-      broadcastMessageRandom({action: "call_checkObject"})
+      setTimeout(() => {
+        broadcastMessageRandom({action: "call_checkObject"})
+      }, 20);
     } catch (e) {
     }
   }, 10 * 1000);
