@@ -7,9 +7,7 @@ chrome.runtime.onConnect.addListener(function (port) {
     connectedPorts.push(port);
     port.onMessage.addListener((message) => {
       if (message.action === "startRefresh") {
-        startAllInterval();
       } else if (message.action == "stopRefresh") {
-        clearAllInterval();
       } else if (message.action == "auction_timeLeft") {
         // @ts-ignore
         port.mydata = message;
@@ -61,11 +59,6 @@ setInterval(function () {
   broadcastMessage(doAuction);
 }, 1000);
 
-let currentTabInfo = {
-  timeLeft: Number.MAX_VALUE,
-  url: "",
-}
-let activeTabInterval: any;
 
 setInterval(function () {
   broadcastMessageRandom({action: "call_checkObject"})
@@ -138,16 +131,6 @@ function activeUPComingAuction() {
   if (minTab?.sender?.tab) {
     activateTab(minTab.sender.tab);
   }
-}
-
-
-function startAllInterval() {
-  clearAllInterval();
-  activeTabInterval = setInterval(() => activeUPComingAuction());
-}
-
-function clearAllInterval() {
-  clearInterval(activeTabInterval);
 }
 
 chrome.runtime.onInstalled.addListener(details => details.reason === "update" && AUCTIONS_TABS_ALL(tab => reloadTab(tab)));

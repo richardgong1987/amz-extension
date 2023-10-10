@@ -23,8 +23,6 @@ export class Utils {
     return chrome?.storage?.local
   }
 
-  static AUCTIONS_STORE_KEY = "AUCTIONS_STORE_KEY"
-
   static async STORE_GET_ALL() {
     return await this.GET_AUCTION_STORAGE();
   }

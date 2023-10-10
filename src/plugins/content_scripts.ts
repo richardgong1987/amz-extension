@@ -31,9 +31,6 @@ export class JqGet {
       return console.log("****this order already success:", orderDetail);
     }
     let old = await Utils.STORE_GET_ITEM(orderDetail.orderId);
-    if (timeLeft != -10) {
-      this.pInfo["timeLeft"] = +timeLeft;
-    }
 
     await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
     const pageData = Utils.getPageDataJSON();
@@ -138,10 +135,6 @@ function setPageData(xmlhttp: XMLHttpRequest) {
       timeLeft = xmlhttp.responseText;
       try {
         Biz.postMessage({action: "auction_timeLeft", timeLeft: +timeLeft, url: location.href});
-        Biz.updateProdctAjax({
-          orderId: auctionId,
-          timeLeft: +timeLeft
-        })
       } catch (e) {
       }
     }

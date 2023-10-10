@@ -1,7 +1,7 @@
 export class Login {
 
 
-  async init() {
+  init() {
   }
 }
 
