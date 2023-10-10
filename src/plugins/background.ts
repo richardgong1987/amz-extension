@@ -108,7 +108,7 @@ function getURL(tab: chrome.tabs.Tab) {
 
 function removeTabByMsg(port: chrome.runtime.Port, message: { url: string, msg: number, action: string }) {
   const tab = port.sender?.tab as chrome.tabs.Tab;
-  console.log(`*****${message.msg},1分钟后关闭, ${tab.title},${tab.url}`);
+  console.log(`*****${message.msg},10秒后关闭, ${tab.title},${tab.url}`);
   removeTabTimeOut(tab);
 }
 
