@@ -23,7 +23,6 @@ export class JqGet {
       return console.log("****orderDetail is failure:", orderDetail);
     }
     this.pInfo["limitPrice"] = orderDetail.limitPrice
-    this.pInfo["url"] = orderDetail.url
     this.pInfo["status"] = orderDetail.status
     this.pInfo["orderId"] = orderDetail.orderId
 
