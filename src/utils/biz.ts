@@ -159,6 +159,7 @@ export class Biz {
     return this.POST("/api/auctions/product/product-update", data, complete)
   }
 
+
   static showAddJobButton(productInformation: any) {
     $(`
         <div id="save-bidJob-parent">

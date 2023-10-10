@@ -149,6 +149,9 @@ export class Utils {
   static range(start: number, end: number) {
     return (Math.floor(Math.random() * (end - start)) + start) * 1000;
   }
+  static rangeNumber(start: number, end: number) {
+    return (Math.floor(Math.random() * (end - start)) + start);
+  }
 
   static isAuctionUrl(pathname: any) {
     return /^\/jp\/auction\/[0-9a-z][0-9]{9,10}$/.test(pathname)

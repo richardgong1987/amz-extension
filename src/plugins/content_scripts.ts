@@ -171,6 +171,8 @@ function checkObject() {
   }
 }
 
+const reloadTime = Utils.rangeNumber(150, 260);
+
 function timePaint() {
   if (!Utils.isAuctionUrl(location.pathname)) {
     return;
@@ -188,7 +190,7 @@ function timePaint() {
 
   if (isFirstPaint || timeLeft == -1 || (timeLeft < 300 && timeSinceLast >= 60)) {
 
-    if ((timeLeft < 75 && timeSinceLast >= 60)) {
+    if ((timeLeft < 75 && timeSinceLast >= reloadTime)) {
       return window.location.reload();
     }
     checkObject();
