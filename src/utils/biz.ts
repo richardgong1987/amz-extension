@@ -174,6 +174,7 @@ export class Biz {
         this.POST("/api/auctions/product/product-add", {
           orderId: url.split("/").pop(),
           limitPrice: price,
+          remark:"用户:" + $(".yjmthloginarea strong").text(),
           info:$('.ProductImage__body .ProductImage__image.is-on img').prop('src'),
           updateTime: Utils.formatDateStr(productInformation["終了日時"]),
           url: url,
