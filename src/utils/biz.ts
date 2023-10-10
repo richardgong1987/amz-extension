@@ -85,7 +85,7 @@ export class Biz {
     //2. can not upper the limit price
     if (!Biz.isGoodPrice(orderDetail["limitPrice"])) {
       this.overPrice(orderDetail.orderId)
-      return alert("*****reBid()超价");
+      return this.dialog("*****reBid()超价");
     }
     orderDetail.remark = true
     Utils.STORE_SET_ITEM(orderId, orderDetail)
@@ -142,16 +142,21 @@ export class Biz {
     }
 
   }
-  static disconnect(id:any){
+
+
+  static dialog(msg: string) {
+    return alert(msg);
+  }
+
+  static disconnect(id: any, msg?: string) {
     Utils.STORE_DELETE_ITEM(id);
+    this.postMessage({action: "auction_closeTab", msg: msg, url: location.href})
     this.port?.disconnect();
   }
-  static overPrice(id: string) {
-    this.disconnect(id)
-    return this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"}, () => {
-      this.postMessage({action: "auction_closeTab", msg: "已超出最高价", url: location.href})
-    })
 
+  static overPrice(id: string) {
+    this.disconnect(id, "已超出最高价")
+    return this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"})
   }
 
   static updateProdctAjax(data: any, complete = () => {
@@ -175,8 +180,8 @@ export class Biz {
         this.POST("/api/auctions/product/product-add", {
           orderId: url.split("/").pop(),
           limitPrice: price,
-          remark:"用户:" + $(".yjmthloginarea strong").text(),
-          info:$('.ProductImage__body .ProductImage__image.is-on img').prop('src'),
+          remark: "用户:" + $(".yjmthloginarea strong").text(),
+          info: $(".ProductImage__body .ProductImage__image.is-on img").prop("src"),
           updateTime: Utils.formatDateStr(productInformation["終了日時"]),
           url: url,
           status: status,
@@ -204,15 +209,13 @@ export class Biz {
     }
 
     if (b) {
-      this.disconnect(pInfo.orderId);
+      this.disconnect(pInfo.orderId, "已成功");
       this.updateProdctAjax({
         orderId: pInfo.orderId,
         status: 2,
         remark: "用户名:" + $(".yjmthloginarea strong").text() + ",价格:" + $(".Price .Price__value").contents().filter(function () {
           return this.nodeType === Node.TEXT_NODE;
         }).text().trim()
-      }, () => {
-        this.postMessage({action: "auction_closeTab", msg: "已成功", url: location.href})
       })
     }
     return b;

@@ -38,7 +38,7 @@ export class JqGet {
     await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) > orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
-      return alert("***main() 超价")
+      return Biz.dialog("***main() 超价")
     }
     return Biz.updateProdctAjax({
       orderId: orderDetail.orderId,
@@ -67,7 +67,7 @@ export class JqGet {
     // @ts-ignore
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) > this.orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
-      return alert("***offerBid超价check currently prices")
+      return Biz.dialog("***offerBid超价check currently prices")
     }
     //1. bid
     Biz.bid();
@@ -75,7 +75,7 @@ export class JqGet {
     if (!Biz.isGoodPrice(this.orderDetail["limitPrice"])) {
 
       Biz.overPrice(this.orderDetail["orderId"])
-      return alert("***offerBid超价can not upper the limit price")
+      return Biz.dialog("***offerBid超价can not upper the limit price")
     }
     setTimeout(function () {
       Utils.clickWithSelector(".js-validator-submit");
@@ -204,7 +204,7 @@ function timePaint() {
 
   if (timeLeft <= 0) {
     outputString = "オークション - 終了";
-    Biz.disconnect(auctionId);
+    Biz.disconnect(auctionId, outputString);
     Biz.ifSuccess(myInstance.pInfo);
   } else {
     var day = Math.floor(timeLeft / 86400);
