@@ -28,11 +28,19 @@ chrome.runtime.onConnect.addListener(function (port) {
   }
 });
 
+function postMessage(port: chrome.runtime.Port, message: any) {
+  try {
+    port?.postMessage(message);
+  } catch (e) {
+
+  }
+}
+
 function broadcastMessage(message: any) {
   console.log("*****connectedPorts:", connectedPorts);
   connectedPorts.forEach(function (port) {
     if (isAuctionPage(port.sender?.url)) {
-      port.postMessage(message);
+      postMessage(port, message);
     }
   });
 }
@@ -41,7 +49,7 @@ function broadcastMessageRandom(message: any) {
   connectedPorts.forEach(function (port) {
     if (isAuctionPage(port.sender?.url)) {
       setTimeout(() => {
-        port.postMessage(message);
+        postMessage(port, message);
       }, Utils.range(1, 8));
     }
   });
