@@ -23,6 +23,7 @@ chrome.runtime.onConnect.addListener(function (port) {
       const index = connectedPorts.indexOf(port);
       if (index !== -1) {
         connectedPorts.splice(index, 1);
+        activeUPComingAuction();
       }
     });
   }
