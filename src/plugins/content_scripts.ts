@@ -175,7 +175,7 @@ function timePaint() {
     return;
   }
 
-  if (outputString == "オークション - 終了") {
+  if (outputString == Biz.BID_OVER_NAME) {
     return Biz.disconnect(auctionId, outputString);;
   }
   if (timeLeft == 20) {
@@ -200,7 +200,7 @@ function timePaint() {
   }
 
   if (timeLeft <= 0) {
-    outputString = "オークション - 終了";
+    outputString = Biz.BID_OVER_NAME;
     Biz.disconnect(auctionId, outputString);
     Biz.ifSuccess(myInstance.pInfo);
   } else {
@@ -218,7 +218,7 @@ function timePaint() {
     timeLeft -= 1;
     timeSinceLast += 1;
 
-    if (outputString != "オークション - 終了") {
+    if (outputString != Biz.BID_OVER_NAME) {
       myInstance.offerBid(day, hour, min, sec);
     }
   }

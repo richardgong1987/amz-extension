@@ -152,8 +152,8 @@ export class Biz {
     Utils.STORE_DELETE_ITEM(id);
     this.postMessage({action: "auction_closeTab", msg: msg, url: location.href})
     this.port?.disconnect();
-    if (msg == "オークション - 終了") {
-      this.updateProdctAjax({orderId: id, status: 5, remark: msg+',不知道成功与否'})
+    if (msg == this.BID_OVER_NAME) {
+      this.updateProdctAjax({orderId: id, status: 5, remark: msg + ",不知道成功与否"})
     }
   }
 
@@ -223,4 +223,6 @@ export class Biz {
     }
     return b;
   }
+
+  static BID_OVER_NAME = "オークション - 終了"
 }
