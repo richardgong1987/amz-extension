@@ -150,7 +150,7 @@ export class Biz {
 
   static disconnect(id: any, msg?: string) {
     Utils.STORE_DELETE_ITEM(id);
-    this.postMessage({action: "auction_closeTab", msg: msg, url: location.href})
+    this.postMessage({action: "auction_closeTab", msg: msg})
     this.port?.disconnect();
     if (msg == this.BID_OVER_NAME) {
       this.updateProdctAjax({orderId: id, status: 5, remark: msg + ",不知道成功与否"})

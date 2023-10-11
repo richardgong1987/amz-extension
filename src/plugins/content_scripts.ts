@@ -102,6 +102,7 @@ if (Utils.isAuctionUrl(location.pathname)) {
       checkObject();
     }
   });
+  $(`<div id="time_left" style="font-size: 28px;color: red;"></div>`).insertBefore($("#acWrGlobalNavi"))
 }
 
 const xmlhttp = createXMLHttp();
@@ -135,7 +136,7 @@ function setPageData(xmlhttp: XMLHttpRequest) {
       // @ts-ignore
       timeLeft = xmlhttp.responseText;
       try {
-        Biz.postMessage({action: "auction_timeLeft", timeLeft: +timeLeft, url: location.href});
+        Biz.postMessage({action: "auction_timeLeft", timeLeft: +timeLeft});
       } catch (e) {
       }
     }
@@ -169,6 +170,7 @@ function checkObject() {
 }
 
 
+const timeLeftEle = document.getElementById("time_left");
 
 function timePaint() {
   if (!Utils.isAuctionUrl(location.pathname)) {
@@ -176,7 +178,8 @@ function timePaint() {
   }
 
   if (outputString == Biz.BID_OVER_NAME) {
-    return Biz.disconnect(auctionId, outputString);;
+    return Biz.disconnect(auctionId, outputString);
+    ;
   }
   if (timeLeft == 20) {
     return window.location.reload();
@@ -222,6 +225,9 @@ function timePaint() {
       myInstance.offerBid(day, hour, min, sec);
     }
   }
-  console.log("****残り時間:", outputString)
+  if (timeLeftEle) {
+    timeLeftEle.innerText = "残り時間:" + outputString;
+  }
+  console.log("****残り時間:", outputString);
 }
 

@@ -6,9 +6,7 @@ chrome.runtime.onConnect.addListener(function (port) {
     // Add the port to the list of connected ports
     connectedPorts.push(port);
     port.onMessage.addListener((message) => {
-      if (message.action === "startRefresh") {
-      } else if (message.action == "stopRefresh") {
-      } else if (message.action == "auction_timeLeft") {
+      if (message.action == "auction_timeLeft") {
         // @ts-ignore
         port.mydata = message;
         activeUPComingAuction();
@@ -99,7 +97,7 @@ function getURL(tab: chrome.tabs.Tab) {
 
 }
 
-function removeTabByMsg(port: chrome.runtime.Port, message: { url: string, msg: number, action: string }) {
+function removeTabByMsg(port: chrome.runtime.Port, message: { msg: number, action: string }) {
   const tab = port.sender?.tab as chrome.tabs.Tab;
   console.log(`*****msg:${message.msg}, 10秒后关闭, ${tab.title},${tab.url}`);
   removeTabTimeOut(tab);
@@ -128,7 +126,7 @@ function activeUPComingAuction() {
       minTab = port;
     }
   });
-  if (minTab?.sender?.tab) {
+  if (minTab && minTab?.sender?.tab) {
     activateTab(minTab.sender.tab);
   }
 }
