@@ -1,10 +1,11 @@
 import {Utils} from "src/utils/utils";
 
-const connectedPorts: chrome.runtime.Port[] = [];
+const connPorts = new Map<string, chrome.runtime.Port>;
 chrome.runtime.onConnect.addListener(function (port) {
   if (port.name === "GHJ-port") {
     // Add the port to the list of connected ports
-    connectedPorts.push(port);
+    // @ts-ignore
+    connPorts.set(port?.sender?.tab?.id as string, port)
     port.onMessage.addListener((message) => {
       if (message.action == "auction_timeLeft") {
         // @ts-ignore
@@ -16,11 +17,9 @@ chrome.runtime.onConnect.addListener(function (port) {
     });
     // Handle disconnections
     port.onDisconnect.addListener(function () {
-      const index = connectedPorts.indexOf(port);
-      if (index !== -1) {
-        connectedPorts.splice(index, 1);
-        activeUPComingAuction();
-      }
+      // @ts-ignore
+      connPorts.delete(port?.sender?.tab?.id as string)
+      activeUPComingAuction();
     });
   }
 });
@@ -34,8 +33,8 @@ function postMessage(port: chrome.runtime.Port, message: any) {
 }
 
 function broadcastMessage(message: any) {
-  console.log("*****connectedPorts:", connectedPorts);
-  connectedPorts.forEach(function (port) {
+  console.log("*****connPorts:", connPorts);
+  connPorts.forEach(function (port) {
     if (isAuctionPage(port.sender?.url)) {
       postMessage(port, message);
     }
@@ -43,7 +42,7 @@ function broadcastMessage(message: any) {
 }
 
 function broadcastMessageRandom(message: any) {
-  connectedPorts.forEach(function (port) {
+  connPorts.forEach(function (port) {
     if (isAuctionPage(port.sender?.url)) {
       setTimeout(() => {
         postMessage(port, message);
@@ -119,8 +118,8 @@ function removeTabTimeOut(tab: chrome.tabs.Tab) {
 
 
 function activeUPComingAuction() {
-  let minTab = connectedPorts[0]
-  connectedPorts.forEach(port => {
+  let minTab = connPorts.values().next().value;
+  connPorts.forEach(port => {
     // @ts-ignore
     if (minTab.mydata && port.mydata && port.mydata.timeLeft < minTab.mydata.timeLeft) {
       minTab = port;

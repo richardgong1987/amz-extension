@@ -179,7 +179,6 @@ function timePaint() {
 
   if (outputString == Biz.BID_OVER_NAME) {
     return Biz.disconnect(auctionId, outputString);
-    ;
   }
   if (timeLeft == 20) {
     return window.location.reload();
