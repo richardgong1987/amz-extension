@@ -1,10 +1,10 @@
 import {Utils} from "src/utils/utils";
 
-const connPorts = new Map<number, chrome.runtime.Port>;
+const connPorts = new Map<number | string | undefined, chrome.runtime.Port>;
 chrome.runtime.onConnect.addListener(function (port) {
   if (port.name === "GHJ-port") {
     // Add the port to the list of connected ports
-    connPorts.set(port?.sender?.tab?.id as number, port)
+    connPorts.set(port?.sender?.tab?.id || port.sender?.id, port)
     port.onMessage.addListener((message) => {
       if (message.action == "auction_timeLeft") {
         // @ts-ignore
@@ -16,7 +16,7 @@ chrome.runtime.onConnect.addListener(function (port) {
     });
     // Handle disconnections
     port.onDisconnect.addListener(function () {
-      connPorts.delete(port?.sender?.tab?.id as number)
+      connPorts.delete(port?.sender?.tab?.id || port.sender?.id)
       activeUPComingAuction();
     });
   }
