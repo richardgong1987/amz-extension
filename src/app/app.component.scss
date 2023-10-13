@@ -1,9 +1,40 @@
 .content {
-  width: 550px;
+  width: 900px;
   text-align: center;
   height: 1000px;
   padding: 0;
+
   .btn {
     margin: 5px;
+  }
+
+  .mat-mdc-raised-button.mat-warn {
+    background-color: #F24331;
+    color: white;
+  }
+
+  .mat-mdc-raised-button.mat-danger {
+    background-color: #F24331;
+    color: white;
+  }
+
+  .mat-mdc-raised-button.mat-success {
+    background-color: green;
+    color: white;
+  }
+
+  .mat-mdc-raised-button.mat-warning {
+    background-color: yellow;
+    color: white;
+  }
+
+  .mat-mdc-raised-button.mat-info {
+    background-color: darkgrey;
+    color: white;
+  }
+
+  .mat-mdc-raised-button.mat-primary {
+    background-color: #3F51BB;
+    color: white;
   }
 }
