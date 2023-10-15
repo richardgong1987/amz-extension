@@ -1,8 +1,5 @@
-import {LiveAnnouncer} from "@angular/cdk/a11y";
-import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatTableDataSource} from "@angular/material/table";
-import {IBidItem, IBidList, StatusDict} from "src/app/data/interface";
+import {AfterViewInit, Component, OnInit} from "@angular/core";
+import {IBidItem, StatusDict} from "src/app/data/interface";
 import {Utils} from "src/utils/utils";
 
 
@@ -13,29 +10,18 @@ import {Utils} from "src/utils/utils";
 })
 export class AppComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ["orderId", "info", "timeLeft", "limitPrice", "status", "remark", "operation"];
-  dataSource = IBidList;
+  dataSource:IBidItem[] = [];
 
-  ngAfterViewInit() {
-    // @ts-ignore
-    this.dataSource.paginator = this.paginator;
-  }
+  async ngAfterViewInit() {
 
-  constructor() {
-  }
-
-  async storeClear() {
-    var isclear = confirm("确定要清除缓存吗?")
-    if (isclear) {
-      // Utils.STORE_CLEAR_ALL();
-      chrome.storage.local.clear();
-      this.ngOnInit();
-    }
   }
 
   storeString = "";
   port = chrome.runtime.connect({name: "GHJ-port"});
 
   async ngOnInit() {
+    const list = await Utils.STORE_GET_ALL();
+    this.dataSource = Object.keys(list).map(key => list[key]) as IBidItem[];
   }
 
   translateStatus(value: string) {
@@ -50,6 +36,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   delete(item: IBidItem) {
     if (confirm("本当に削除しますか?")) {
       Utils.STORE_DELETE_ITEM(item.orderId);
+      this.ngOnInit();
     }
   }
 

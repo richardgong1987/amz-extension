@@ -1,4 +1,4 @@
-import {HOST} from "src/environments/environment";
+import {IBidItem} from "src/app/data/interface";
 import {Utils} from "src/utils/utils";
 
 export class Biz {
@@ -48,9 +48,6 @@ export class Biz {
     return Number(bidInput.value) < highestPrice;
   }
 
-  static async orderDetail(orderId: string) {
-    return $.get(`${HOST}/api/auctions/product/${orderId}`);
-  }
 
   static async resultPage() {
     if (location.pathname == "/jp/config/placebid") {
@@ -85,7 +82,7 @@ export class Biz {
     //2. can not upper the limit price
     if (!Biz.isGoodPrice(orderDetail["limitPrice"])) {
       this.overPrice(orderDetail.orderId)
-      return this.dialog("*****reBid()超价");
+      return this.dialog("*****reBid()OverPrice");
     }
     orderDetail.remark = true
     Utils.STORE_SET_ITEM(orderId, orderDetail)
@@ -101,30 +98,11 @@ export class Biz {
         <button id="save-keywords" style="font-size: 18px;color: white; background: green; padding: 10px 15px; border-radius: 5px;">My保存した検索条件</button>
       `).insertBefore("#sbn");
       $("#save-keywords").on("click", () => {
-        this.saveKeywords({keywords: element.value, url: location.href})
+        // this.saveKeywords({keywords: element.value, url: location.href})
       })
     }
   }
 
-  static POST(url: string, data: any, complete = () => {
-  }) {
-    return $.ajax({
-      url: `${HOST}${url}`,
-      method: "POST",
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      complete: complete,
-    })
-  }
-
-  static async saveKeywords(data: {
-    keywords: string,
-    url: string
-  }) {
-    return this.POST("/api/auctions/product/save-keywords", data, function () {
-      $("#save-keywords").remove();
-    })
-  }
 
   static otherPage() {
     this.agreeBid();
@@ -138,33 +116,31 @@ export class Biz {
     try {
       this.port?.postMessage(msg);
     } catch (e) {
-
     }
-
   }
-
 
   static dialog(msg: string) {
     return alert(msg);
   }
 
   static disconnect(id: any, msg?: string) {
-    Utils.STORE_DELETE_ITEM(id);
+    // Utils.STORE_DELETE_ITEM(id);
     this.postMessage({action: "auction_closeTab", msg: msg})
     this.port?.disconnect();
     if (msg == this.BID_OVER_NAME) {
-      this.updateProdctAjax({orderId: id, status: 5, remark: msg + ",不知道成功与否"})
+      this.updateBidItem({orderId: id, status: 5, remark: msg + ""})
     }
   }
 
   static overPrice(id: string) {
-    this.disconnect(id, "已超出最高价")
-    return this.updateProdctAjax({orderId: id, status: 3, remark: "已超出最高价"})
+    this.disconnect(id, "Over Price")
+    return this.updateBidItem({orderId: id, status: 3, remark: "Over Price"})
   }
 
-  static updateProdctAjax(data: any, complete = () => {
+  static async updateBidItem(data: IBidItem, complete = () => {
   }) {
-    return this.POST("/api/auctions/product/product-update", data, complete)
+    const old = await Utils.STORE_GET_ITEM(data.orderId);
+    await Utils.STORE_SET_ITEM(data.orderId, Object.assign(old, data));
   }
 
 
@@ -175,12 +151,12 @@ export class Biz {
             <button class="save-bidJob" data-status="1" style="font-size: 28px; height: 80px; width: 89%; border-radius: 10px; color: white;background: red; ">今すぐ入札</button>
         </div>
       `).insertBefore("#ProductTitle");
-    $(".save-bidJob").on("click", () => {
+    $(".save-bidJob").on("click", async () => {
       const url = location.href
       let status = $(".save-bidJob").data("status");
       let price = Number($("#save-bidJob-input").val());
       if (price > 0) {
-        this.POST("/api/auctions/product/product-add", {
+        return await Utils.STORE_SET_ITEM(url.split("/").pop() as string, {
           orderId: url.split("/").pop(),
           limitPrice: price,
           remark: "用户:" + $(".yjmthloginarea strong").text(),
@@ -188,16 +164,15 @@ export class Biz {
           updateTime: Utils.formatDateStr(productInformation["終了日時"]),
           url: url,
           status: status,
-        }, () => {
-          if (status == 1) {
-            return location.reload();
-          }
-          $("#save-bidJob-parent").remove();
         })
+
+        if (status == 1) {
+          return location.reload();
+        }
+        $("#save-bidJob-parent").remove();
       } else {
         alert(`私の最高額入:${price} 再入力`)
       }
-
     })
   }
 
@@ -212,11 +187,11 @@ export class Biz {
     }
 
     if (b) {
-      this.disconnect(pInfo.orderId, "已成功");
-      this.updateProdctAjax({
+      this.disconnect(pInfo.orderId, "have success");
+      this.updateBidItem({
         orderId: pInfo.orderId,
         status: 2,
-        remark: "用户名:" + $(".yjmthloginarea strong").text() + ",价格:" + $(".Price .Price__value").contents().filter(function () {
+        remark: $(".yjmthloginarea strong").text() + "," + $(".Price .Price__value").contents().filter(function () {
           return this.nodeType === Node.TEXT_NODE;
         }).text().trim()
       })

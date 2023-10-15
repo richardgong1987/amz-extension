@@ -14,9 +14,9 @@ export class JqGet {
       return console.log("****productInformation is not exit:", productInformation);
     }
     let infoId = productInformation["オークションID"];
-    const orderDetail = this.orderDetail = await Biz.orderDetail(infoId);
+    const orderDetail = this.orderDetail = await Utils.STORE_GET_ITEM(infoId);
     if (!orderDetail || orderDetail.status != 1) {
-      if (!orderDetail) {
+      if (orderDetail.status === undefined) {
         Biz.showAddJobButton(productInformation);
       } else {
         if (orderDetail.status == 5) {
@@ -25,7 +25,6 @@ export class JqGet {
         }
 
       }
-      await Utils.STORE_DELETE_ITEM(infoId)
       return console.log("****orderDetail is failure:", orderDetail);
     }
     this.pInfo["limitPrice"] = orderDetail.limitPrice
@@ -42,7 +41,7 @@ export class JqGet {
     console.log("****pageData.items.price:", Number(pageData?.items?.price), orderDetail.limitPrice);
     if (Number(pageData?.items?.price) > orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
-      return Biz.dialog("***main() 超价")
+      return Biz.dialog("***main() OverPrice")
     }
   }
 
@@ -67,7 +66,7 @@ export class JqGet {
     // @ts-ignore
     if (Number($(".Price__value").text().split("円").shift()?.replace(/,/g, "")) > this.orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
-      return Biz.dialog("***offerBid超价check currently prices")
+      return Biz.dialog("***offerBid OverPrice check currently prices")
     }
     //1. bid
     Biz.bid();
@@ -75,7 +74,7 @@ export class JqGet {
     if (!Biz.isGoodPrice(this.orderDetail["limitPrice"])) {
 
       Biz.overPrice(this.orderDetail["orderId"])
-      return Biz.dialog("***offerBid超价can not upper the limit price")
+      return Biz.dialog("***offerBid OverPricec an not upper the limit price")
     }
     setTimeout(function () {
       Utils.clickWithSelector(".js-validator-submit");
