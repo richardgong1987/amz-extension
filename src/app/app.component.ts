@@ -10,6 +10,7 @@ import {Utils} from "src/utils/utils";
 })
 export class AppComponent implements OnInit, AfterViewInit {
   dataSource: IBidItem[] = [];
+
   async ngAfterViewInit() {
 
   }
@@ -19,11 +20,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     this.dataSource = [];
-    debugger
-    setTimeout(async () => {
-      const list = await Utils.STORE_GET_ALL();
-      this.dataSource = Object.keys(list).map(key => list[key]) as IBidItem[];
-    }, 300);
+    const list = await Utils.STORE_GET_ALL();
+    this.dataSource = Object.keys(list).map(key => list[key]) as IBidItem[];
 
   }
 
@@ -37,11 +35,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   async delete(item: IBidItem) {
-    await Utils.STORE_DELETE_ITEM(item.orderId);
-    await this.ngOnInit();
-  }
-
-  edit(element: IBidItem) {
-    console.log(element);
+    if (confirm("本当に削除しますか?")) {
+      Utils.STORE_DELETE_ITEM(item.orderId).then(()=>this.ngOnInit());
+    }
   }
 }
