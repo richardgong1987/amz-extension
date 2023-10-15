@@ -1,48 +1,33 @@
 <div class="content" role="main">
+
   <mat-tab-group>
     <mat-tab label="Bid list">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="orderId">
-          <th mat-header-cell *matHeaderCellDef>ID</th>
-          <td mat-cell *matCellDef="let element"> {{element.orderId}} </td>
-        </ng-container>
-        <ng-container matColumnDef="info">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <img alt="" style="width: 100px; height: 90px;" [src]="element.info"/>
+      <table style="width: 100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>
+            <th>
+            <th>終了日時</th>
+            <th>最高額入</th>
+            <th>状況</th>
+            <th>注意事項</th>
+            <th>操作する</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let item of dataSource">
+          <td>{{item.orderId}}</td>
+          <td>
+            <img alt="" style="width: 100px; height: 90px;" [src]="item.info"/>
           </td>
-        </ng-container>
-
-        <ng-container matColumnDef="timeLeft">
-          <th mat-header-cell *matHeaderCellDef>終了日時</th>
-          <td mat-cell *matCellDef="let element"> {{element.timeLeft}} </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="limitPrice">
-          <th mat-header-cell *matHeaderCellDef>最高額入</th>
-          <td mat-cell *matCellDef="let element"> {{element.limitPrice}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>状況</th>
-          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="{{translateStatus(element.status).listClass}}">{{translateStatus(element.status).dictLabel}}</button> </td>
-        </ng-container>
-
-        <ng-container matColumnDef="remark">
-          <th mat-header-cell *matHeaderCellDef>注意事項</th>
-          <td mat-cell *matCellDef="let element"> {{element.remark}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="operation">
-          <th mat-header-cell *matHeaderCellDef>操作する</th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="warn" (click)="delete(element)">消去</button>
+          <td>{{item.timeLeft}}</td>
+          <td>{{item.limitPrice}}</td>
+          <td>{{item.status}}</td>
+          <td>{{item.remark}}</td>
+          <td>
+            <button mat-raised-button color="warn" (click)="delete(item)">消去</button>
           </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </tr>
       </table>
 
     </mat-tab>

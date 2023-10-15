@@ -9,9 +9,7 @@ import {Utils} from "src/utils/utils";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ["orderId", "info", "timeLeft", "limitPrice", "status", "remark", "operation"];
-  dataSource:IBidItem[] = [];
-
+  dataSource: IBidItem[] = [];
   async ngAfterViewInit() {
 
   }
@@ -20,8 +18,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   port = chrome.runtime.connect({name: "GHJ-port"});
 
   async ngOnInit() {
-    const list = await Utils.STORE_GET_ALL();
-    this.dataSource = Object.keys(list).map(key => list[key]) as IBidItem[];
+    this.dataSource = [];
+    debugger
+    setTimeout(async () => {
+      const list = await Utils.STORE_GET_ALL();
+      this.dataSource = Object.keys(list).map(key => list[key]) as IBidItem[];
+    }, 300);
+
   }
 
   translateStatus(value: string) {
@@ -33,11 +36,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     return {dictValue: "", dictLabel: "", listClass: ""}
   }
 
-  delete(item: IBidItem) {
-    if (confirm("本当に削除しますか?")) {
-      Utils.STORE_DELETE_ITEM(item.orderId);
-      this.ngOnInit();
-    }
+  async delete(item: IBidItem) {
+    await Utils.STORE_DELETE_ITEM(item.orderId);
+    await this.ngOnInit();
   }
 
   edit(element: IBidItem) {

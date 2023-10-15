@@ -148,28 +148,24 @@ export class Biz {
     $(`
         <div id="save-bidJob-parent">
             <input type="number" style="border: red solid 5px;font-size:35px;height: 60px; width: 89%; " id="save-bidJob-input" placeholder="私の最高額入">
-            <button class="save-bidJob" data-status="1" style="font-size: 28px; height: 80px; width: 89%; border-radius: 10px; color: white;background: red; ">今すぐ入札</button>
+            <button class="save-bidJob"  style="font-size: 28px; height: 80px; width: 89%; border-radius: 10px; color: white;background: red; ">今すぐ入札</button>
         </div>
       `).insertBefore("#ProductTitle");
-    $(".save-bidJob").on("click", async () => {
-      const url = location.href
-      let status = $(".save-bidJob").data("status");
+    $(".save-bidJob").on("click", () => {
+      const url = location.href;
       let price = Number($("#save-bidJob-input").val());
       if (price > 0) {
-        return await Utils.STORE_SET_ITEM(url.split("/").pop() as string, {
+        Utils.STORE_SET_ITEM(url.split("/").pop() as string, {
           orderId: url.split("/").pop(),
           limitPrice: price,
           remark: "用户:" + $(".yjmthloginarea strong").text(),
           info: $(".ProductImage__body .ProductImage__image.is-on img").prop("src"),
           updateTime: Utils.formatDateStr(productInformation["終了日時"]),
           url: url,
-          status: status,
+          status: 1,
+        }).then(() => {
+          location.reload();
         })
-
-        if (status == 1) {
-          return location.reload();
-        }
-        $("#save-bidJob-parent").remove();
       } else {
         alert(`私の最高額入:${price} 再入力`)
       }
