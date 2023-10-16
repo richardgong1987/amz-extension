@@ -9,6 +9,11 @@ export interface IBidItem {
   status?: number;
 }
 
+export interface IkeyWords {
+  keywords: string,
+  url: string
+}
+
 export const StatusDict = [
   {
     "dictLabel": "初期化",

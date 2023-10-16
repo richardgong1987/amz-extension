@@ -98,7 +98,8 @@ export class Biz {
         <button id="save-keywords" style="font-size: 18px;color: white; background: green; padding: 10px 15px; border-radius: 5px;">My保存した検索条件</button>
       `).insertBefore("#sbn");
       $("#save-keywords").on("click", () => {
-        // this.saveKeywords({keywords: element.value, url: location.href})
+        Utils.STORE_SET_ITEM('keywords'+element.value,{keywords: element.value, url: location.href});
+        $('#save-keywords').remove();
       })
     }
   }
