@@ -6,7 +6,11 @@ chrome.runtime.onConnect.addListener(function (port) {
     // Add the port to the list of connected ports
     connPorts.set(port?.sender?.tab?.id || port.sender?.id, port)
     port.onMessage.addListener((message) => {
-      if (message.action == "auction_timeLeft") {
+      if (message.action === "startRefresh") {
+        main();
+      } else if (message.action == "stopRefresh") {
+        clearMain();
+      } else if (message.action == "auction_timeLeft") {
         // @ts-ignore
         port.mydata = message;
         activeUPComingAuction();
@@ -49,15 +53,32 @@ function broadcastMessageRandom(message: any) {
   });
 }
 
+const SETUP_START = "setup_start"
 const doAuction = {action: "do_auction"};
-setInterval(function () {
+const docheckObject = {action: "call_checkObject"};
+let mainDoAuctionSet = 0;
+let mainDocheckObjectSet = 0;
+
+Utils.STORE_GET_ITEM(SETUP_START).then(isStart => isStart && main());
+
+async function main() {
+  await clearMain();
   broadcastMessage(doAuction);
-}, 1000);
+  mainDoAuctionSet = setInterval(function () {
+    broadcastMessage(doAuction);
+  }, 1000);
+  mainDocheckObjectSet = setInterval(function () {
+    broadcastMessageRandom(docheckObject)
+  }, 2 * 60 * 1000);
+  await Utils.STORE_SET_ITEM(SETUP_START, true);
+  AUCTIONS_TABS_ALL(tab => reloadTab(tab))
+}
 
-
-setInterval(function () {
-  broadcastMessageRandom({action: "call_checkObject"})
-}, 2 * 60 * 1000);
+async function clearMain() {
+  await Utils.STORE_SET_ITEM(SETUP_START, false);
+  clearInterval(mainDoAuctionSet)
+  clearInterval(mainDocheckObjectSet);
+}
 
 function reloadTab(tab: chrome.tabs.Tab) {
   // @ts-ignore
@@ -107,7 +128,7 @@ function removeTabTimeOut(tab: chrome.tabs.Tab) {
         chrome.tabs.remove(tab.id)
       }
       setTimeout(() => {
-        broadcastMessageRandom({action: "call_checkObject"})
+        broadcastMessageRandom(docheckObject)
       }, 20);
     } catch (e) {
     }

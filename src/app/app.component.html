@@ -2,6 +2,12 @@
 
   <mat-tab-group>
     <mat-tab label="入札リスト">
+      <div class="setup-jobs">
+        <button mat-raised-button style="margin-right: 30px;" color="success" (click)="stopRefresh()">始める</button>
+
+        <button mat-raised-button color="danger" (click)="stopRefresh()">停止</button>
+      </div>
+
       <table style="width: 100%">
         <caption style="font-size: 20px;padding: 10px">入札実績を一覧表示</caption>
         <thead>
@@ -20,7 +26,7 @@
           <td>
             <img alt="" style="width: 100px; height: 90px;" [src]="item.info"/>
           </td>
-          <td>{{formatTimeLeft(item.timeLeft || 0)}}</td>
+          <td>{{item.updateTime}}</td>
           <td>{{item.limitPrice}}</td>
           <td>{{item.status}}</td>
           <td>{{item.remark}}</td>

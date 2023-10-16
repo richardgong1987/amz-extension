@@ -123,11 +123,11 @@ export class Biz {
     return alert(msg);
   }
 
-  static disconnect(id: any, msg?: string) {
+  static disconnect(id?: any, msg?: string) {
     // Utils.STORE_DELETE_ITEM(id);
     this.postMessage({action: "auction_closeTab", msg: msg})
     this.port?.disconnect();
-    if (msg == this.BID_OVER_NAME) {
+    if (id && msg == this.BID_OVER_NAME) {
       this.updateBidItem({orderId: id, status: 5, remark: msg + ""})
     }
   }

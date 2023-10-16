@@ -9,21 +9,27 @@ import {Utils} from "src/utils/utils";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   dataSource: IBidItem[] = [];
 
-  async ngAfterViewInit() {
-
-  }
 
   storeString = "";
   port = chrome.runtime.connect({name: "GHJ-port"});
+  startRefresh() {
+    this.port.postMessage({action: "startRefresh"});
+  }
 
+  stopRefresh() {
+    this.port.postMessage({action: "stopRefresh"});
+  }
   async ngOnInit() {
     this.dataSource = [];
     const list = await Utils.STORE_GET_ALL();
-    this.dataSource = Object.keys(list).map(key => list[key]) as IBidItem[];
-
+    this.dataSource = Object.keys(list).map(key => {
+      if (!key.startsWith("setup") && !key.startsWith("keywords")) {
+        return list[key];
+      }
+    }).filter(v => v) as IBidItem[];
   }
 
   translateStatus(value: string) {
@@ -39,25 +45,5 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (confirm("本当に削除しますか?")) {
       Utils.STORE_DELETE_ITEM(item.orderId).then(() => this.ngOnInit());
     }
-  }
-
-  formatTimeLeft(timeLeft: number) {
-    let outputString = "";
-    if (timeLeft <= 0) {
-      outputString = Biz.BID_OVER_NAME;
-    } else {
-      var day = Math.floor(timeLeft / 86400);
-      var hour = Math.floor((timeLeft - day * 86400) / 3600);
-      var min = Math.floor((timeLeft - (day * 86400) - (hour * 3600)) / 60);
-      var sec = timeLeft - (day * 86400) - (hour * 3600) - (min * 60);
-
-
-      if (day > 0) {
-        outputString = day + "日＋" + ((hour > 0) ? hour + ":" : "") + ((min < 10) ? "0" + min : min) + ":" + ((sec < 10) ? "0" + sec : sec);
-      } else {
-        outputString = ((hour > 0) ? hour + ":" : "") + ((min < 10) ? "0" + min : min) + ":" + ((sec < 10) ? "0" + sec : sec);
-      }
-    }
-    return outputString;
   }
 }
