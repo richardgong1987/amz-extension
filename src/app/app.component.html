@@ -24,7 +24,9 @@
         <tr *ngFor="let item of dataSource">
           <td>{{item.orderId}}</td>
           <td>
-            <img alt="" style="width: 100px; height: 90px;" [src]="item.info"/>
+            <a [href]="item.url" target="_blank" style="text-decoration: underline; border-bottom: #3F51BB solid 1px; padding: 3px; display: block;  ">
+              <img  alt="" style="width: 100px; height: 90px; text-decoration: underline;" [src]="item.info"/>
+            </a>
           </td>
           <td>{{item.updateTime}}</td>
           <td>{{item.limitPrice}}</td>
