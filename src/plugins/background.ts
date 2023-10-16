@@ -2,9 +2,10 @@ import {Utils} from "src/utils/utils";
 
 const connPorts = new Map<number | string | undefined, chrome.runtime.Port>;
 chrome.runtime.onConnect.addListener(function (port) {
-  if (port.name === "GHJ-port") {
+  if (port.name.startsWith("GHJ-port")) {
     // Add the port to the list of connected ports
-    connPorts.set(port?.sender?.tab?.id || port.sender?.id, port)
+
+    connPorts.set(port.name.split("-").pop(), port)
     port.onMessage.addListener((message) => {
       if (message.action === "startRefresh") {
         main();
@@ -20,7 +21,7 @@ chrome.runtime.onConnect.addListener(function (port) {
     });
     // Handle disconnections
     port.onDisconnect.addListener(function () {
-      connPorts.delete(port?.sender?.tab?.id || port.sender?.id)
+      connPorts.delete(port.name.split("-").pop())
       activeUPComingAuction();
     });
   }
@@ -59,7 +60,11 @@ const docheckObject = {action: "call_checkObject"};
 let mainDoAuctionSet = 0;
 let mainDocheckObjectSet = 0;
 
-Utils.STORE_GET_ITEM(SETUP_START).then(isStart => isStart && main());
+Utils.STORE_GET_ITEM(SETUP_START).then(isStart => {
+  if (isStart === true) {
+    main()
+  }
+});
 
 async function main() {
   await clearMain();
@@ -125,7 +130,7 @@ function removeTabTimeOut(tab: chrome.tabs.Tab) {
   setTimeout(() => {
     try {
       if (tab?.id != null) {
-        chrome.tabs.remove(tab.id)
+        // chrome.tabs.remove(tab.id)
       }
       setTimeout(() => {
         broadcastMessageRandom(docheckObject)
@@ -137,6 +142,10 @@ function removeTabTimeOut(tab: chrome.tabs.Tab) {
 
 
 function activeUPComingAuction() {
+  Utils.STORE_GET_ITEM(SETUP_START).then(isStart => isStart === true && doUpCommingTab());
+}
+
+function doUpCommingTab() {
   let minTab = connPorts.values().next().value;
   connPorts.forEach(port => {
     // @ts-ignore

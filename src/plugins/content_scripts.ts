@@ -8,7 +8,7 @@ export class JqGet {
 
   async main() {
     const productInformation = this.pInfo = Biz.getProductInformation() as { [p: string]: string }
-    console.log("****all  store:", await Utils.STORE_GET_ALL());
+    // console.log("****all  store:", await Utils.STORE_GET_ALL());
     if (!productInformation) {
       Biz.otherPage();
       return console.log("****productInformation is not exit:", productInformation);
@@ -39,7 +39,6 @@ export class JqGet {
 
     await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
     const pageData = Utils.getPageDataJSON();
-    console.log("****pageData.items.price:", Number(pageData?.items?.price), orderDetail.limitPrice);
     if (Number(pageData?.items?.price) > orderDetail.limitPrice) {
       Biz.overPrice(this.orderDetail["orderId"])
       return Biz.dialog("***main() OverPrice")
@@ -92,7 +91,7 @@ let timeSinceLast = 0;
 let outputString = "";
 if (Utils.isAuctionUrl(location.pathname)) {
 // Connect to the background script
-  const port = chrome.runtime.connect({name: "GHJ-port"});
+  const port = chrome.runtime.connect({name: "GHJ-port-"+auctionId});
   Biz.port = port;
 // Listen for messages from the background script
   port.onMessage.addListener(function (message) {
@@ -227,6 +226,6 @@ function timePaint() {
   if (timeLeftEle) {
     timeLeftEle.innerText = "残り時間:" + outputString;
   }
-  console.log("****残り時間:", outputString);
+  // console.log("****残り時間:", outputString);
 }
 

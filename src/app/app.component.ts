@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
 
   storeString = "";
-  port = chrome.runtime.connect({name: "GHJ-port"});
+  port = chrome.runtime.connect({name: "GHJ-port-auctionsyahooextensionpopu"});
   startRefresh() {
     this.port.postMessage({action: "startRefresh"});
   }
