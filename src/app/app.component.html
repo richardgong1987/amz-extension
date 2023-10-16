@@ -20,7 +20,7 @@
           <td>
             <img alt="" style="width: 100px; height: 90px;" [src]="item.info"/>
           </td>
-          <td>{{item.timeLeft}}</td>
+          <td>{{formatTimeLeft(item.timeLeft || 0)}}</td>
           <td>{{item.limitPrice}}</td>
           <td>{{item.status}}</td>
           <td>{{item.remark}}</td>

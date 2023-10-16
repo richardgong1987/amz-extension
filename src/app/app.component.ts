@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, OnInit} from "@angular/core";
 import {IBidItem, StatusDict} from "src/app/data/interface";
+import {Biz} from "src/utils/biz";
 import {Utils} from "src/utils/utils";
 
 
@@ -36,7 +37,27 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   async delete(item: IBidItem) {
     if (confirm("本当に削除しますか?")) {
-      Utils.STORE_DELETE_ITEM(item.orderId).then(()=>this.ngOnInit());
+      Utils.STORE_DELETE_ITEM(item.orderId).then(() => this.ngOnInit());
     }
+  }
+
+  formatTimeLeft(timeLeft: number) {
+    let outputString = "";
+    if (timeLeft <= 0) {
+      outputString = Biz.BID_OVER_NAME;
+    } else {
+      var day = Math.floor(timeLeft / 86400);
+      var hour = Math.floor((timeLeft - day * 86400) / 3600);
+      var min = Math.floor((timeLeft - (day * 86400) - (hour * 3600)) / 60);
+      var sec = timeLeft - (day * 86400) - (hour * 3600) - (min * 60);
+
+
+      if (day > 0) {
+        outputString = day + "日＋" + ((hour > 0) ? hour + ":" : "") + ((min < 10) ? "0" + min : min) + ":" + ((sec < 10) ? "0" + sec : sec);
+      } else {
+        outputString = ((hour > 0) ? hour + ":" : "") + ((min < 10) ? "0" + min : min) + ":" + ((sec < 10) ? "0" + sec : sec);
+      }
+    }
+    return outputString;
   }
 }
