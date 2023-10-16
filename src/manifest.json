@@ -1,7 +1,7 @@
 {
   "name": "auctions-yahoo",
   "version": "3.0.0",
-  "description": "Build an Extension with Angular, auctions-yahoo for study",
+  "description": "日本 Yahoo 自動入札アシスタント",
   "icons": {
     "16": "assets/icon/favicon.png",
     "48": "assets/icon/favicon48.png",
