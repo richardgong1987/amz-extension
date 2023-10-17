@@ -41,4 +41,18 @@
   .setup-jobs {
     padding: 15px;
   }
+
+  .sync-list {
+    padding: 15px;
+    padding-bottom: 0;
+    display: flex;
+
+    input {
+      flex: 1;
+    }
+    button{
+      color: blue;
+      font-weight: bold;
+    }
+  }
 }

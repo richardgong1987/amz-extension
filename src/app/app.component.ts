@@ -1,3 +1,4 @@
+import {HttpClient} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
 import {IBidItem, IkeyWords, StatusDict} from "src/app/data/interface";
 import {Utils} from "src/utils/utils";
@@ -12,6 +13,8 @@ export class AppComponent implements OnInit {
   dataSource: IBidItem[] = [];
   IkeyWordsList: IkeyWords[] = [];
 
+  constructor(private http: HttpClient) {
+  }
 
   storeString = "";
   port = chrome.runtime.connect({name: "GHJ-port-auctionsyahooextensionpopu"});
@@ -34,11 +37,38 @@ export class AppComponent implements OnInit {
         tmp.push(list[key])
       }
       if (!key.startsWith("setup") && !key.startsWith("keywords")) {
-
         return list[key];
       }
     }).filter(v => v) as IBidItem[];
     this.IkeyWordsList = tmp;
+
+    this.productapi = await Utils.STORE_GET_ITEM(this.SETUP_SYNC_PRODUCT_KEY)
+    this.keywordapi = await Utils.STORE_GET_ITEM(this.SETUP_SYNC_KEYWORD_KEY)
+  }
+
+  SETUP_SYNC_PRODUCT_KEY = "setup_sync_product_key"
+  SETUP_SYNC_KEYWORD_KEY = "setup_sync_keyword_key"
+  productapi: string = "";
+  keywordapi: string = "";
+
+  clickProductApi() {
+    Utils.STORE_SET_ITEM(this.SETUP_SYNC_PRODUCT_KEY, this.productapi);
+    this.http.post(this.productapi, this.dataSource, {
+      headers: {
+        contentType: "application/json",
+      }
+    }).subscribe(() => {
+    });
+  }
+
+  clickKeywordApi() {
+    Utils.STORE_SET_ITEM(this.SETUP_SYNC_KEYWORD_KEY, this.keywordapi);
+    this.http.post(this.keywordapi, this.IkeyWordsList, {
+      headers: {
+        contentType: "application/json",
+      }
+    }).subscribe(() => {
+    });
   }
 
   translateStatus(value: string) {
@@ -61,4 +91,6 @@ export class AppComponent implements OnInit {
       Utils.STORE_DELETE_ITEM("keywords" + item.keywords).then(() => this.ngOnInit());
     }
   }
+
+
 }

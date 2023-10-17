@@ -62,8 +62,16 @@
       </table>
     </mat-tab>
     <mat-tab label="設定">
-      <button mat-raised-button style="margin-right: 30px;" color="success">同期検索条件</button>
-      <button mat-raised-button style="margin-right: 30px;" color="success">入札リストを同期する</button>
+      <div class="sync-list">
+        <input type="text" [(ngModel)]="productapi" placeholder="api url">
+        <button (click)="clickProductApi()">入札リストを同期する</button>
+      </div>
+
+      <div class="sync-list">
+        <input type="text" [(ngModel)]="keywordapi" placeholder="api url">
+        <button (click)="clickKeywordApi()">同期検索条件</button>
+      </div>
+
     </mat-tab>
   </mat-tab-group>
 </div>
