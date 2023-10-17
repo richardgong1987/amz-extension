@@ -141,6 +141,7 @@ export class Biz {
   static async updateBidItem(data: IBidItem, complete = () => {
   }) {
     const old = await Utils.STORE_GET_ITEM(data.orderId);
+    console.log('*****old:',old,'data:',data)
     await Utils.STORE_SET_ITEM(data.orderId, Object.assign(old, data));
   }
 
@@ -159,7 +160,7 @@ export class Biz {
         Utils.STORE_SET_ITEM(url.split("/").pop() as string, {
           orderId: url.split("/").pop(),
           limitPrice: price,
-          remark: "用户:" + $(".yjmthloginarea strong").text(),
+          remark: $(".yjmthloginarea strong").text(),
           info: $(".ProductImage__body .ProductImage__image.is-on img").prop("src"),
           updateTime: Utils.formatDateStr(productInformation["終了日時"]),
           url: url,
