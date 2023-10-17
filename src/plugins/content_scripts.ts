@@ -8,7 +8,7 @@ export class JqGet {
 
   async main() {
     const productInformation = this.pInfo = Biz.getProductInformation() as { [p: string]: string }
-    // console.log("****all  store:", await Utils.STORE_GET_ALL());
+    console.log("****all  store:", await Utils.STORE_GET_ALL());
     if (!productInformation) {
       Biz.otherPage();
       return console.log("****productInformation is not exit:", productInformation);
@@ -21,7 +21,7 @@ export class JqGet {
       } else {
         if (orderDetail.status == 5) {
           this.pInfo["status"] = orderDetail.status
-          Biz.ifSuccess(this.pInfo);
+          Biz.ifSuccess(Object.assign(this.pInfo, orderDetail));
         }
 
       }
@@ -53,7 +53,7 @@ export class JqGet {
         return;
       }
     } else {
-      if (!(day == 0 && hour == 0 && min == 0 && sec <= 3)) {
+      if (!(day == 0 && hour == 0 && min == 0 && sec <= 4)) {
         return;
       }
     }
@@ -91,7 +91,7 @@ let timeSinceLast = 0;
 let outputString = "";
 if (Utils.isAuctionUrl(location.pathname)) {
 // Connect to the background script
-  const port = chrome.runtime.connect({name: "GHJ-port-"+auctionId});
+  const port = chrome.runtime.connect({name: "GHJ-port-" + auctionId});
   Biz.port = port;
 // Listen for messages from the background script
   port.onMessage.addListener(function (message) {
