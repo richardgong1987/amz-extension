@@ -36,9 +36,9 @@
               <img alt="" style="width: 90px; height: 90px; text-decoration: underline;" [src]="item.info"/>
             </a>
           </td>
-          <td>{{item.updateTime}}</td>
+          <td style="width: 68px;">{{item.updateTime}}</td>
           <td>
-            <input type="number" [(ngModel)]="item.limitPrice">
+            <input type="number" style="width: 60px;" [(ngModel)]="item.limitPrice"/>
           </td>
           <td>
             <select matNativeControl [(ngModel)]="item.status" name="status">
@@ -48,11 +48,12 @@
             </select>
           </td>
           <td>
-            <input type="text" [(ngModel)]="item.remark">
+            <input type="text" style="width: 60px;" [(ngModel)]="item.remark"/>
           </td>
           <td>
-            <button mat-raised-button color="warn" (click)="save(item)">保存</button>
-            <button mat-raised-button color="warn" (click)="delete(item)">消去</button>
+            <button style="background: yellowgreen; color: white; margin-right: 30px;" (click)="save(item)">保存
+            </button>
+            <button style="background: #F24331; color: white;" (click)="delete(item)">消去</button>
           </td>
         </tr>
       </table>
