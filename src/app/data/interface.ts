@@ -1,4 +1,5 @@
 export interface IBidItem {
+  checked?: any;
   orderId: string;
   info?: string;
   timeLeft?: number;

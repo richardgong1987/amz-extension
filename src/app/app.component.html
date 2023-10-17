@@ -1,18 +1,22 @@
 <div class="content" role="main">
-
   <mat-tab-group>
     <mat-tab label="入札リスト">
       <div class="setup-jobs">
         <button mat-raised-button style="margin-right: 30px;" color="success" (click)="startRefresh()">始める</button>
 
-        <button mat-raised-button color="danger" (click)="stopRefresh()">停止</button>
+        <button mat-raised-button style="margin-right: 30px;" color="danger" (click)="stopRefresh()">停止</button>
+
+        <button mat-raised-button color="success" (click)="openAllLinks()"> リンクを開く</button>
+
       </div>
 
       <table style="width: 100%">
-        <caption style="font-size: 20px;padding: 10px">入札実績を一覧表示</caption>
+        <caption style="font-size: 20px;padding: 10px">入札実績を一覧({{dataSource.length}})</caption>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>ID
+              <button (click)="deleteSelected()">選択を削除</button>
+            </th>
             <th></th>
             <th>終了日時</th>
             <th>最高額入</th>
@@ -22,18 +26,32 @@
           </tr>
         </thead>
         <tr *ngFor="let item of dataSource">
-          <td>{{item.orderId}}</td>
+          <td>
+            <input type="checkbox" style="display: inline-block;vertical-align:middle;" [(ngModel)]="item.checked"/>
+            <span style="display: inline-block;vertical-align:middle;">{{item.orderId}}</span>
+          </td>
           <td>
             <a [href]="item.url" target="_blank"
-               style="text-decoration: underline; border-bottom: #3F51BB solid 1px; padding: 3px; display: block;  ">
-              <img alt="" style="width: 100px; height: 90px; text-decoration: underline;" [src]="item.info"/>
+               style="text-decoration: underline; border-bottom: #3F51BB solid 1px; display: inline-block;  ">
+              <img alt="" style="width: 90px; height: 90px; text-decoration: underline;" [src]="item.info"/>
             </a>
           </td>
           <td>{{item.updateTime}}</td>
-          <td>{{item.limitPrice}}</td>
-          <td>{{item.status}}</td>
-          <td>{{item.remark}}</td>
           <td>
+            <input type="number" [(ngModel)]="item.limitPrice">
+          </td>
+          <td>
+            <select matNativeControl [(ngModel)]="item.status" name="status">
+              <option *ngFor="let v of StatusDict" [value]="v.dictValue">
+                {{v.dictLabel}}
+              </option>
+            </select>
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="item.remark">
+          </td>
+          <td>
+            <button mat-raised-button color="warn" (click)="save(item)">保存</button>
             <button mat-raised-button color="warn" (click)="delete(item)">消去</button>
           </td>
         </tr>

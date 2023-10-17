@@ -1,6 +1,17 @@
 import {Utils} from "src/utils/utils";
 
 const connPorts = new Map<number | string | undefined, chrome.runtime.Port>;
+
+function updateItemByMsg(message: { id: string }) {
+  if (message.id) {
+    const newVar = connPorts.get(message.id);
+    if (newVar?.sender?.tab) {
+      activateTab(newVar.sender.tab);
+    }
+  }
+
+}
+
 chrome.runtime.onConnect.addListener(function (port) {
   if (port.name.startsWith("GHJ-port")) {
     // Add the port to the list of connected ports
@@ -17,6 +28,8 @@ chrome.runtime.onConnect.addListener(function (port) {
         activeUPComingAuction();
       } else if (message.action == "auction_closeTab") {
         removeTabByMsg(port, message);
+      } else if (message.action == "auction_updateItem") {
+        updateItemByMsg(message);
       }
     });
     // Handle disconnections
@@ -130,7 +143,7 @@ function removeTabTimeOut(tab: chrome.tabs.Tab) {
   setTimeout(() => {
     try {
       if (tab?.id != null) {
-        // chrome.tabs.remove(tab.id)
+        chrome.tabs.remove(tab.id)
       }
       setTimeout(() => {
         broadcastMessageRandom(docheckObject)

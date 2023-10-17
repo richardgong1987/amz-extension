@@ -1,6 +1,7 @@
 import {HttpClient} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
 import {IBidItem, IkeyWords, StatusDict} from "src/app/data/interface";
+import {Biz} from "src/utils/biz";
 import {Utils} from "src/utils/utils";
 
 
@@ -93,4 +94,26 @@ export class AppComponent implements OnInit {
   }
 
 
+  openAllLinks() {
+    this.dataSource.forEach(value => {
+      window.open(value.url, "_blank");
+    })
+  }
+
+  protected readonly StatusDict = StatusDict;
+
+  async save(item: IBidItem) {
+    await Utils.STORE_SET_ITEM(item.orderId, item)
+    this.port.postMessage({action:'auction_updateItem', id: item.orderId});
+    this.ngOnInit();
+  }
+
+  async deleteSelected() {
+    for (let item of this.dataSource) {
+      if (item.checked) {
+        await Utils.STORE_DELETE_ITEM(item.orderId);
+      }
+    }
+    this.ngOnInit();
+  }
 }
