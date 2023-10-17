@@ -133,10 +133,12 @@ function getURL(tab: chrome.tabs.Tab) {
 
 }
 
-function removeTabByMsg(port: chrome.runtime.Port, message: { msg: number, action: string }) {
-  const tab = port.sender?.tab as chrome.tabs.Tab;
-  console.log(`*****msg:${message.msg}, 10秒后关闭, ${tab.title},${tab.url}`);
-  removeTabTimeOut(tab);
+function removeTabByMsg(port: chrome.runtime.Port, message: { msg: string, action: string }) {
+  if (message.msg != "donot_close") {
+    const tab = port.sender?.tab as chrome.tabs.Tab;
+    console.log(`*****msg:${message.msg}, 10秒后关闭, ${tab.title},${tab.url}`);
+    removeTabTimeOut(tab);
+  }
 }
 
 function removeTabTimeOut(tab: chrome.tabs.Tab) {

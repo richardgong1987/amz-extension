@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     this.IkeyWordsList = [];
     const tmp: IkeyWords[] = [];
     const list = await Utils.STORE_GET_ALL();
-    this.dataSource = Object.keys(list).map(key => {
+    const iBidItems = Object.keys(list).map(key => {
       if (key.startsWith("keywords")) {
         tmp.push(list[key])
       }
@@ -41,6 +41,11 @@ export class AppComponent implements OnInit {
         return list[key];
       }
     }).filter(v => v) as IBidItem[];
+    iBidItems.sort((a, b) => {
+      // @ts-ignore
+      return new Date(b.updateTime) - new Date(a.updateTime)
+    })
+    this.dataSource = iBidItems;
     this.IkeyWordsList = tmp;
 
     this.productapi = await Utils.STORE_GET_ITEM(this.SETUP_SYNC_PRODUCT_KEY)
@@ -104,7 +109,7 @@ export class AppComponent implements OnInit {
 
   async save(item: IBidItem) {
     await Utils.STORE_SET_ITEM(item.orderId, item)
-    this.port.postMessage({action:'auction_updateItem', id: item.orderId});
+    this.port.postMessage({action: "auction_updateItem", id: item.orderId});
     this.ngOnInit();
   }
 

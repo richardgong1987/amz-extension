@@ -25,7 +25,7 @@ export class JqGet {
         }
 
       }
-      Biz.disconnect();
+      Biz.disconnect(null,orderDetail.status === undefined ? 'donot_close':'');
       return console.log("****orderDetail is failure:", orderDetail);
     }
     this.pInfo["limitPrice"] = orderDetail.limitPrice
