@@ -61,8 +61,24 @@
     border-collapse: collapse;
 
     td, th {
-      padding:5px 0;
+      padding: 5px 0;
       border-bottom: 1px solid #ccc;
+    }
+  }
+
+  input, select {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  label, span, a {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  caption {
+    input, select {
+      height: 30px;
     }
   }
 }

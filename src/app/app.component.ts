@@ -144,7 +144,36 @@ export class AppComponent implements OnInit {
     status: "",
   }
 
-  doFilter() {
+  async doFilter() {
+    const list = await Utils.STORE_GET_ALL();
+    const iBidItems = Object.keys(list).map(key => {
+      let v = list[key];
+      if (!key.startsWith("setup") && !key.startsWith("keywords")) {
+        if (this.filterOption.orderId.trim() && (this.filterOption.status + "")) {
+          if (v.orderId.includes(this.filterOption.orderId) && v.status == (this.filterOption.status + "")) {
+            return v;
+          }
+        } else if (this.filterOption.status + "") {
+          if (v.status == (this.filterOption.status + "")) {
+            return v;
+          }
+        } else if (this.filterOption.orderId.trim()) {
+          if (v.orderId.includes(this.filterOption.orderId)) {
+            return v;
+          }
+        }
+      }
+    }).filter(v => v) as IBidItem[];
+    iBidItems.sort((a, b) => {
+      // @ts-ignore
+      return new Date(b.updateTime) - new Date(a.updateTime)
+    })
+    this.dataSource = iBidItems;
+  }
 
+  reset() {
+    this.filterOption.status = "";
+    this.filterOption.orderId = "";
+    this.ngOnInit();
   }
 }

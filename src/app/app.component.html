@@ -13,16 +13,14 @@
         <div style="background: yellowgreen; color: white; padding: 15px;text-align: left;margin: 15px;">
           ストレスを軽減するため、「開始」をクリックした後、注文が終了するか、価格が注文を超える場合は、10秒後にページが閉じられます。
         </div>
-        <button mat-raised-button color="success" (click)="openAllLinks()"> リンクを開く</button>
-
       </div>
 
       <table style="width: 100%">
-        <caption style="font-size: 20px;padding: 10px">
+        <caption style="font-size: 20px;padding: 10px; text-align: left;">
           <span>ID:</span>
-          <input style="margin-right: 15px;" [(ngModel)]="filterOption.orderId"/>
+          <input style="margin-right: 15px;" (change)="doFilter()" [(ngModel)]="filterOption.orderId"/>
           <span>状況:</span>
-          <select matNativeControl [(ngModel)]="filterOption.status" name="status">
+          <select matNativeControl [(ngModel)]="filterOption.status" (change)="doFilter()" name="status">
             <option value="">全</option>
             <option *ngFor="let v of StatusDict" [value]="v.dictValue">
               {{v.dictLabel}}
@@ -31,16 +29,21 @@
           <button style="margin: 0 15px;" (click)="doFilter()">
             検索
           </button>
+          <button style="margin: 0 15px;" (click)="reset()">
+            リセット
+          </button>
 
         </caption>
         <thead>
           <tr>
             <th>
-              ID({{dataSource.length}})
+              <span>ID({{dataSource.length}})</span>
               <input type="checkbox" [(ngModel)]="isALL" [checked]="isALL" name="isALL" id="isALL" (click)="all()"/>
               <label for="isALL">すべて選択</label>
             </th>
-            <th></th>
+            <th>
+              <button style="background: green;color: white" (click)="openAllLinks()"> リンクを開く</button>
+            </th>
             <th>終了日時</th>
             <th>最高額入</th>
             <th>状況</th>
@@ -54,8 +57,8 @@
         <tbody>
           <tr *ngFor="let item of dataSource">
             <td>
-              <input type="checkbox" style="display: inline-block;vertical-align:middle;" [(ngModel)]="item.checked"/>
-              <span style="display: inline-block;vertical-align:middle;">{{item.orderId}}</span>
+              <input type="checkbox" [(ngModel)]="item.checked"/>
+              <span>{{item.orderId}}</span>
             </td>
             <td>
               <a [href]="item.url" target="_blank"
@@ -65,7 +68,7 @@
             </td>
             <td style="width: 68px;">{{item.updateTime}}</td>
             <td>
-              <input type="number" style="width: 60px;" [(ngModel)]="item.limitPrice"/>
+              <input type="number" style="width: 80px;" [(ngModel)]="item.limitPrice"/>
             </td>
             <td>
               <select matNativeControl [(ngModel)]="item.status" name="status">
@@ -75,7 +78,7 @@
               </select>
             </td>
             <td>
-              <input type="text" style="width: 60px;" [(ngModel)]="item.remark"/>
+              <textarea [(ngModel)]="item.remark"></textarea>
             </td>
             <td>
               <button style="background: yellowgreen; color: white; margin-right: 15px;" (click)="save(item)">保存
