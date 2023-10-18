@@ -56,6 +56,8 @@ export class Biz {
       } else {
         if ($(".CompleteMain__title").text() == "入札を受け付けました。あなたが現在の最高額入札者です。") {
           location.href = $(".CompleteMain__ohterLinkItem").eq(0).find("a").prop("href");
+        } else if ($("#3DmodFootLink a").text() == "商品ページに戻る") {
+          location.href = $("#3DmodFootLink a").prop("href");
         } else {
           this.reBid();
         }
@@ -119,10 +121,9 @@ export class Biz {
         this.port.postMessage(msg);
       } else {
         if (msg.action == "auction_closeTab") {
-          chrome.runtime.connect({name: "GHJ-port-auction_closeTab"});
+          // chrome.runtime.connect({name: "GHJ-port-auction_closeTab"});
         }
       }
-      this.port?.postMessage(msg);
     } catch (e) {
     }
   }
@@ -148,7 +149,6 @@ export class Biz {
   static async updateBidItem(data: IBidItem, complete = () => {
   }) {
     const old = await Utils.STORE_GET_ITEM(data.orderId);
-    console.log("*****old:", old, "data:", data)
     await Utils.STORE_SET_ITEM(data.orderId, Object.assign(old, data));
   }
 
