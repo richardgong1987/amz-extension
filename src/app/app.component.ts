@@ -162,8 +162,12 @@ export class AppComponent implements OnInit {
           if (v.orderId.includes(this.filterOption.orderId)) {
             return v;
           }
+        } else {
+          return v;
         }
       }
+
+
     }).filter(v => v) as IBidItem[];
     iBidItems.sort((a, b) => {
       // @ts-ignore
