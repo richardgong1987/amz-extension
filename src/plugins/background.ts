@@ -23,11 +23,18 @@ function updateItemByMsg(message: { id: string }) {
 
 }
 
-chrome.runtime.onConnect.addListener(function (port) {
+chrome.runtime.onConnect.addListener(async function (port) {
   if (port.name.startsWith("GHJ-port")) {
     // Add the port to the list of connected ports
-
-    connPorts.set(port.name.split("-").pop(), port)
+    const orderId = port.name.split("-").pop();
+    if (connPorts.has(orderId)) {
+      try {
+        // @ts-ignore
+        return await chrome.tabs.remove(port.sender?.tab?.id)
+      } catch (e) {
+      }
+    }
+    connPorts.set(orderId, port);
     port.onMessage.addListener((message) => {
       if (message.action === "startRefresh") {
         main();
