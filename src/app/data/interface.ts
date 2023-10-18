@@ -7,7 +7,7 @@ export interface IBidItem {
   updateTime?: string;
   remark?: string;
   url?: string;
-  status?: number;
+  status?: number | string;
 }
 
 export interface IkeyWords {

@@ -3,6 +3,7 @@ import {Component, OnInit} from "@angular/core";
 import {IBidItem, IkeyWords, StatusDict} from "src/app/data/interface";
 import {Biz} from "src/utils/biz";
 import {Utils} from "src/utils/utils";
+import search = chrome.history.search;
 
 
 @Component({
@@ -136,5 +137,14 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.dataSource.forEach(data => data.checked = this.isALL)
     }, 100);
+  }
+
+  filterOption: IBidItem = {
+    orderId: "",
+    status: "",
+  }
+
+  doFilter() {
+
   }
 }
