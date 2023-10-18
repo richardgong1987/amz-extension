@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
 
 
   openAllLinks() {
-    this.port.postMessage({action:'open_pages',list:this.dataSource.filter(value => value.status == 1)})
+    this.port.postMessage({action: "open_pages", list: this.dataSource.filter(value => value.status == 1)})
   }
 
   protected readonly StatusDict = StatusDict;
@@ -123,11 +123,14 @@ export class AppComponent implements OnInit {
   }
 
   async deleteSelected() {
-    for (let item of this.dataSource) {
-      if (item.checked) {
-        await Utils.STORE_DELETE_ITEM(item.orderId);
+    if (confirm("本当に削除しますか?")) {
+      for (let item of this.dataSource) {
+        if (item.checked) {
+          await Utils.STORE_DELETE_ITEM(item.orderId);
+        }
       }
     }
+
     this.ngOnInit();
   }
 

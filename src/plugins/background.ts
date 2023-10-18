@@ -2,6 +2,17 @@ import {Utils} from "src/utils/utils";
 
 const connPorts = new Map<number | string | undefined, chrome.runtime.Port>;
 
+function openWindow(message: { list: { url: string }[] }) {
+  message.list.forEach(value => {
+      chrome.tabs.query({url: "https://page.auctions.yahoo.co.jp/jp/auction/*"}, function (tabs) {
+        if (!tabs.some(tab => tab.url == value.url)) {
+          chrome.tabs.create({url: value.url})
+        }
+      });
+    }
+  );
+}
+
 function updateItemByMsg(message: { id: string }) {
   if (message.id) {
     const newVar = connPorts.get(message.id);
@@ -10,10 +21,6 @@ function updateItemByMsg(message: { id: string }) {
     }
   }
 
-}
-
-function openWindow(message: { list: { url: string }[] }) {
-  message.list.forEach(value => chrome.tabs.create({url: value.url}));
 }
 
 chrome.runtime.onConnect.addListener(function (port) {
