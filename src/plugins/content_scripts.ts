@@ -46,6 +46,7 @@ export class JqGet {
 
   createConnect() {
     if (Utils.isAuctionUrl(location.pathname)) {
+      $(`<div id="time_left" style="font-size: 28px;color: red;"></div>`).insertBefore($("#acWrGlobalNavi"))
 // Connect to the background script
       Biz.port = chrome.runtime.connect({name: "GHJ-port-" + auctionId});
 // Listen for messages from the background script
@@ -56,7 +57,7 @@ export class JqGet {
           checkObject();
         }
       });
-      $(`<div id="time_left" style="font-size: 28px;color: red;"></div>`).insertBefore($("#acWrGlobalNavi"))
+
     }
 
   }
@@ -170,7 +171,7 @@ function checkObject() {
 }
 
 
-const timeLeftEle = document.getElementById("time_left");
+let timeLeftEle = document.getElementById("time_left");
 
 function timePaint() {
   if (!Utils.isAuctionUrl(location.pathname)) {
@@ -223,6 +224,9 @@ function timePaint() {
     if (outputString != Biz.BID_OVER_NAME) {
       myInstance.offerBid(day, hour, min, sec);
     }
+  }
+  if (!timeLeftEle) {
+    timeLeftEle = document.getElementById("time_left");
   }
   if (timeLeftEle) {
     timeLeftEle.innerText = "残り時間:" + outputString;
