@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
     }).filter(v => v) as IBidItem[];
     iBidItems.sort((a, b) => {
       // @ts-ignore
-      return new Date(b.updateTime) - new Date(a.updateTime)
+      return new Date(Utils.formatDateStr(b.updateTime)) - new Date(Utils.formatDateStr(a.updateTime))
     })
     this.dataSource = iBidItems;
     this.IkeyWordsList = tmp;
@@ -69,6 +69,10 @@ export class AppComponent implements OnInit {
 
   clickProductApi() {
     Utils.STORE_SET_ITEM(this.SETUP_SYNC_PRODUCT_KEY, this.productapi);
+    this.dataSource.forEach(a => {
+      // @ts-ignore
+      a.updateTime = Utils.formatDateStr(a.updateTime);
+    })
     this.http.post(this.productapi, this.dataSource, {
       headers: {
         contentType: "application/json",
@@ -171,7 +175,7 @@ export class AppComponent implements OnInit {
     }).filter(v => v) as IBidItem[];
     iBidItems.sort((a, b) => {
       // @ts-ignore
-      return new Date(b.updateTime) - new Date(a.updateTime)
+      return new Date(Utils.formatDateStr(b.updateTime)) - new Date(Utils.formatDateStr(a.updateTime))
     })
     this.dataSource = iBidItems;
   }

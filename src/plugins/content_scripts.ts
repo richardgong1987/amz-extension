@@ -23,11 +23,10 @@ export class JqGet {
           this.pInfo["status"] = orderDetail.status
           Biz.ifSuccess(Object.assign(this.pInfo, orderDetail));
         }
-
       }
-      Biz.disconnect(null,orderDetail.status === undefined ? 'donot_close':'');
       return console.log("****orderDetail is failure:", orderDetail);
     }
+    this.createConnect();
     this.pInfo["limitPrice"] = orderDetail.limitPrice
     this.pInfo["status"] = orderDetail.status
     this.pInfo["orderId"] = orderDetail.orderId
@@ -45,6 +44,22 @@ export class JqGet {
     }
   }
 
+  createConnect() {
+    if (Utils.isAuctionUrl(location.pathname)) {
+// Connect to the background script
+      Biz.port = chrome.runtime.connect({name: "GHJ-port-" + auctionId});
+// Listen for messages from the background script
+      Biz.port.onMessage.addListener(function (message) {
+        if (message.action === "do_auction") {
+          timePaint();
+        } else if (message.action === "call_checkObject") {
+          checkObject();
+        }
+      });
+      $(`<div id="time_left" style="font-size: 28px;color: red;"></div>`).insertBefore($("#acWrGlobalNavi"))
+    }
+
+  }
   offerBid(day: number, hour: number, min: number, sec: number) {
     //  check if the time is correct
     const othersBidCount = Number($(".Count .Count__link .Count__detail").text().slice(0, -1))
@@ -89,20 +104,6 @@ let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
 let outputString = "";
-if (Utils.isAuctionUrl(location.pathname)) {
-// Connect to the background script
-  const port = chrome.runtime.connect({name: "GHJ-port-" + auctionId});
-  Biz.port = port;
-// Listen for messages from the background script
-  port.onMessage.addListener(function (message) {
-    if (message.action === "do_auction") {
-      timePaint();
-    } else if (message.action === "call_checkObject") {
-      checkObject();
-    }
-  });
-  $(`<div id="time_left" style="font-size: 28px;color: red;"></div>`).insertBefore($("#acWrGlobalNavi"))
-}
 
 const xmlhttp = createXMLHttp();
 const myInstance = new JqGet();

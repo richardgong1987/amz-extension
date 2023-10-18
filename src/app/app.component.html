@@ -37,9 +37,9 @@
         <thead>
           <tr>
             <th>
-              <span>ID({{dataSource.length}})</span>
+              <span>ID</span>
               <input type="checkbox" [(ngModel)]="isALL" [checked]="isALL" name="isALL" id="isALL" (click)="all()"/>
-              <label for="isALL">すべて選択</label>
+              <label for="isALL">すべて選択<b style="color: #F24331;">({{dataSource.length}})</b></label>
             </th>
             <th>
               <button style="background: green;color: white" (click)="openAllLinks()"> リンクを開く</button>
