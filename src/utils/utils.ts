@@ -33,9 +33,11 @@ export class Utils {
   }
 
   static async STORE_SET_ITEM(key: string, value: any) {
-    const oldData = await this.GET_AUCTION_STORAGE();
-    Object.assign(oldData, {[key]: value});
-    await this.SET_AUCTION_STORAGE(oldData);
+    if (key && key != "undefined") {
+      const oldData = await this.GET_AUCTION_STORAGE();
+      Object.assign(oldData, {[key]: value});
+      await this.SET_AUCTION_STORAGE(oldData);
+    }
   }
 
   static async STORE_DELETE_ITEM(key: string) {
@@ -137,7 +139,13 @@ export class Utils {
   }
 
   static formatDateStr(dateStr: string) {
-    return dateStr.replace(/\（[\S\s]+?\）/g, " ").replace(/\./g, "-") + ":00"
+    try {
+      return dateStr.replace(/\（[\S\s]+?\）/g, " ").replace(/\./g, "-") + ":00"
+    } catch (e) {
+
+    }
+    return "";
+
   }
 
   static fireKeyboardEnter(sel: HTMLInputElement) {

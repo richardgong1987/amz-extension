@@ -121,7 +121,6 @@ export class Biz {
         if (msg.action == "auction_closeTab") {
           chrome.runtime.connect({name: "GHJ-port-auction_closeTab"});
         }
-
       }
       this.port?.postMessage(msg);
     } catch (e) {
