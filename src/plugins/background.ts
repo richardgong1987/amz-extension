@@ -12,6 +12,10 @@ function updateItemByMsg(message: { id: string }) {
 
 }
 
+function openWindow(message: { list: { url: string }[] }) {
+  message.list.forEach(value => chrome.tabs.create({url: value.url}));
+}
+
 chrome.runtime.onConnect.addListener(function (port) {
   if (port.name.startsWith("GHJ-port")) {
     // Add the port to the list of connected ports
@@ -30,6 +34,8 @@ chrome.runtime.onConnect.addListener(function (port) {
         removeTabByMsg(port, message);
       } else if (message.action == "auction_updateItem") {
         updateItemByMsg(message);
+      } else if (message.action == "open_pages") {
+        openWindow(message);
       }
     });
     // Handle disconnections

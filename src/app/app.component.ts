@@ -110,9 +110,7 @@ export class AppComponent implements OnInit {
 
 
   openAllLinks() {
-    this.dataSource.forEach(value => {
-      window.open(value.url, "_blank");
-    })
+    this.port.postMessage({action:'open_pages',list:this.dataSource.filter(value => value.status == 1)})
   }
 
   protected readonly StatusDict = StatusDict;
