@@ -2,10 +2,16 @@
   <mat-tab-group>
     <mat-tab label="入札リスト">
       <div class="setup-jobs">
-        <button mat-raised-button style="margin-right: 30px;" color="success" (click)="startRefresh()">始める</button>
+        <button *ngIf="!isStart" mat-raised-button style="margin-right: 30px;font-size: 20px;" color="success"
+                (click)="startRefresh()">始めるing
+        </button>
 
-        <button mat-raised-button style="margin-right: 30px;" color="danger" (click)="stopRefresh()">停止</button>
-
+        <button mat-raised-button *ngIf="isStart" style="margin-right: 30px;font-size: 20px;" color="danger"
+                (click)="stopRefresh()">停止
+        </button>
+        <div style="background: yellowgreen; color: white; padding: 15px;text-align: left;margin: 15px;">
+          ストレスを軽減するため、「開始」をクリックした後、注文が終了するか、価格が注文を超える場合は、10秒後にページが閉じられます。
+        </div>
         <button mat-raised-button color="success" (click)="openAllLinks()"> リンクを開く</button>
 
       </div>
@@ -14,15 +20,20 @@
         <caption style="font-size: 20px;padding: 10px">入札実績を一覧({{dataSource.length}})</caption>
         <thead>
           <tr>
-            <th>ID
-              <button (click)="deleteSelected()">選択を削除</button>
+            <th>
+              ID
+              <input type="checkbox" [(ngModel)]="isALL" [checked]="isALL" name="isALL" id="isALL" (click)="all()"/>
+              <label for="isALL">すべて選択</label>
             </th>
             <th></th>
             <th>終了日時</th>
             <th>最高額入</th>
             <th>状況</th>
             <th>注意事項</th>
-            <th>操作する</th>
+            <th>操作する
+              <button style="background: red; color: white;font-size: 18px;" (click)="deleteSelected()">選択を削除
+              </button>
+            </th>
           </tr>
         </thead>
         <tr *ngFor="let item of dataSource">
@@ -65,6 +76,7 @@
         <thead>
           <tr>
             <th>検索条件</th>
+            <th>操作する</th>
           </tr>
         </thead>
         <tr *ngFor="let item of IkeyWordsList">

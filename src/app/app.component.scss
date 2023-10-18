@@ -50,9 +50,19 @@
     input {
       flex: 1;
     }
-    button{
+
+    button {
       color: blue;
       font-weight: bold;
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+
+    td, th {
+      padding:5px 0;
+      border-bottom: 1px solid #ccc;
     }
   }
 }

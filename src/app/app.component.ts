@@ -13,6 +13,7 @@ import {Utils} from "src/utils/utils";
 export class AppComponent implements OnInit {
   dataSource: IBidItem[] = [];
   IkeyWordsList: IkeyWords[] = [];
+  isStart: boolean = true;
 
   constructor(private http: HttpClient) {
   }
@@ -47,9 +48,17 @@ export class AppComponent implements OnInit {
     })
     this.dataSource = iBidItems;
     this.IkeyWordsList = tmp;
+    const api1 = await Utils.STORE_GET_ITEM(this.SETUP_SYNC_PRODUCT_KEY) as string;
+    if (api1.constructor == String) {
+      this.productapi = api1;
+    }
+    const api2 = await Utils.STORE_GET_ITEM(this.SETUP_SYNC_KEYWORD_KEY) as string;
 
-    this.productapi = await Utils.STORE_GET_ITEM(this.SETUP_SYNC_PRODUCT_KEY)
-    this.keywordapi = await Utils.STORE_GET_ITEM(this.SETUP_SYNC_KEYWORD_KEY)
+    if (api2.constructor == String) {
+      this.keywordapi = api2;
+    }
+    Utils.STORE_GET_ITEM("setup_start").then(isStart => this.isStart = isStart === true);
+
   }
 
   SETUP_SYNC_PRODUCT_KEY = "setup_sync_product_key"
@@ -106,6 +115,7 @@ export class AppComponent implements OnInit {
   }
 
   protected readonly StatusDict = StatusDict;
+  isALL: boolean = false;
 
   async save(item: IBidItem) {
     await Utils.STORE_SET_ITEM(item.orderId, item)
@@ -120,5 +130,11 @@ export class AppComponent implements OnInit {
       }
     }
     this.ngOnInit();
+  }
+
+  all() {
+    setTimeout(() => {
+      this.dataSource.forEach(data => data.checked = this.isALL)
+    }, 100);
   }
 }
