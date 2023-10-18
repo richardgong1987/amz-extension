@@ -48,9 +48,11 @@
             <th>最高額入</th>
             <th>状況</th>
             <th>注意事項</th>
-            <th>操作する
+            <th>
               <button style="background: red; color: white;font-size: 18px;" (click)="deleteSelected()">選択を削除
               </button>
+              <div>操作する
+              </div>
             </th>
           </tr>
         </thead>
@@ -78,7 +80,7 @@
               </select>
             </td>
             <td>
-              <textarea [(ngModel)]="item.remark"></textarea>
+              <input  [(ngModel)]="item.remark" type="text"  />
             </td>
             <td>
               <button style="background: yellowgreen; color: white; margin-right: 15px;" (click)="save(item)">保存
