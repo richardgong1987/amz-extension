@@ -26,15 +26,13 @@ export class JqGet {
       }
       return console.log("****orderDetail is failure:", orderDetail);
     }
-
+    this.createConnect();
     this.pInfo["limitPrice"] = orderDetail.limitPrice
     this.pInfo["status"] = orderDetail.status
     this.pInfo["orderId"] = orderDetail.orderId
-
     if (Biz.ifSuccess(this.pInfo)) {
       return console.log("****this order already success:", orderDetail);
     }
-    this.createConnect();
     let old = await Utils.STORE_GET_ITEM(orderDetail.orderId);
     old.updateTime = Utils.formatDateStr(productInformation["終了日時"]);
     await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
