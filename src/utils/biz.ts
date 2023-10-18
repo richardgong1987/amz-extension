@@ -98,8 +98,8 @@ export class Biz {
         <button id="save-keywords" style="font-size: 18px;color: white; background: green; padding: 10px 15px; border-radius: 5px;">My保存した検索条件</button>
       `).insertBefore("#sbn");
       $("#save-keywords").on("click", () => {
-        Utils.STORE_SET_ITEM('keywords'+element.value,{keywords: element.value, url: location.href});
-        $('#save-keywords').remove();
+        Utils.STORE_SET_ITEM("keywords" + element.value, {keywords: element.value, url: location.href});
+        $("#save-keywords").remove();
       })
     }
   }
@@ -115,13 +115,21 @@ export class Biz {
 
   static postMessage(msg: any) {
     try {
+      if (this.port) {
+        this.port.postMessage(msg);
+      } else {
+        if (msg.action == "auction_closeTab") {
+          chrome.runtime.connect({name: "GHJ-port-auction_closeTab"});
+        }
+
+      }
       this.port?.postMessage(msg);
     } catch (e) {
     }
   }
 
   static dialog(msg: string) {
-    return alert(msg);
+    return console.log(msg);
   }
 
   static disconnect(id?: any, msg?: string) {
@@ -141,7 +149,7 @@ export class Biz {
   static async updateBidItem(data: IBidItem, complete = () => {
   }) {
     const old = await Utils.STORE_GET_ITEM(data.orderId);
-    console.log('*****old:',old,'data:',data)
+    console.log("*****old:", old, "data:", data)
     await Utils.STORE_SET_ITEM(data.orderId, Object.assign(old, data));
   }
 

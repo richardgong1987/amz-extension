@@ -27,6 +27,13 @@ chrome.runtime.onConnect.addListener(async function (port) {
   if (port.name.startsWith("GHJ-port")) {
     // Add the port to the list of connected ports
     const orderId = port.name.split("-").pop();
+    if (orderId == "auction_closeTab") {
+      try {
+        // @ts-ignore
+        return await chrome.tabs.remove(port.sender?.tab?.id)
+      } catch (e) {
+      }
+    }
     if (connPorts.has(orderId)) {
       try {
         // @ts-ignore
