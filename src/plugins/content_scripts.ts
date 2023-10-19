@@ -15,6 +15,9 @@ export class JqGet {
     }
     let infoId = productInformation["オークションID"];
     const orderDetail = this.orderDetail = await Utils.STORE_GET_ITEM(infoId);
+    if (orderDetail.status !== undefined) {
+      this.createConnect();
+    }
     if (!orderDetail || orderDetail.status != 1) {
       if (orderDetail.status === undefined) {
         Biz.showAddJobButton(productInformation);
@@ -23,10 +26,11 @@ export class JqGet {
           this.pInfo["status"] = orderDetail.status
           Biz.ifSuccess(Object.assign(this.pInfo, orderDetail));
         }
+        Biz.disconnect();
       }
       return console.log("****orderDetail is failure:", orderDetail);
     }
-    this.createConnect();
+
     this.pInfo["limitPrice"] = orderDetail.limitPrice
     this.pInfo["status"] = orderDetail.status
     this.pInfo["orderId"] = orderDetail.orderId
@@ -60,6 +64,7 @@ export class JqGet {
     }
 
   }
+
   offerBid(day: number, hour: number, min: number, sec: number) {
     //  check if the time is correct
     const othersBidCount = Number($(".Count .Count__link .Count__detail").text().slice(0, -1))

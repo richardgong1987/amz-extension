@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
     iBidItems.sort((a, b) => {
       // @ts-ignore
       return new Date(Utils.formatDateStr(b.updateTime)) - new Date(Utils.formatDateStr(a.updateTime))
-    })
+    });
     this.dataSource = iBidItems;
     this.IkeyWordsList = tmp;
     const api1 = await Utils.STORE_GET_ITEM(this.SETUP_SYNC_PRODUCT_KEY) as string;

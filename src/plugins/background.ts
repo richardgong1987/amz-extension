@@ -17,7 +17,7 @@ function updateItemByMsg(message: { id: string }) {
   if (message.id) {
     const newVar = connPorts.get(message.id);
     if (newVar?.sender?.tab) {
-      activateTab(newVar.sender.tab);
+      reloadTab(newVar.sender.tab);
     }
   }
 
