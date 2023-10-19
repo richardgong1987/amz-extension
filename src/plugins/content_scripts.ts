@@ -100,6 +100,7 @@ export class JqGet {
 
 let auctionId = location.pathname.split("/").pop() as string;
 const reloadTime = Utils.rangeNumber(150, 260);
+const reloadTimeLong = Utils.rangeNumber(170, 190);
 let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
@@ -183,7 +184,7 @@ function timePaint() {
   if (timeLeft == 20) {
     return window.location.reload();
   }
-  if (timeLeft > 300 && timeSinceLast >= 60 * 3) {
+  if (timeLeft > 300 && timeSinceLast >= reloadTimeLong) {
     return window.location.reload();
   }
 
