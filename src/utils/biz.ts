@@ -146,8 +146,7 @@ export class Biz {
     return this.updateBidItem({orderId: id, status: 3, remark: "Over Price"})
   }
 
-  static async updateBidItem(data: IBidItem, complete = () => {
-  }) {
+  static async updateBidItem(data: IBidItem) {
     const old = await Utils.STORE_GET_ITEM(data.orderId);
     await Utils.STORE_SET_ITEM(data.orderId, Object.assign(old, data));
   }

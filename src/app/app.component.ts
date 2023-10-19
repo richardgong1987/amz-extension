@@ -69,15 +69,34 @@ export class AppComponent implements OnInit {
 
   clickProductApi() {
     Utils.STORE_SET_ITEM(this.SETUP_SYNC_PRODUCT_KEY, this.productapi);
-    this.dataSource.forEach(a => {
+
+    this.http.post(this.productapi, this.dataSource.map(a => {
       // @ts-ignore
       a.updateTime = Utils.formatDateStr(a.updateTime);
-    })
-    this.http.post(this.productapi, this.dataSource, {
+      const {
+        info,
+        limitPrice,
+        orderId,
+        remark,
+        status,
+        updateTime,
+        url
+      } = a;
+      return {
+        info,
+        limitPrice,
+        orderId,
+        remark,
+        status,
+        updateTime,
+        url
+      }
+    }), {
       headers: {
         contentType: "application/json",
       }
     }).subscribe(() => {
+      alert("同期終了");
     });
   }
 
