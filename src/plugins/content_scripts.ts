@@ -100,7 +100,7 @@ export class JqGet {
 
 let auctionId = location.pathname.split("/").pop() as string;
 const reloadTime = Utils.rangeNumber(150, 260);
-const reloadTimeLong = Utils.rangeNumber(170, 190);
+const reloadTimeLong = Utils.rangeNumber(160, 180);
 let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
