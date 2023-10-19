@@ -96,7 +96,7 @@ export class AppComponent implements OnInit {
         contentType: "application/json",
       }
     }).subscribe(() => {
-      alert("同期終了");
+      alert("入札同期終了");
     });
   }
 
@@ -107,6 +107,7 @@ export class AppComponent implements OnInit {
         contentType: "application/json",
       }
     }).subscribe(() => {
+      alert("検索条件同期終了");
     });
   }
 
@@ -168,9 +169,9 @@ export class AppComponent implements OnInit {
     status: "",
   }
 
-  async doFilter() {
+  async doFilter(isToday = false) {
     const list = await Utils.STORE_GET_ALL();
-    const iBidItems = Object.keys(list).map(key => {
+    let iBidItems = Object.keys(list).map(key => {
       let v = list[key];
       if (!key.startsWith("setup") && !key.startsWith("keywords")) {
         if (this.filterOption.orderId.trim() && (this.filterOption.status + "")) {
@@ -192,10 +193,18 @@ export class AppComponent implements OnInit {
 
 
     }).filter(v => v) as IBidItem[];
+    if (isToday) {
+      const todayStr = this.formatData(new Date());
+      iBidItems = iBidItems.filter(v => {
+        // @ts-ignore
+        const updated = Utils.formatDateStr(v.updateTime);
+        return updated.startsWith(todayStr);
+      })
+    }
     iBidItems.sort((a, b) => {
       // @ts-ignore
       return new Date(Utils.formatDateStr(b.updateTime)) - new Date(Utils.formatDateStr(a.updateTime))
-    })
+    });
     this.dataSource = iBidItems;
   }
 
@@ -204,4 +213,16 @@ export class AppComponent implements OnInit {
     this.filterOption.orderId = "";
     this.ngOnInit();
   }
+
+  today() {
+
+  }
+
+  formatData(date: any) {
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1
+    var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+    return year + "-" + month + "-" + day
+  }
+
 }

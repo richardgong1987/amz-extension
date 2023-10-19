@@ -159,7 +159,7 @@ export class Biz {
             <button class="save-bidJob"  style="font-size: 28px; height: 80px; width: 89%; border-radius: 10px; color: white;background: red; ">今すぐ入札</button>
         </div>
       `).insertBefore("#ProductTitle");
-    $(".save-bidJob").on("click", () => {
+    const handler = () => {
       const url = location.href;
       let price = Number($("#save-bidJob-input").val());
       if (price > 0) {
@@ -177,7 +177,10 @@ export class Biz {
       } else {
         alert(`私の最高額入:${price} 再入力`)
       }
-    })
+    };
+    $('#save-bidJob-input').on('change',handler)
+
+    $(".save-bidJob").on("click", handler)
   }
 
   static ifSuccess(pInfo: any) {
