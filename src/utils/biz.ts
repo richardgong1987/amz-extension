@@ -39,13 +39,13 @@ export class Biz {
         }
     }
 
-    static isGoodPrice(highestPrice: number): boolean {
+    static isOverPrice(highestPrice: number): boolean {
         let bidInput = document.querySelector("[name=\"Bid\"]") as HTMLInputElement;
         if (!bidInput) {
-            return false;
+            return true;
         }
 
-        return Number(bidInput.value) <= highestPrice;
+        return Number(bidInput.value) > highestPrice;
     }
 
 
@@ -82,8 +82,8 @@ export class Biz {
             return console.log("*****rebid already:", orderDetail)
         }
         //2. can not upper the limit price
-        if (!Biz.isGoodPrice(orderDetail["limitPrice"])) {
-            this.overPrice(orderDetail.orderId, (document.querySelector("[name=\"Bid\"]") as HTMLInputElement)?.value)
+        if (Biz.isOverPrice(orderDetail["limitPrice"])) {
+            this.overPrice(orderDetail.orderId);
             return this.dialog("*****reBid()OverPrice");
         }
         orderDetail.remark = true
@@ -141,8 +141,8 @@ export class Biz {
         }
     }
 
-    static overPrice(id: string, price: any) {
-        this.disconnect(id, "Over Price " + price)
+    static overPrice(id: string) {
+        this.disconnect(id, "Over Price ")
         return this.updateBidItem({orderId: id, status: 3, remark: "Over Price"})
     }
 

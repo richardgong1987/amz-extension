@@ -42,7 +42,7 @@ export class JqGet {
         await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
         const pageData = Utils.getPageDataJSON();
         if (Number(pageData?.items?.price) > orderDetail.limitPrice) {
-            Biz.overPrice(this.orderDetail["orderId"], Number(pageData?.items?.price))
+            Biz.overPrice(this.orderDetail["orderId"])
             return Biz.dialog("***main() OverPrice")
         }
     }
@@ -82,19 +82,12 @@ export class JqGet {
         if (!this.orderDetail || this.orderDetail.status != 1) {
             return;
         }
-        // check currently prices
 
-        const Price__value = Number($(".Price__value").text().split("円").shift()?.replace(/,/g, ""));
-        // @ts-ignore
-        if (Price__value > this.orderDetail.limitPrice) {
-            Biz.overPrice(this.orderDetail["orderId"], Price__value)
-            return Biz.dialog("***offerBid OverPrice check currently prices")
-        }
         //1. bid
         Biz.bid();
         //2. can not upper the limit price
-        if (!Biz.isGoodPrice(this.orderDetail["limitPrice"])) {
-            Biz.overPrice(this.orderDetail["orderId"], (document.querySelector("[name=\"Bid\"]") as HTMLInputElement)?.value)
+        if (Biz.isOverPrice(this.orderDetail["limitPrice"])) {
+            Biz.overPrice(this.orderDetail["orderId"])
             return Biz.dialog("***offerBid OverPricec an not upper the limit price")
         }
         setTimeout(function () {
