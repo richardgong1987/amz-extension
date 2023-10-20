@@ -106,6 +106,7 @@ export class JqGet {
 let auctionId = location.pathname.split("/").pop() as string;
 const reloadTime = Utils.rangeNumber(150, 260);
 const reloadTimeLong = Utils.rangeNumber(160, 180);
+const reloadCut1 = Utils.rangeNumber(10, 20);
 let timeLeft = -10;
 let isFirstPaint = true
 let timeSinceLast = 0;
@@ -186,7 +187,7 @@ function timePaint() {
   if (outputString == Biz.BID_OVER_NAME) {
     return Biz.disconnect(auctionId, outputString);
   }
-  if (timeLeft == 20) {
+  if (timeLeft == reloadCut1) {
     return window.location.reload();
   }
   if (timeLeft > 300 && timeSinceLast >= reloadTimeLong) {
