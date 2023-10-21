@@ -159,13 +159,13 @@ function checkObject() {
 
         } catch (e) {
             if (!isFirstPaint) {
-                window.location.reload();
+                Biz.reloadTab();
             }
         }
 
     } else {
         if (!isFirstPaint) {
-            window.location.reload();
+            Biz.reloadTab();
         }
     }
 }
@@ -182,16 +182,16 @@ function timePaint() {
         return Biz.disconnect(auctionId, outputString);
     }
     if (timeLeft == reloadCut1) {
-        return window.location.reload();
+        return Biz.reloadTab();
     }
     if (timeLeft > 300 && timeSinceLast >= reloadTimeLong) {
-        return window.location.reload();
+        return Biz.reloadTab();
     }
 
     if (isFirstPaint || timeLeft == -1 || (timeLeft < 300 && timeSinceLast >= 60)) {
 
         if ((timeLeft < 75 && timeSinceLast >= reloadTime)) {
-            return window.location.reload();
+            return Biz.reloadTab();
         }
         checkObject();
         isFirstPaint = false;

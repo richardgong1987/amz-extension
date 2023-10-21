@@ -53,6 +53,9 @@ chrome.runtime.onConnect.addListener(async function (port) {
         activeUPComingAuction();
       } else if (message.action == "auction_closeTab") {
         removeTabByMsg(port, message);
+      }  else if (message.action == "auction_reloadTab") {
+        // @ts-ignore
+        reloadTab(port.sender?.tab);
       } else if (message.action == "auction_updateItem") {
         updateItemByMsg(message);
       } else if (message.action == "open_pages") {
