@@ -70,7 +70,7 @@ chrome.runtime.onConnect.addListener(async function (port) {
   }
 });
 
-function postMessage(port: chrome.runtime.Port, message: any) {
+function postMessageCenter(port: chrome.runtime.Port, message: any) {
   try {
     port?.postMessage(message);
   } catch (e) {
@@ -82,7 +82,7 @@ function broadcastMessage(message: any) {
   console.log("*****connPorts:", connPorts);
   connPorts.forEach(function (port) {
     if (isAuctionPage(port.sender?.url)) {
-      postMessage(port, message);
+      postMessageCenter(port, message);
     }
   });
 }
@@ -91,7 +91,7 @@ function broadcastMessageRandom(message: any) {
   connPorts.forEach(function (port) {
     if (isAuctionPage(port.sender?.url)) {
       setTimeout(() => {
-        postMessage(port, message);
+        postMessageCenter(port, message);
       }, Utils.range(1, 8));
     }
   });
