@@ -22,7 +22,12 @@ function updateItemByMsg(message: { id: string }) {
   }
 
 }
+let globalIsStart = false;
 
+async function getIsStart() {
+  const isStart = await Utils.STORE_GET_ITEM(SETUP_START);
+  globalIsStart = isStart === true;
+}
 chrome.runtime.onConnect.addListener(async function (port) {
   if (port.name.startsWith("GHJ-port")) {
     // Add the port to the list of connected ports
@@ -44,22 +49,27 @@ chrome.runtime.onConnect.addListener(async function (port) {
     connPorts.set(orderId, port);
     port.onMessage.addListener((message) => {
       if (message.action === "startRefresh") {
+        getIsStart();
         main();
       } else if (message.action == "stopRefresh") {
         clearMain();
-      } else if (message.action == "auction_timeLeft") {
-        // @ts-ignore
-        port.mydata = message;
-        activeUPComingAuction();
-      } else if (message.action == "auction_closeTab") {
-        removeTabByMsg(port, message);
-      }  else if (message.action == "auction_reloadTab") {
-        // @ts-ignore
-        reloadTab(port.sender?.tab);
-      } else if (message.action == "auction_updateItem") {
-        updateItemByMsg(message);
-      } else if (message.action == "open_pages") {
-        openWindow(message);
+        getIsStart();
+      }
+      if (globalIsStart) {
+        if (message.action == "auction_timeLeft") {
+          // @ts-ignore
+          port.mydata = message;
+          activeUPComingAuction();
+        } else if (message.action == "auction_closeTab") {
+          removeTabByMsg(port, message);
+        } else if (message.action == "auction_reloadTab") {
+          // @ts-ignore
+          reloadTab(port.sender?.tab);
+        } else if (message.action == "auction_updateItem") {
+          updateItemByMsg(message);
+        } else if (message.action == "open_pages") {
+          openWindow(message);
+        }
       }
     });
     // Handle disconnections
@@ -103,7 +113,9 @@ const docheckObject = {action: "call_checkObject"};
 let mainDoAuctionSet = 0;
 let mainDocheckObjectSet = 0;
 
+
 Utils.STORE_GET_ITEM(SETUP_START).then(isStart => {
+  globalIsStart = isStart === true;
   if (isStart === true) {
     main()
   }
@@ -111,6 +123,7 @@ Utils.STORE_GET_ITEM(SETUP_START).then(isStart => {
 
 async function main() {
   await clearMain();
+  globalIsStart = true;
   broadcastMessage(doAuction);
   mainDoAuctionSet = setInterval(function () {
     broadcastMessage(doAuction);
@@ -124,6 +137,7 @@ async function main() {
 
 async function clearMain() {
   await Utils.STORE_SET_ITEM(SETUP_START, false);
+  globalIsStart = false;
   clearInterval(mainDoAuctionSet)
   clearInterval(mainDocheckObjectSet);
 }
