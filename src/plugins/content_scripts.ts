@@ -58,6 +58,8 @@ export class JqGet {
           timePaint();
         } else if (message.action === "call_checkObject") {
           checkObject();
+        } else if (message.action === "timeoutFnDone") {
+          Biz.timeoutFnDone(message);
         }
       });
 

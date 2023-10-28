@@ -88,7 +88,7 @@ export class Biz {
     }
     orderDetail.remark = true
     Utils.STORE_SET_ITEM(orderId, orderDetail)
-    await Biz.wait(10);
+    await Biz.wait(2);
     Utils.clickWithSelector(".SubmitBox__button--rebid");
   }
 
@@ -113,7 +113,14 @@ export class Biz {
   }
 
   static port: chrome.runtime.Port
-
+  static timeoutFnDone(msg: { id: string }) {
+    this.eventsMap.forEach(item => {
+      if (item.id == msg.id) {
+        item.callback && item.callback();
+        item.waitingResolve && item.waitingResolve(true);
+      }
+    })
+  }
   static reloadTab() {
     this.postMessage({action: "auction_reloadTab"})
   }
