@@ -42,8 +42,7 @@ export class JqGet {
     await Utils.STORE_SET_ITEM(orderDetail.orderId, Object.assign(old, this.pInfo));
     const pageData = Utils.getPageDataJSON();
     if (Number(pageData?.items?.price) > orderDetail.limitPrice) {
-      Biz.overPrice(this.orderDetail["orderId"])
-      return Biz.dialog("***main() OverPrice")
+      return Biz.overPrice(this.orderDetail["orderId"], "***main() OverPrice")
     }
   }
 
@@ -68,18 +67,10 @@ export class JqGet {
   }
 
   async offerBid(day: number, hour: number, min: number, sec: number) {
-    //  check if the time is correct
-    const othersBidCount = Number($(".Count .Count__link .Count__detail").text().slice(0, -1))
-    if (othersBidCount > 1) {
-      if (!(day == 0 && hour == 0 && min == 0 && sec <= 5)) {
-        return;
-      }
-    } else {
-      if (!(day == 0 && hour == 0 && min == 0 && sec <= 4)) {
-        return;
-      }
+    if (!(day == 0 && hour == 0 && min == 0 && sec <= 5)) {
+      return;
     }
-    // check order status
+
     // @ts-ignore
     if (!this.orderDetail || this.orderDetail.status != 1) {
       return;
@@ -89,8 +80,7 @@ export class JqGet {
     Biz.bid();
     //2. can not upper the limit price
     if (Biz.isOverPrice(this.orderDetail["limitPrice"])) {
-      Biz.overPrice(this.orderDetail["orderId"])
-      return Biz.dialog("***offerBid OverPricec an not upper the limit price")
+      return Biz.overPrice(this.orderDetail["orderId"], "***offerBid OverPricec an not upper the limit price")
     }
     await Biz.wait(2)
     //3. 確認する

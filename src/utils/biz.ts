@@ -83,8 +83,7 @@ export class Biz {
     }
     //2. can not upper the limit price
     if (Biz.isOverPrice(orderDetail["limitPrice"])) {
-      this.overPrice(orderDetail.orderId);
-      return this.dialog("*****reBid()OverPrice");
+      return this.overPrice(orderDetail.orderId, "*****reBid() Over Price");
     }
     orderDetail.remark = true
     Utils.STORE_SET_ITEM(orderId, orderDetail)
@@ -113,6 +112,7 @@ export class Biz {
   }
 
   static port: chrome.runtime.Port
+
   static timeoutFnDone(msg: { id: string }) {
     this.eventsMap.forEach(item => {
       if (item.id == msg.id) {
@@ -121,6 +121,7 @@ export class Biz {
       }
     })
   }
+
   static reloadTab() {
     this.postMessage({action: "auction_reloadTab"})
   }
@@ -138,16 +139,16 @@ export class Biz {
 
   static disconnect(id?: any, msg?: string) {
     // Utils.STORE_DELETE_ITEM(id);
-    this.postMessage({action: "auction_closeTab", msg: msg})
+    this.postMessage({action: "auction_closeTab", msg})
     this.port?.disconnect();
     if (id && msg == this.BID_OVER_NAME) {
-      this.updateBidItem({orderId: id, status: 5, remark: msg + ""})
+      this.updateBidItem({orderId: id, status: 5, remark: msg})
     }
   }
 
-  static overPrice(id: string) {
-    this.disconnect(id, "Over Price ")
-    return this.updateBidItem({orderId: id, status: 3, remark: "Over Price"})
+  static overPrice(id: string, msg: string) {
+    this.disconnect(id, msg)
+    return this.updateBidItem({orderId: id, status: 3, remark: msg})
   }
 
   static async updateBidItem(data: IBidItem) {
