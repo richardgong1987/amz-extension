@@ -88,9 +88,8 @@ export class Biz {
     }
     orderDetail.remark = true
     Utils.STORE_SET_ITEM(orderId, orderDetail)
-    setTimeout(function () {
-      Utils.clickWithSelector(".SubmitBox__button--rebid");
-    }, 1);
+    await Biz.wait(10);
+    Utils.clickWithSelector(".SubmitBox__button--rebid");
   }
 
   static searchPage() {
@@ -205,4 +204,45 @@ export class Biz {
   }
 
   static BID_OVER_NAME = "オークション - 終了"
+
+  static range(start: number, end: number, tag = "next time") {
+    return (Math.floor(Math.random() * (end - start)) + start) * 1000;
+  }
+
+  static eventsMap = new Map<string, {
+    t: number,
+    id: string,
+    action: string,
+    callback: Function,
+    waitingResolve?: Function
+  }>();
+
+  static async wait(t: number) {
+    return await this.randomOperator(() => {
+    }, t);
+  }
+
+  static randomOperator(callback: Function, t: number) {
+    const event = {
+      action: "timeoutFn",
+      id: this.generateUniqueId(),
+      callback: callback,
+      t
+    }
+    this.eventsMap.set(event.id, event);
+    this.postMessage({action: event.action, t: event.t, id: event.id});
+    return new Promise((resolve) => {
+      if (this.eventsMap.has(event.id)) {
+        const mEvent = this.eventsMap.get(event.id);
+        // @ts-ignore
+        mEvent.waitingResolve = resolve;
+      }
+    });
+  }
+
+  static generateUniqueId() {
+    const timestampPart = new Date().getTime().toString(36);
+    const randomPart = Math.random().toString(36).slice(2, 5);
+    return timestampPart + randomPart;
+  }
 }

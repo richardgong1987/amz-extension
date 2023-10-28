@@ -22,12 +22,30 @@ function updateItemByMsg(message: { id: string }) {
   }
 
 }
+
 let globalIsStart = false;
 
 async function getIsStart() {
   const isStart = await Utils.STORE_GET_ITEM(SETUP_START);
   globalIsStart = isStart === true;
 }
+
+
+function timeoutFn(port: chrome.runtime.Port, m: {
+  t: number,
+  id: string,
+  action: string,
+  callback: Function,
+  waitingResolve?: Function
+}) {
+  setTimeout(() => {
+    postMessageCenter(port, {
+      action: "timeoutFnDone",
+      id: m.id
+    })
+  }, m.t);
+}
+
 chrome.runtime.onConnect.addListener(async function (port) {
   if (port.name.startsWith("GHJ-port")) {
     // Add the port to the list of connected ports
@@ -47,28 +65,30 @@ chrome.runtime.onConnect.addListener(async function (port) {
       }
     }
     connPorts.set(orderId, port);
-    port.onMessage.addListener((message) => {
-      if (message.action === "startRefresh") {
+    port.onMessage.addListener((msg) => {
+      if (msg.action === "startRefresh") {
         getIsStart();
         main();
-      } else if (message.action == "stopRefresh") {
+      } else if (msg.action == "stopRefresh") {
         clearMain();
         getIsStart();
+      } else if (msg.action.startsWith("timeoutFn")) {
+        timeoutFn(port, msg);
       }
       if (globalIsStart) {
-        if (message.action == "auction_timeLeft") {
+        if (msg.action == "auction_timeLeft") {
           // @ts-ignore
-          port.mydata = message;
+          port.mydata = msg;
           activeUPComingAuction();
-        } else if (message.action == "auction_closeTab") {
-          removeTabByMsg(port, message);
-        } else if (message.action == "auction_reloadTab") {
+        } else if (msg.action == "auction_closeTab") {
+          removeTabByMsg(port, msg);
+        } else if (msg.action == "auction_reloadTab") {
           // @ts-ignore
           reloadTab(port.sender?.tab);
-        } else if (message.action == "auction_updateItem") {
-          updateItemByMsg(message);
-        } else if (message.action == "open_pages") {
-          openWindow(message);
+        } else if (msg.action == "auction_updateItem") {
+          updateItemByMsg(msg);
+        } else if (msg.action == "open_pages") {
+          openWindow(msg);
         }
       }
     });
