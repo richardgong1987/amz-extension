@@ -1,7 +1,7 @@
 const ports = new Map<number | string | undefined, chrome.runtime.Port>;
 chrome.runtime.onConnect.addListener(async function (port) {
   if (port.name.startsWith("GHJ-port")) {
-    ports.set(port.name, port);
+    ports.set(port.sender?.tab?.id, port);
     port.onMessage.addListener((msg) => {
       ports.set(port.name, port);
       if (msg.action === "closeTab") {
@@ -15,7 +15,7 @@ chrome.runtime.onConnect.addListener(async function (port) {
     });
     // Handle disconnections
     port.onDisconnect.addListener(function () {
-      ports.delete(port.name)
+      ports.delete(port.sender?.tab?.id)
     });
   }
 });
