@@ -7,5 +7,9 @@ import {Component} from "@angular/core";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
+  port = chrome.runtime.connect({name: "GHJ-port-appcomponent"})
 
+  startFetch() {
+    this.port.postMessage({action: "start"})
+  }
 }

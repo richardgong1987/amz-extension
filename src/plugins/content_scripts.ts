@@ -6,13 +6,18 @@ port.onMessage.addListener((msg) => {
 });
 
 setTimeout(() => {
+  var child: { twinCatName: string | undefined; twinCatInfo: string; }[] = [];
+  $(".wrap ul li a").each(function () {
+    child.push({
+      "twinCatName": $(this).attr("href")?.split("/").filter(v => v).pop(),
+      "twinCatInfo": $(this).find(".name").text(),
+    })
+  });
   const msg = {
     action: "appendData",
-    data: {
-      pathname: location.pathname,
-    }
+    data: child
   }
   port.postMessage(msg);
-}, 2000);
+}, 5000);
 
 
