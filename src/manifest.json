@@ -13,31 +13,11 @@
     "default_title": "mobadeko",
     "default_popup": "index.html"
   },
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "assets/AirHorn.mp3"
-      ],
-      "matches": [
-        "<all_urls>"
-      ]
-    }
-  ],
   "background": {
     "service_worker": "background.js",
     "type": "module"
   },
   "content_scripts": [
-    {
-      "matches": [
-        "https://k-tai-iosys.com//*"
-      ],
-      "js": [
-        "content_scripts_login.js"
-      ],
-      "run_at": "document_idle",
-      "all_frames": true
-    },
     {
       "matches": [
         "*://k-tai-iosys.com/*",
