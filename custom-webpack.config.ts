@@ -19,10 +19,6 @@ module.exports = {
       import: "src/plugins/content_scripts.ts",
       runtime: false,
     },
-    content_scripts_login: {
-      import: "src/plugins/content_scripts_login.ts",
-      runtime: false,
-    }
   },
 
 } as Configuration;
