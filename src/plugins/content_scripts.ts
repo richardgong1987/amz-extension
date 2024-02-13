@@ -17,7 +17,7 @@ setTimeout(() => {
     action: "appendData",
     data: child
   }
-  port.postMessage(msg);
+  // port.postMessage(msg);
 }, 5000);
 
 

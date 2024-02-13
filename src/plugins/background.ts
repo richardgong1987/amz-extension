@@ -245,9 +245,9 @@ async function start() {
       item2.child = resultData;
       index++;
       console.log("*****index:", index);
-      console.log(JSON.stringify(category));
     }
   }
+  console.log(JSON.stringify(category));
 }
 
 
