@@ -1,7 +1,7 @@
 {
-  "name": "auctions-yahoo",
+  "name": "mobadeko",
   "version": "3.0.0",
-  "description": "日本 Yahoo 自動入札アシスタント",
+  "description": "",
   "icons": {
     "16": "assets/icon/favicon.png",
     "48": "assets/icon/favicon48.png",
@@ -10,7 +10,7 @@
   "manifest_version": 3,
   "action": {
     "default_icon": "assets/icon/favicon.png",
-    "default_title": "auctions-yahoo",
+    "default_title": "mobadeko",
     "default_popup": "index.html"
   },
   "web_accessible_resources": [
@@ -30,7 +30,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://login.yahoo.co.jp/*"
+        "https://k-tai-iosys.com//*"
       ],
       "js": [
         "content_scripts_login.js"
@@ -40,8 +40,8 @@
     },
     {
       "matches": [
-        "*://auctions.yahoo.co.jp/*",
-        "*://*.auctions.yahoo.co.jp/*"
+        "*://k-tai-iosys.com/*",
+        "*://*.k-tai-iosys.com/*"
       ],
       "js": [
         "assets/jq.js",

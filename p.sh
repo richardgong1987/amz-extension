@@ -2,8 +2,7 @@ npm run build
 
 cd dist
 
-rm auctions-yahoo-extension.zip
+rm mobadeko-extension.zip
 
-zip -r auctions-yahoo-extension.zip auctions-yahoo-extension/
+zip -r mobadeko-extension.zip mobadeko-extension/
 
-cp auctions-yahoo-extension.zip ../../auctions-yahoo-admin-ui/public

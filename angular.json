@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "auctions-yahoo-extension": {
+    "mobadeko-extension": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
             "customWebpackConfig": {
               "path": "./custom-webpack.config.ts"
             },
-            "outputPath": "dist/auctions-yahoo-extension",
+            "outputPath": "dist/mobadeko-extension",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -83,10 +83,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "auctions-yahoo-extension:build:production"
+              "browserTarget": "mobadeko-extension:build:production"
             },
             "development": {
-              "browserTarget": "auctions-yahoo-extension:build:development"
+              "browserTarget": "mobadeko-extension:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -94,7 +94,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "auctions-yahoo-extension:build"
+            "browserTarget": "mobadeko-extension:build"
           }
         },
         "test": {
