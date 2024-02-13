@@ -46,64 +46,64 @@ async function start() {
       "twinCatInfo": " スマートフォン",
       "child": [
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/iphone/",
           "twinCatName": "iphone",
-          "twinCatInfo": "iphone",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/iphone"
+          "twinCatInfo": "iphone"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/xperia/",
           "twinCatName": "xperia",
-          "twinCatInfo": "xperia",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/xperia"
+          "twinCatInfo": "xperia"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/galaxy/",
           "twinCatName": "galaxy",
-          "twinCatInfo": "galaxy",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/galaxy"
+          "twinCatInfo": "galaxy"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/pixel/",
           "twinCatName": "pixel",
-          "twinCatInfo": "pixel",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/pixel"
+          "twinCatInfo": "pixel"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/rakuten/",
           "twinCatName": "rakuten",
-          "twinCatInfo": "rakuten",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/rakuten"
+          "twinCatInfo": "rakuten"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/xiaomi/",
           "twinCatName": "xiaomi",
-          "twinCatInfo": "xiaomi",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/xiaomi"
+          "twinCatInfo": "xiaomi"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/aquos/",
           "twinCatName": "aquos",
-          "twinCatInfo": "aquos",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/aquos"
+          "twinCatInfo": "aquos"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/oppo/",
           "twinCatName": "oppo",
-          "twinCatInfo": "oppo",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/oppo"
+          "twinCatInfo": "oppo"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/zenfone/",
           "twinCatName": "zenfone",
-          "twinCatInfo": "zenfone",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/zenfone"
+          "twinCatInfo": "zenfone"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/arrows/",
           "twinCatName": "arrows",
-          "twinCatInfo": "arrows",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/arrows"
+          "twinCatInfo": "arrows"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/huawei/",
           "twinCatName": "huawei",
-          "twinCatInfo": "huawei",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/huawei"
+          "twinCatInfo": "huawei"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/smartphone/nexus/",
           "twinCatName": "nexus",
-          "twinCatInfo": "nexus",
-          "url": "https://k-tai-iosys.com/pricelist/smartphone/nexus"
+          "twinCatInfo": "nexus"
         }
       ]
     },
@@ -112,89 +112,89 @@ async function start() {
       "twinCatInfo": " タブレット",
       "child": [
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/ipad/",
           "twinCatName": "ipad",
-          "twinCatInfo": "ipad",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/ipad"
+          "twinCatInfo": "ipad"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/surface/",
           "twinCatName": "surface",
-          "twinCatInfo": "surface",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/surface"
+          "twinCatInfo": "surface"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/galaxytab/",
           "twinCatName": "galaxytab",
-          "twinCatInfo": "galaxytab",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/galaxytab"
+          "twinCatInfo": "galaxytab"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/dtab/",
           "twinCatName": "dtab",
-          "twinCatInfo": "dtab",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/dtab"
+          "twinCatInfo": "dtab"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/quatab/",
           "twinCatName": "quatab",
-          "twinCatInfo": "quatab",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/quatab"
+          "twinCatInfo": "quatab"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/xperia/",
           "twinCatName": "xperia",
-          "twinCatInfo": "xperia",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/xperia"
+          "twinCatInfo": "xperia"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/lenovotab/",
           "twinCatName": "lenovotab",
-          "twinCatInfo": "lenovotab",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/lenovotab"
+          "twinCatInfo": "lenovotab"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/xiaomi/",
           "twinCatName": "xiaomi",
-          "twinCatInfo": "xiaomi",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/xiaomi"
+          "twinCatInfo": "xiaomi"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/nexus/",
           "twinCatName": "nexus",
-          "twinCatInfo": "nexus",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/nexus"
+          "twinCatInfo": "nexus"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/mediapad/",
           "twinCatName": "mediapad",
-          "twinCatInfo": "mediapad",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/mediapad"
+          "twinCatInfo": "mediapad"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/zenpad/",
           "twinCatName": "zenpad",
-          "twinCatInfo": "zenpad",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/zenpad"
+          "twinCatInfo": "zenpad"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/aquospad/",
           "twinCatName": "aquospad",
-          "twinCatInfo": "aquospad",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/aquospad"
+          "twinCatInfo": "aquospad"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/arrows/",
           "twinCatName": "arrows",
-          "twinCatInfo": "arrows",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/arrows"
+          "twinCatInfo": "arrows"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/memopad/",
           "twinCatName": "memopad",
-          "twinCatInfo": "memopad",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/memopad"
+          "twinCatInfo": "memopad"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/iconia/",
           "twinCatName": "iconia",
-          "twinCatInfo": "iconia",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/iconia"
+          "twinCatInfo": "iconia"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/lavietab/",
           "twinCatName": "lavietab",
-          "twinCatInfo": "lavietab",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/lavietab"
+          "twinCatInfo": "lavietab"
         },
         {
+          "url": "https://k-tai-iosys.com/pricelist/tablet/yogatablet/",
           "twinCatName": "yogatablet",
-          "twinCatInfo": "yogatablet",
-          "url": "https://k-tai-iosys.com/pricelist/tablet/yogatablet"
+          "twinCatInfo": "yogatablet"
         }
       ]
     },
@@ -203,20 +203,20 @@ async function start() {
       "twinCatInfo": " ノートパソコン",
       "child": [
         {
+          "url": "https://k-tai-iosys.com/pricelist/notepc/macbook/",
           "twinCatName": "macbook",
-          "twinCatInfo": "macbook",
-          "url": "https://k-tai-iosys.com/pricelist/notepc/macbook"
+          "twinCatInfo": "macbook"
         }
       ]
     },
     {
-      "twinCatName": "smartwatch",
+      "twinCatName": "wearable",
       "twinCatInfo": " スマートウォッチ",
       "child": [
         {
-          "twinCatName": "applewatch",
-          "twinCatInfo": "applewatch",
-          "url": "https://k-tai-iosys.com/pricelist/smartwatch/applewatch"
+          "url": "https://k-tai-iosys.com/pricelist/wearable/smartwatch/applewatch/",
+          "twinCatName": "smartwatch",
+          "twinCatInfo": "smartwatch"
         }
       ]
     },
@@ -225,14 +225,14 @@ async function start() {
       "twinCatInfo": " アクセサリー",
       "child": [
         {
+          "url": "https://k-tai-iosys.com/pricelist/accessory/earphone/",
           "twinCatName": "earphone",
-          "twinCatInfo": "earphone",
-          "url": "https://k-tai-iosys.com/pricelist/accessory/earphone"
+          "twinCatInfo": "earphone"
         },
         {
-          "twinCatName": "airpods",
-          "twinCatInfo": "airpods",
-          "url": "https://k-tai-iosys.com/pricelist/accessory/airpods"
+          "url": "https://k-tai-iosys.com/pricelist/accessory/apple/airpods/",
+          "twinCatName": "apple",
+          "twinCatInfo": "apple"
         }
       ]
     }
