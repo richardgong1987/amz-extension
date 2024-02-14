@@ -13,16 +13,18 @@ setTimeout(() => {
         var $wrap = $(this);
         $wrap.find("ul li a").each(function () {
           child.push({
+            "img":$(this).find('img').prop('src'),
             "twinCatName": $(this).attr("href")?.split("/").filter(v => v).pop(),
-            "twinCatInfo": $wrap.find("h3").text() + $(this).find("h3").text(),
+            "twinCatInfo": $wrap.find("h3").text().trim() + "###" + $(this).text().trim(),
           });
         });
       });
     } else {
       $(".wrap ul li a").each(function () {
         child.push({
+          "img":$(this).find('img').prop('src'),
           "twinCatName": $(this).attr("href")?.split("/").filter(v => v).pop(),
-          "twinCatInfo": $(this).text(),
+          "twinCatInfo": $(this).text().trim(),
         })
       });
     }
@@ -31,15 +33,17 @@ setTimeout(() => {
     if ($(".send_sp li").length) {
       $(".send_sp li a").each(function () {
         child.push({
+          "img":$(this).find('img').prop('src'),
           "twinCatName": $(this).attr("href")?.split("/").filter(v => v).pop(),
-          "twinCatInfo": $(this).text()
+          "twinCatInfo": $(this).text().trim()
         })
       });
     } else {
       $(".send_sp").next().find("li a").each(function () {
         child.push({
+          "img":$(this).find('img').prop('src'),
           "twinCatName": $(this).attr("href")?.split("/").filter(v => v).pop(),
-          "twinCatInfo": $(this).text()
+          "twinCatInfo": $(this).text().trim()
         })
       });
     }
