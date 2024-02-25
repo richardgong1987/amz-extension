@@ -1,0 +1,2131 @@
+[
+  {
+    "twinCatName": "smartphone",
+    "twinCatInfo": " スマートフォン",
+    "child": [
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/iphone/",
+        "twinCatName": "iphone",
+        "twinCatInfo": "iphone",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone15pro_max.png",
+            "twinCatName": "iphone15pro_max",
+            "twinCatInfo": "iPhone15 Pro Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone15pro.png",
+            "twinCatName": "iphone15pro",
+            "twinCatInfo": "iPhone15 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone15plus.png",
+            "twinCatName": "iphone15plus",
+            "twinCatInfo": "iPhone15 Plus"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone15.png",
+            "twinCatName": "iphone15",
+            "twinCatInfo": "iPhone15"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone14pro_max.png",
+            "twinCatName": "iphone14pro_max",
+            "twinCatInfo": "iPhone14 Pro Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone14pro.png",
+            "twinCatName": "iphone14pro",
+            "twinCatInfo": "iPhone14 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone14plus.png",
+            "twinCatName": "iphone14plus",
+            "twinCatInfo": "iPhone14 Plus"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone14.png",
+            "twinCatName": "iphone14",
+            "twinCatInfo": "iPhone14"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone13pro_max.png",
+            "twinCatName": "iphone13_pro_max",
+            "twinCatInfo": "iPhone13 Pro Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone13pro.png",
+            "twinCatName": "iphone13_pro",
+            "twinCatInfo": "iPhone13 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone13mini.png",
+            "twinCatName": "iphone13_mini",
+            "twinCatInfo": "iPhone13 mini"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone13.png",
+            "twinCatName": "iphone13",
+            "twinCatInfo": "iPhone13"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone12pro_max.png",
+            "twinCatName": "iphone12_pro_max",
+            "twinCatInfo": "iPhone12Pro Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone12pro.png",
+            "twinCatName": "iphone12_pro",
+            "twinCatInfo": "iPhone12Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone12mini.png",
+            "twinCatName": "iphone12_mini",
+            "twinCatInfo": "iPhone12 mini"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone12.png",
+            "twinCatName": "iphone12",
+            "twinCatInfo": "iPhone12"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-11_pro_max.png",
+            "twinCatName": "iphone11_pro_max",
+            "twinCatInfo": "iPhone11 Pro Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-11_pro.png",
+            "twinCatName": "iphone11_pro",
+            "twinCatInfo": "iPhone11 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-11.png",
+            "twinCatName": "iphone11",
+            "twinCatInfo": "iPhone11"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone15pro_max.png",
+            "twinCatName": "iphone15pro_max",
+            "twinCatInfo": "iPhone15 Pro Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone15pro.png",
+            "twinCatName": "iphone15pro",
+            "twinCatInfo": "iPhone15 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone15plus.png",
+            "twinCatName": "iphone15plus",
+            "twinCatInfo": "iPhone15 Plus"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone15.png",
+            "twinCatName": "iphone15",
+            "twinCatInfo": "iPhone15"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone14pro_max.png",
+            "twinCatName": "iphone14pro_max",
+            "twinCatInfo": "iPhone14 Pro Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone14pro.png",
+            "twinCatName": "iphone14pro",
+            "twinCatInfo": "iPhone14 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone14plus.png",
+            "twinCatName": "iphone14plus",
+            "twinCatInfo": "iPhone14 Plus"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone14.png",
+            "twinCatName": "iphone14",
+            "twinCatInfo": "iPhone14"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphonese3.png",
+            "twinCatName": "iphonese3",
+            "twinCatInfo": "iPhoneSE 第3世代"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone13pro_max.png",
+            "twinCatName": "iphone13_pro_max",
+            "twinCatInfo": "iPhone13 Pro Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone13pro.png",
+            "twinCatName": "iphone13_pro",
+            "twinCatInfo": "iPhone13 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone13mini.png",
+            "twinCatName": "iphone13_mini",
+            "twinCatInfo": "iPhone13 mini"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone13.png",
+            "twinCatName": "iphone13",
+            "twinCatInfo": "iPhone13"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone12pro_max.png",
+            "twinCatName": "iphone12_pro_max",
+            "twinCatInfo": "iPhone12Pro Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone12pro.png",
+            "twinCatName": "iphone12_pro",
+            "twinCatInfo": "iPhone12Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone12mini.png",
+            "twinCatName": "iphone12_mini",
+            "twinCatInfo": "iPhone12 mini"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/iphone12.png",
+            "twinCatName": "iphone12",
+            "twinCatInfo": "iPhone12"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-11_pro_max.png",
+            "twinCatName": "iphone11_pro_max",
+            "twinCatInfo": "iPhone11 Pro Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-11_pro.png",
+            "twinCatName": "iphone11_pro",
+            "twinCatInfo": "iPhone11 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-11.png",
+            "twinCatName": "iphone11",
+            "twinCatInfo": "iPhone11"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-se2.png",
+            "twinCatName": "iphonese2",
+            "twinCatInfo": "iPhoneSE 第2世代"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-xr.png",
+            "twinCatName": "iphonexr",
+            "twinCatInfo": "iPhoneXR"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-xs.png",
+            "twinCatName": "iphonexs",
+            "twinCatInfo": "iPhoneXS"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-xsm.png",
+            "twinCatName": "iphonexs_max",
+            "twinCatInfo": "iPhoneXS Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-x.png",
+            "twinCatName": "iphonex",
+            "twinCatInfo": "iPhoneX"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-8.png",
+            "twinCatName": "iphone8",
+            "twinCatInfo": "iPhone8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-8p.png",
+            "twinCatName": "iphone8plus",
+            "twinCatInfo": "iPhone8 Plus"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-7.png",
+            "twinCatName": "iphone7",
+            "twinCatInfo": "iPhone7"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-7p.png",
+            "twinCatName": "iphone7plus",
+            "twinCatInfo": "iPhone7 Plus"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-se.png",
+            "twinCatName": "iphonese",
+            "twinCatInfo": "iPhoneSE"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-6s.png",
+            "twinCatName": "iphone6s",
+            "twinCatInfo": "iPhone6s"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-6sp.png",
+            "twinCatName": "iphone6splus",
+            "twinCatInfo": "iPhone6s Plus"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-6.png",
+            "twinCatName": "iphone6",
+            "twinCatInfo": "iPhone6"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/iphone/list-6p.png",
+            "twinCatName": "iphone6plus",
+            "twinCatInfo": "iPhone6 Plus"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/xperia/",
+        "twinCatName": "xperia",
+        "twinCatInfo": "xperia",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_5_v.jpg",
+            "twinCatName": "#xperia_5_v",
+            "twinCatInfo": "Xperia5 Vシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_10_v.jpg",
+            "twinCatName": "#xperia_10_v",
+            "twinCatInfo": "Xperia10 Vシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_1_v.jpg",
+            "twinCatName": "#xperia_1_v",
+            "twinCatInfo": "Xperia1 Vシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia5_4.jpg",
+            "twinCatName": "#xperia5_iv",
+            "twinCatInfo": "Xperia5 IVシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_10_4.jpg",
+            "twinCatName": "#xperia_10_4",
+            "twinCatInfo": "Xperia10 IVシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_1_4.jpg",
+            "twinCatName": "#xperia_1_4",
+            "twinCatInfo": "Xperia1 IVシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_ace_3.jpg",
+            "twinCatName": "#xperia_ace_3",
+            "twinCatInfo": "Xperia Ace IIIシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_pro.jpg",
+            "twinCatName": "#xperia_pro_1",
+            "twinCatInfo": "Xperia PROシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_5_3.jpg",
+            "twinCatName": "#xperia_5_3",
+            "twinCatInfo": "Xperia5 Ⅲシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_1_3.jpg",
+            "twinCatName": "#xperia_1_3",
+            "twinCatInfo": "Xperia1 Ⅲシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_10_3.jpg",
+            "twinCatName": "#xperia_10_3",
+            "twinCatInfo": "Xperia10 Ⅲシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_ace2.jpg",
+            "twinCatName": "#xperia_ace2",
+            "twinCatInfo": "Xperia AceⅡシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia5_2.jpg",
+            "twinCatName": "#xperia5_2",
+            "twinCatInfo": "Xperia5 IIシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NWU5MDU1Mz",
+            "twinCatName": "#xperia1_2",
+            "twinCatInfo": "Xperia1 IIシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NmNkMWEwZW",
+            "twinCatName": "#xperia10_2",
+            "twinCatInfo": "Xperia10 IIシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YmM3ZTYyZT",
+            "twinCatName": "#xperia5",
+            "twinCatInfo": "Xperia5シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NjQ4YzhjNm",
+            "twinCatName": "#xperia8",
+            "twinCatInfo": "Xperia8シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NGEwNDZjYj",
+            "twinCatName": "#xperia_ace",
+            "twinCatInfo": "Xperia Aceシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_1.jpg",
+            "twinCatName": "#xperia1",
+            "twinCatInfo": "Xperia 1シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/xperia_xz3.jpg",
+            "twinCatName": "#xz3",
+            "twinCatInfo": "Xperia XZ3シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/list-xz1.png",
+            "twinCatName": "#xz",
+            "twinCatInfo": "Xperia XZシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xperia/list-other.png",
+            "twinCatName": "#other",
+            "twinCatInfo": "Xperiaその他"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/galaxy/",
+        "twinCatName": "galaxy",
+        "twinCatInfo": "galaxy",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_s24.jpg",
+            "twinCatName": "#s24",
+            "twinCatInfo": "Galaxy Sシリーズ###Galaxy S24"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_s24_plus.jpg",
+            "twinCatName": "#s24_plus",
+            "twinCatInfo": "Galaxy Sシリーズ###Galaxy S24 Plus"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_s24_ultra.jpg",
+            "twinCatName": "#s24_ultra",
+            "twinCatInfo": "Galaxy Sシリーズ###Galaxy S24 Ultra"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MGM0ZTQ5M2",
+            "twinCatName": "#s23",
+            "twinCatInfo": "Galaxy Sシリーズ###Galaxy S23シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_s22ultra.jpg",
+            "twinCatName": "#galaxy_s22",
+            "twinCatInfo": "Galaxy Sシリーズ###Galaxy S22 シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/s21.jpg",
+            "twinCatName": "#galaxy_s21",
+            "twinCatInfo": "Galaxy Sシリーズ###Galaxy S21 シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZjIxZTgyNT",
+            "twinCatName": "#galaxy_s20",
+            "twinCatInfo": "Galaxy Sシリーズ###Galaxy S20シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NGUwNDk2OD",
+            "twinCatName": "#galaxy_s10",
+            "twinCatInfo": "Galaxy Sシリーズ###Galaxy S10シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/list-s9.png",
+            "twinCatName": "#s9",
+            "twinCatInfo": "Galaxy Sシリーズ###Galaxy S9シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/list-s8.png",
+            "twinCatName": "#s8",
+            "twinCatInfo": "Galaxy Sシリーズ###Galaxy S8シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_a54.jpg",
+            "twinCatName": "#a54",
+            "twinCatInfo": "Galaxy Aシリーズ###Galaxy A54"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_a23.png",
+            "twinCatName": "#a23",
+            "twinCatInfo": "Galaxy Aシリーズ###Galaxy A23"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_a53.jpg",
+            "twinCatName": "#galaxy_a53",
+            "twinCatInfo": "Galaxy Aシリーズ###Galaxy A53"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_a22.jpg",
+            "twinCatName": "#galaxy_a22",
+            "twinCatInfo": "Galaxy Aシリーズ###Galaxy A22 5G"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_a21.jpg",
+            "twinCatName": "#galaxy_a21",
+            "twinCatInfo": "Galaxy Aシリーズ###Galaxy A21"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/a52.jpg",
+            "twinCatName": "#galaxy_a52",
+            "twinCatInfo": "Galaxy Aシリーズ###Galaxy A52"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_a51.jpg",
+            "twinCatName": "#galaxy_a51",
+            "twinCatInfo": "Galaxy Aシリーズ###Galaxy A51"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/a32.jpg",
+            "twinCatName": "#galaxy_a32",
+            "twinCatInfo": "Galaxy Aシリーズ###Galaxy A32"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YmJkMmRmZm",
+            "twinCatName": "#galaxy_a20",
+            "twinCatInfo": "Galaxy Aシリーズ###Galaxy A20"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZDY5MWY2Y2",
+            "twinCatName": "#galaxy_a30",
+            "twinCatInfo": "Galaxy Aシリーズ###Galaxy A30"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/note20.jpg",
+            "twinCatName": "#galaxy_note20",
+            "twinCatInfo": "Galaxy Noteシリーズ###Galaxy Note20 シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=N2E4N2Y1M2",
+            "twinCatName": "#galaxy_note10",
+            "twinCatInfo": "Galaxy Noteシリーズ###Galaxy Note10シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/list-note9.png",
+            "twinCatName": "#note9",
+            "twinCatInfo": "Galaxy Noteシリーズ###Galaxy Note9"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/list-note8.png",
+            "twinCatName": "#note8",
+            "twinCatInfo": "Galaxy Noteシリーズ###Galaxy Note8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/list-note.png",
+            "twinCatName": "#note",
+            "twinCatInfo": "Galaxy Noteシリーズ###Galaxy Noteシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_zfold5.jpg",
+            "twinCatName": "#z_fold5",
+            "twinCatInfo": "Galaxy Foldシリーズ###Galaxy Z Fold5"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_z_fold4.jpg",
+            "twinCatName": "#z_fold4",
+            "twinCatInfo": "Galaxy Foldシリーズ###Galaxy Z Fold4"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_z_fold3.jpg",
+            "twinCatName": "#galaxy_z_fold3",
+            "twinCatInfo": "Galaxy Foldシリーズ###Galaxy Z Fold3"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/z_fold2.jpg",
+            "twinCatName": "#galaxy_z_fold2",
+            "twinCatInfo": "Galaxy Foldシリーズ###Galaxy Z Fold2"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=OTY1MWEwMj",
+            "twinCatName": "#galaxy_fold",
+            "twinCatInfo": "Galaxy Foldシリーズ###Galaxy Foldシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_zflip5.jpg",
+            "twinCatName": "#z_flip5",
+            "twinCatInfo": "Galaxy Flipシリーズ###Galaxy Z Flip5"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_z_flip4.jpg",
+            "twinCatName": "#z_flip4",
+            "twinCatInfo": "Galaxy Flipシリーズ###Galaxy Z Flip4"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_z_flip3.jpg",
+            "twinCatName": "#galaxy_z_flip3",
+            "twinCatInfo": "Galaxy Flipシリーズ###Galaxy Z Flip3"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/z_flip.jpg",
+            "twinCatName": "#galaxy_z_flip5g",
+            "twinCatInfo": "Galaxy Flipシリーズ###Galaxy Z Flip"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/galaxy_m23.jpg",
+            "twinCatName": "#galaxy_m23",
+            "twinCatInfo": "Galaxy その他###Galaxy M23"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/list-feel.png",
+            "twinCatName": "#galaxy_feel",
+            "twinCatInfo": "Galaxy その他###GalaxyFeel"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/galaxy/list-other.png",
+            "twinCatName": "#other",
+            "twinCatInfo": "Galaxy その他###Galaxyその他"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/pixel/",
+        "twinCatName": "pixel",
+        "twinCatInfo": "pixel",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel8.jpg",
+            "twinCatName": "#pixel8",
+            "twinCatInfo": "Pixel8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel8pro.jpg",
+            "twinCatName": "#pixel8pro",
+            "twinCatInfo": "Pixel8 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel_fold.jpg",
+            "twinCatName": "#pixel_fold",
+            "twinCatInfo": "Pixel Fold"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel_tablet.jpg",
+            "twinCatName": "#pixel_tablet",
+            "twinCatInfo": "Pixel tablet"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel7a.jpg",
+            "twinCatName": "#pixel7a",
+            "twinCatInfo": "Pixel 7a"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel7.jpg",
+            "twinCatName": "#pixel7",
+            "twinCatInfo": "Pixel7"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel7pro.jpg",
+            "twinCatName": "#pixel7pro",
+            "twinCatInfo": "Pixel7 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel6a.jpg",
+            "twinCatName": "#pixel6a",
+            "twinCatInfo": "Pixel6a"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel6.jpg",
+            "twinCatName": "#pixel6",
+            "twinCatInfo": "Pixel6"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel6pro.jpg",
+            "twinCatName": "#pixel6pro",
+            "twinCatInfo": "Pixel6 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel5a_5g.jpg",
+            "twinCatName": "#pixel5a",
+            "twinCatInfo": "Pixel 5a(5G)"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel5.jpg",
+            "twinCatName": "#pixel5",
+            "twinCatInfo": "Pixel 5(5G)"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel4a_5g.jpg",
+            "twinCatName": "#pixel4a_5g",
+            "twinCatInfo": "Pixel 4a(5G)"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/pixel/pixel4a.jpg",
+            "twinCatName": "#pixel4a",
+            "twinCatInfo": "Pixel 4a"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MjRhYzIxMD",
+            "twinCatName": "#p4",
+            "twinCatInfo": "Pixel 4 シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YmRjMzcyYT",
+            "twinCatName": "#p3a",
+            "twinCatInfo": "Pixel 3a シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YjBjOTRkMj",
+            "twinCatName": "#p3",
+            "twinCatInfo": "Pixel 3 シリーズ"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/rakuten/",
+        "twinCatName": "rakuten",
+        "twinCatInfo": "rakuten",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MzA1NGJiNW",
+            "twinCatName": "#rakuten",
+            "twinCatInfo": "楽天モバイルオリジナル"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=OGQ5NWM0MD",
+            "twinCatName": "#iphone",
+            "twinCatInfo": "iPhone"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ODA4YjExY2",
+            "twinCatName": "#xperia",
+            "twinCatInfo": "Xperia"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MzZkYTgzZD",
+            "twinCatName": "#oppo",
+            "twinCatInfo": "OPPO"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZTMwZGUzNj",
+            "twinCatName": "#aquos",
+            "twinCatInfo": "AQUOS"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YjM2NDNmMj",
+            "twinCatName": "#galaxy",
+            "twinCatInfo": "Galaxy"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZDU0OGIxYz",
+            "twinCatName": "#other",
+            "twinCatInfo": "その他"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/xiaomi/",
+        "twinCatName": "xiaomi",
+        "twinCatInfo": "xiaomi",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/xiaomi_13.jpg",
+            "twinCatName": "#xiaomi_13",
+            "twinCatInfo": "Xiaomi 13"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/xiaomi_13pro.jpg",
+            "twinCatName": "#xiaomi_13pro",
+            "twinCatInfo": "Xiaomi 13 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/xiaomi_13lite.jpg",
+            "twinCatName": "#xiaomi_13lite",
+            "twinCatInfo": "Xiaomi 13 Lite"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/xiaomi_12t.jpg",
+            "twinCatName": "#xiaomi_12t",
+            "twinCatInfo": "Xiaomi 12T"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/xiaomi_12t_pro.jpg",
+            "twinCatName": "#xiaomi_12t_pro",
+            "twinCatInfo": "Xiaomi 12T Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/redminote10.jpg",
+            "twinCatName": "#redminote10",
+            "twinCatInfo": "Redmi Note 10シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/redminote11.jpg",
+            "twinCatName": "#note11",
+            "twinCatInfo": "Redmi Note11シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/11t.jpg",
+            "twinCatName": "#xiaomi11t",
+            "twinCatInfo": "Xiaomi 11Tシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/mi11lite.jpg",
+            "twinCatName": "#mi11",
+            "twinCatInfo": "Mi 11 Liteシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/blackshark4.jpg",
+            "twinCatName": "#bs4",
+            "twinCatInfo": "Black Shark4ゲーミングスマホ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/blackshark3.jpg",
+            "twinCatName": "#bs3",
+            "twinCatInfo": "Black Shark3ゲーミングスマホ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/xiaomi/blackshark2.jpg",
+            "twinCatName": "#bs2",
+            "twinCatInfo": "Black Shark2ゲーミングスマホ"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/aquos/",
+        "twinCatName": "aquos",
+        "twinCatInfo": "aquos",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_sense8.jpg",
+            "twinCatName": "#sense8",
+            "twinCatInfo": "AQUOS sense8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_wish3.jpg",
+            "twinCatName": "#wish3",
+            "twinCatInfo": "AQUOS wish3"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_r8.jpg",
+            "twinCatName": "#r8",
+            "twinCatInfo": "AQUOS R8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_r8_pro.jpg",
+            "twinCatName": "#r8_pro",
+            "twinCatInfo": "AQUOS R8 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/sense7.jpg",
+            "twinCatName": "#sense7",
+            "twinCatInfo": "AQUOS sense7シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_r7.jpg",
+            "twinCatName": "#r7",
+            "twinCatInfo": "AQUOS R7"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_sense6.jpg",
+            "twinCatName": "#sense6s",
+            "twinCatInfo": "AQUOS sense6s"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_wish2.jpg",
+            "twinCatName": "#wish2",
+            "twinCatInfo": "AQUOS wish2"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_wish.jpg",
+            "twinCatName": "#wish",
+            "twinCatInfo": "AQUOS wish"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_sense6.jpg",
+            "twinCatName": "#sense6",
+            "twinCatInfo": "AQUOS sense6"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_r6.jpg",
+            "twinCatName": "#r6",
+            "twinCatInfo": "AQUOS R6"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=OGZjY2M1OT",
+            "twinCatName": "#r5g",
+            "twinCatInfo": "AQUOS R5G"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NmM5MGI5OD",
+            "twinCatName": "#r3",
+            "twinCatInfo": "AQUOS R3"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZDc5MzExM2",
+            "twinCatName": "#r",
+            "twinCatInfo": "AQUOS Rシリーズその他"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_zero6.jpg",
+            "twinCatName": "#zero6",
+            "twinCatInfo": "AQUOS zero6シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_zero5g.jpg",
+            "twinCatName": "#zero5g",
+            "twinCatInfo": "AQUOS zero5Gシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NDQzMzIzZT",
+            "twinCatName": "#zero2",
+            "twinCatInfo": "AQUOS zero2シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YTEzMjVhNT",
+            "twinCatName": "#zero",
+            "twinCatInfo": "AQUOS zeroシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_sense5g.jpg",
+            "twinCatName": "#sense5g",
+            "twinCatInfo": "AQUOS sense5Gシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/aquos/aquos_sense4.jpg",
+            "twinCatName": "#sense4",
+            "twinCatInfo": "AQUOS sense4シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NGJhYWMyMD",
+            "twinCatName": "#sense",
+            "twinCatInfo": "AQUOS senseシリーズその他"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MGQyMWFkND",
+            "twinCatName": "#other",
+            "twinCatInfo": "AQUOSその他"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/oppo/",
+        "twinCatName": "oppo",
+        "twinCatInfo": "oppo",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MDFlZDk4Nj",
+            "twinCatName": "#reno10pro",
+            "twinCatInfo": "OPPO Reno 10 Pro 5G"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZDgzMDYxNj",
+            "twinCatName": "#reno9a",
+            "twinCatInfo": "OPPO Reno9 A"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZTYyNWJiZD",
+            "twinCatName": "#a77",
+            "twinCatInfo": "OPPO A77"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/oppo/oppo_reno7a.jpg",
+            "twinCatName": "#reno7a",
+            "twinCatInfo": "OPPO Reno7 A"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/oppo/reno5a.jpg",
+            "twinCatName": "#reno5a",
+            "twinCatInfo": "OPPO Reno5 A"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/oppo/find_x3pro.jpg",
+            "twinCatName": "#find_x3pro",
+            "twinCatInfo": "OPPO Find X3 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/oppo/a54.jpg",
+            "twinCatName": "#a54",
+            "twinCatInfo": "OPPO A54"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/oppo/a55s.jpg",
+            "twinCatName": "#a55s",
+            "twinCatInfo": "OPPO A55s"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MTNlMmNlOW",
+            "twinCatName": "#find_x2",
+            "twinCatInfo": "Find X2 Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/oppo/reno3_5g.jpg",
+            "twinCatName": "#reno3_5g",
+            "twinCatInfo": "Reno3 5G"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/oppo/reno3_a.jpg",
+            "twinCatName": "#reno3_a",
+            "twinCatInfo": "Reno3 A"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MGQyYjIzND",
+            "twinCatName": "#a5_20",
+            "twinCatInfo": "A5 2020"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MjMxOTRiZW",
+            "twinCatName": "#reno",
+            "twinCatInfo": "Renoシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YmJlZjQ0Yj",
+            "twinCatName": "#r17",
+            "twinCatInfo": "R17"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/oppo/find_x.jpg",
+            "twinCatName": "#find_x",
+            "twinCatInfo": "Find X"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NzlhODlhMG",
+            "twinCatName": "#r15",
+            "twinCatInfo": "R15"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MGNkZDY0YW",
+            "twinCatName": "#other",
+            "twinCatInfo": "その他"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/zenfone/",
+        "twinCatName": "zenfone",
+        "twinCatInfo": "zenfone",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/zenfone/zenfone10.jpg",
+            "twinCatName": "#zenfone10",
+            "twinCatInfo": "ZenFone10シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/zenfone/zenfone9.jpg",
+            "twinCatName": "#zenfone9",
+            "twinCatInfo": "ZenFone9シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/zenfone/zenfone8.jpg",
+            "twinCatName": "#z8",
+            "twinCatInfo": "ZenFone8シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/zenfone/zenfone7.jpg",
+            "twinCatName": "#z7",
+            "twinCatInfo": "ZenFone7シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=OWQ1YTlmMm",
+            "twinCatName": "#z6",
+            "twinCatInfo": "ZenFone6シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=Njc0ZGVlOT",
+            "twinCatName": "#zmax",
+            "twinCatInfo": "ZenFone Maxシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MTE5ZWNmZG",
+            "twinCatName": "#z5",
+            "twinCatInfo": "ZenFone5シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MmE4YTA5NT",
+            "twinCatName": "#z4",
+            "twinCatInfo": "ZenFone4シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZjhlNjk3ZG",
+            "twinCatName": "#z3",
+            "twinCatInfo": "ZenFone3シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MDUxODY0N2",
+            "twinCatName": "#z2",
+            "twinCatInfo": "ZenFone2シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NmIzZDQ1N",
+            "twinCatName": "#other",
+            "twinCatInfo": "ZenFoneその他"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/arrows/",
+        "twinCatName": "arrows",
+        "twinCatInfo": "arrows",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/arrows/arrows_n.jpg",
+            "twinCatName": "#arrows_n",
+            "twinCatInfo": "arrowsNシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/smartphone/arrows/arrows_we.jpg",
+            "twinCatName": "#arrows_we",
+            "twinCatInfo": "arrowsWe"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NTY4OTc0MW",
+            "twinCatName": "#arrows_5g",
+            "twinCatInfo": "arrows5G"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YzgwNzE1Yz",
+            "twinCatName": "#arrows_nx",
+            "twinCatInfo": "arrowsNXシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NDMxMjM0MW",
+            "twinCatName": "#arrows_be",
+            "twinCatInfo": "arrowsBeシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=OGY5M2RkNz",
+            "twinCatName": "#simfree",
+            "twinCatInfo": "arrowsSIMフリー"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=OTA5ZDYzOW",
+            "twinCatName": "#other",
+            "twinCatInfo": "arrowsその他"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZTcyZjUwZm",
+            "twinCatName": "#tab",
+            "twinCatInfo": "arrowsTab"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/huawei/",
+        "twinCatName": "huawei",
+        "twinCatInfo": "huawei",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MGE2M2UwMD",
+            "twinCatName": "#mate30",
+            "twinCatInfo": "Mate30シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NGU0NWRmY2",
+            "twinCatName": "#mate20",
+            "twinCatInfo": "Mate20シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NDVkZTM3Nz",
+            "twinCatName": "#mate10",
+            "twinCatInfo": "Mate10シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YjcyZTBhYm",
+            "twinCatName": "#mate_other",
+            "twinCatInfo": "Mateシリーズ その他"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YzUzODczMj",
+            "twinCatName": "#p40",
+            "twinCatInfo": "P40シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MWIzNGFkND",
+            "twinCatName": "#p30",
+            "twinCatInfo": "P30シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MGY5MDFiM2",
+            "twinCatName": "#p20",
+            "twinCatInfo": "P20シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YzBmZTQ4ND",
+            "twinCatName": "#p10",
+            "twinCatInfo": "P10シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=OTM3MmQzZm",
+            "twinCatName": "#p_other",
+            "twinCatInfo": "Pシリーズ その他"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MDZiOWE3Yz",
+            "twinCatName": "#nova5t",
+            "twinCatInfo": "nova5Tシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YWVlMzdjNT",
+            "twinCatName": "#nova3",
+            "twinCatInfo": "nova3シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NDczODk3Mz",
+            "twinCatName": "#nova2",
+            "twinCatInfo": "nova2シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YmFjNWYyYm",
+            "twinCatName": "#nova",
+            "twinCatInfo": "novaシリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ODM5YTkzOG",
+            "twinCatName": "#honor",
+            "twinCatInfo": "honorシリーズ"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/smartphone/nexus/",
+        "twinCatName": "nexus",
+        "twinCatInfo": "nexus",
+        "child": [
+          {
+            "twinCatName": "#n5",
+            "twinCatInfo": "Nexus 5 シリーズ"
+          },
+          {
+            "twinCatName": "#n6",
+            "twinCatInfo": "Nexus 6 シリーズ"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "twinCatName": "tablet",
+    "twinCatInfo": " タブレット",
+    "child": [
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/ipad/",
+        "twinCatName": "ipad",
+        "twinCatInfo": "ipad",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_10.png",
+            "twinCatName": "#ipad_10",
+            "twinCatInfo": "iPadシリーズ###iPad (第10世代)"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad9.png",
+            "twinCatName": "#ipad_9",
+            "twinCatInfo": "iPadシリーズ###iPad (第9世代)"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NzA0ZjdlOT",
+            "twinCatName": "#ipad_8",
+            "twinCatInfo": "iPadシリーズ###iPad (第8世代)"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_7.jpg",
+            "twinCatName": "#ipad_7",
+            "twinCatInfo": "iPadシリーズ###iPad (第7世代)"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_6.jpg",
+            "twinCatName": "#ipad6",
+            "twinCatInfo": "iPadシリーズ###iPad (第6世代)"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_5.jpg",
+            "twinCatName": "#ipad5",
+            "twinCatInfo": "iPadシリーズ###iPad (第5世代)"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_4.jpg",
+            "twinCatName": "#ipad4",
+            "twinCatInfo": "iPadシリーズ###iPad 4"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_3.jpg",
+            "twinCatName": "#ipad3",
+            "twinCatInfo": "iPadシリーズ###iPad 3"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_2.jpg",
+            "twinCatName": "#ipad2",
+            "twinCatInfo": "iPadシリーズ###iPad 2"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_1.jpg",
+            "twinCatName": "#ipad",
+            "twinCatInfo": "iPadシリーズ###iPad"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro6_12.png",
+            "twinCatName": "#ipad_pro6_12",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro 第6世代 12.9インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro4_11.png",
+            "twinCatName": "#ipad_pro4_11",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro 第4世代 11インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro12_5.jpg",
+            "twinCatName": "#ipad_pro12_5",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro 第5世代 12.9インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro11_3.jpg",
+            "twinCatName": "#ipad_pro11_3",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro 第3世代 11インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro2_11.jpg",
+            "twinCatName": "#ipad_pro2_11",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro 第2世代 11インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro4_12.jpg",
+            "twinCatName": "#ipad_pro4",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro 第4世代 12.9インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro3_12.jpg",
+            "twinCatName": "#pro3_12",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro 第3世代 12.9インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro3_11.jpg",
+            "twinCatName": "#pro3_11",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro11インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro2_12.jpg",
+            "twinCatName": "#pro2_12",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro 第2世代 12.9インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro_9.jpg",
+            "twinCatName": "#pro9",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro 9.7インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro_12.jpg",
+            "twinCatName": "#pro12",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro 12.9インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_pro_10.jpg",
+            "twinCatName": "#pro10",
+            "twinCatInfo": "iPad Proシリーズ###iPad Pro 10.5インチ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_air5.png",
+            "twinCatName": "#air5",
+            "twinCatInfo": "iPad Airシリーズ###iPad Air5"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_air4.jpg",
+            "twinCatName": "#air4",
+            "twinCatInfo": "iPad Airシリーズ###iPad Air4"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_air3.jpg",
+            "twinCatName": "#air3",
+            "twinCatInfo": "iPad Airシリーズ###iPad Air3"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_air2.jpg",
+            "twinCatName": "#air2",
+            "twinCatInfo": "iPad Airシリーズ###iPad Air2"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_air.jpg",
+            "twinCatName": "#air",
+            "twinCatInfo": "iPad Airシリーズ###iPad Air"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_mini6.png",
+            "twinCatName": "#mini6",
+            "twinCatInfo": "iPad miniシリーズ###iPad mini6"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_mini5.jpg",
+            "twinCatName": "#mini5",
+            "twinCatInfo": "iPad miniシリーズ###iPad mini5"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_mini4.jpg",
+            "twinCatName": "#mini4",
+            "twinCatInfo": "iPad miniシリーズ###iPad mini4"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_mini3.jpg",
+            "twinCatName": "#mini3",
+            "twinCatInfo": "iPad miniシリーズ###iPad mini3"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_mini2.jpg",
+            "twinCatName": "#mini2",
+            "twinCatInfo": "iPad miniシリーズ###iPad mini2"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/ipad/ipad_mini.jpg",
+            "twinCatName": "#mini",
+            "twinCatInfo": "iPad miniシリーズ###iPad mini"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/surface/",
+        "twinCatName": "surface",
+        "twinCatInfo": "surface",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surface_book3.jpg",
+            "twinCatName": "#book3",
+            "twinCatInfo": "Bookシリーズ###Surface Book3"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacebook.jpg",
+            "twinCatName": "#book2",
+            "twinCatInfo": "Bookシリーズ###Surface Book2"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacebook.jpg",
+            "twinCatName": "#book",
+            "twinCatInfo": "Bookシリーズ###Surface Book"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surface_laptop_go.jpg",
+            "twinCatName": "#laptop_go",
+            "twinCatInfo": "Goシリーズ###Surface Laptop Go"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/go3.jpg",
+            "twinCatName": "#go3",
+            "twinCatInfo": "Goシリーズ###Surface Go3"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surface_go2.jpg",
+            "twinCatName": "#go2",
+            "twinCatInfo": "Goシリーズ###Surface Go2"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacego.jpg",
+            "twinCatName": "#go",
+            "twinCatInfo": "Goシリーズ###Surface Go"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surface_pro9.jpg",
+            "twinCatName": "#pro9",
+            "twinCatInfo": "Proシリーズ###Surface Pro 9"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/pro8.jpg",
+            "twinCatName": "#pro8",
+            "twinCatInfo": "Proシリーズ###Surface Pro 8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacepro7.png",
+            "twinCatName": "#pro7",
+            "twinCatInfo": "Proシリーズ###Surface Pro 7"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacepro6.jpg",
+            "twinCatName": "#pro6",
+            "twinCatInfo": "Proシリーズ###Surface Pro 6"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacepro5.jpg",
+            "twinCatName": "#pro5",
+            "twinCatInfo": "Proシリーズ###Surface Pro 5"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacepro4.jpg",
+            "twinCatName": "#pro4",
+            "twinCatInfo": "Proシリーズ###Surface Pro 4"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacepro3.jpg",
+            "twinCatName": "#pro3",
+            "twinCatInfo": "Proシリーズ###Surface Pro 3"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacepro2.jpg",
+            "twinCatName": "#pro2",
+            "twinCatInfo": "Proシリーズ###Surface Pro 2"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacepro.jpg",
+            "twinCatName": "#pro",
+            "twinCatInfo": "Proシリーズ###Surface Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surface_laptop_studio.jpg",
+            "twinCatName": "#laptop_studio",
+            "twinCatInfo": "Laptopシリーズ###Surface Laptop Studio"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surface_laptop5.jpg",
+            "twinCatName": "#laptop5",
+            "twinCatInfo": "Laptopシリーズ###Surface Laptop5"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/laptop4.jpg",
+            "twinCatName": "#laptop4",
+            "twinCatInfo": "Laptopシリーズ###Surface Laptop4"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacelaptop3.png",
+            "twinCatName": "#laptop3",
+            "twinCatInfo": "Laptopシリーズ###Surface Laptop3"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacelaptop2.jpg",
+            "twinCatName": "#laptop2",
+            "twinCatInfo": "Laptopシリーズ###Surface Laptop2"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surfacelaptop.jpg",
+            "twinCatName": "#laptop",
+            "twinCatInfo": "Laptopシリーズ###Surface Laptop"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/surface/surface_studio.jpg",
+            "twinCatName": "#studio",
+            "twinCatInfo": "Surface Studioシリーズ###Surface Studio"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/galaxytab/",
+        "twinCatName": "galaxytab",
+        "twinCatInfo": "galaxytab",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NGViNmQ3Yj",
+            "twinCatName": "#s9",
+            "twinCatInfo": "Galaxy Tab   S9シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MmQwMDViZm",
+            "twinCatName": "#s8",
+            "twinCatInfo": "Galaxy Tab S8シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MjQ2YjFiOD",
+            "twinCatName": "#s7",
+            "twinCatInfo": "Galaxy Tab S7シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MDEwMmViZW",
+            "twinCatName": "#s6",
+            "twinCatInfo": "Galaxy Tab S6シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MGIxOTYyOG",
+            "twinCatName": "#s5",
+            "twinCatInfo": "Galaxy Tab S5e"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MDU3NTk4NW",
+            "twinCatName": "#s4",
+            "twinCatInfo": "Galaxy Tab S4シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZDZjYjQ3YW",
+            "twinCatName": "#s3",
+            "twinCatInfo": "GALAXY Tab S3シリーズ"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MjgwNTMwOT",
+            "twinCatName": "#s2",
+            "twinCatInfo": "Galaxy Tab S2シリーズ"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/dtab/",
+        "twinCatName": "dtab",
+        "twinCatInfo": "dtab",
+        "child": [
+          {
+            "twinCatName": "#d02k",
+            "twinCatInfo": "d-02K"
+          },
+          {
+            "twinCatName": "#d01k",
+            "twinCatInfo": "d-01K"
+          },
+          {
+            "twinCatName": "#d01j",
+            "twinCatInfo": "d-01J"
+          },
+          {
+            "twinCatName": "#d02h",
+            "twinCatInfo": "d-02H"
+          },
+          {
+            "twinCatName": "#d01h",
+            "twinCatInfo": "d-01H"
+          },
+          {
+            "twinCatName": "#d01g",
+            "twinCatInfo": "d-01G"
+          },
+          {
+            "twinCatName": "#d01",
+            "twinCatInfo": "dtab 01"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/quatab/",
+        "twinCatName": "quatab",
+        "twinCatInfo": "quatab",
+        "child": [
+          {
+            "twinCatName": "#quatab",
+            "twinCatInfo": "Qua Tab"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/xperia/",
+        "twinCatName": "xperia",
+        "twinCatInfo": "xperia",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZTc0MjFlMj",
+            "twinCatName": "#z4",
+            "twinCatInfo": "Xperia Z4Tablet"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YmVlOTVjMj",
+            "twinCatName": "#z3",
+            "twinCatInfo": "Xperia Z3Tablet Compact"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MGQwYzg4N2",
+            "twinCatName": "#z2",
+            "twinCatInfo": "Xperia Z2Tablet"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YjJkYjFmNz",
+            "twinCatName": "#z",
+            "twinCatInfo": "Xperia ZTablet"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/lenovotab/",
+        "twinCatName": "lenovotab",
+        "twinCatInfo": "lenovotab",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZmU3YWQzNG",
+            "twinCatName": "#lenovotab_p12",
+            "twinCatInfo": "Lenovo Tab P12"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YTQxZDQ0OT",
+            "twinCatName": "#lenovotab_p11",
+            "twinCatInfo": "Lenovo Tab P11"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MWFkZTRhMz",
+            "twinCatName": "#lenovotab_p10",
+            "twinCatInfo": "Lenovo Tab P10"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=Yzg3MDMwND",
+            "twinCatName": "#lenovotab_m10",
+            "twinCatInfo": "Lenovo Tab M10"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=OWRhY2EzZW",
+            "twinCatName": "#lenovotab_m9",
+            "twinCatInfo": "Lenovo Tab M9"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZWY5YmVlYW",
+            "twinCatName": "#lenovotab_m8",
+            "twinCatInfo": "Lenovo Tab M8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZTM4NTMwMG",
+            "twinCatName": "#lenovotab_m7",
+            "twinCatInfo": "Lenovo Tab M7"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MzBjNzE1ZD",
+            "twinCatName": "#lenovotab_k10",
+            "twinCatInfo": "Lenovo Tab K10"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MjIyMWU2ZT",
+            "twinCatName": "#lenovotab_e10",
+            "twinCatInfo": "Lenovo Tab E10"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/lenovotab_e8.jpg",
+            "twinCatName": "#lenovotab_e8",
+            "twinCatInfo": "Lenovo Tab E8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NmVhMGNlOD",
+            "twinCatName": "#lenovotab_b10",
+            "twinCatInfo": "Lenovo Tab B10"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=Y2Q5ODkxMm",
+            "twinCatName": "#lenovotab4_10",
+            "twinCatInfo": "Lenovo TAB4 10"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZGZhMTE1NW",
+            "twinCatName": "#lenovotab4_8",
+            "twinCatInfo": "Lenovo TAB4 8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/lenovotab4_7.jpg",
+            "twinCatName": "#lenovotab4_7",
+            "twinCatInfo": "Lenovo TAB4 7"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MWEyNTVmNT",
+            "twinCatName": "#yoga_smarttab",
+            "twinCatInfo": "Yoga Smart Tab"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NThmYzAyYz",
+            "twinCatName": "#yoga_13",
+            "twinCatInfo": "Yoga Tab   13"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MjEwZWFhM2",
+            "twinCatName": "#yoga_11",
+            "twinCatInfo": "Yoga Tab   11"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=Y2Y1NTQxND",
+            "twinCatName": "#yoga_10",
+            "twinCatInfo": "YOGA   Tablet 10"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MTY1Njc4YW",
+            "twinCatName": "#yoga_8",
+            "twinCatInfo": "YOGA Tablet 8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZTg2YTE4OD",
+            "twinCatName": "#yogabook",
+            "twinCatInfo": "YOGA BOOK"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/xiaomi/",
+        "twinCatName": "xiaomi",
+        "twinCatInfo": "xiaomi",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=YWI2Y2FmZT",
+            "twinCatName": "#pad6",
+            "twinCatInfo": "Xiaomi Pad6"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/xiaomi_pad5.jpg",
+            "twinCatName": "#pad5",
+            "twinCatInfo": "Xiaomi Pad5"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/redmi_pad.jpg",
+            "twinCatName": "#redmi_pad",
+            "twinCatInfo": "Redmi Pad"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/nexus/",
+        "twinCatName": "nexus",
+        "twinCatInfo": "nexus",
+        "child": [
+          {
+            "twinCatName": "#nexus7",
+            "twinCatInfo": "Nexus 7"
+          },
+          {
+            "twinCatName": "#nexus9",
+            "twinCatInfo": "Nexus 9"
+          },
+          {
+            "twinCatName": "#nexus10",
+            "twinCatInfo": "Nexus 10"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/mediapad/",
+        "twinCatName": "mediapad",
+        "twinCatInfo": "mediapad",
+        "child": [
+          {
+            "twinCatName": "#mediapad7",
+            "twinCatInfo": "MediaPad 7インチモデル"
+          },
+          {
+            "twinCatName": "#mediapad8",
+            "twinCatInfo": "MediaPad 8インチモデル"
+          },
+          {
+            "twinCatName": "#mediapad10",
+            "twinCatInfo": "MediaPad 10インチモデル"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/zenpad/",
+        "twinCatName": "zenpad",
+        "twinCatInfo": "zenpad",
+        "child": [
+          {
+            "twinCatName": "#zenpad7",
+            "twinCatInfo": "ZenPad 7インチモデル"
+          },
+          {
+            "twinCatName": "#zenpad8",
+            "twinCatInfo": "ZenPad 8インチモデル"
+          },
+          {
+            "twinCatName": "#zenpad10",
+            "twinCatInfo": "ZenPad 10インチモデル"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/aquospad/",
+        "twinCatName": "aquospad",
+        "twinCatInfo": "aquospad",
+        "child": [
+          {
+            "twinCatName": "#aquospad",
+            "twinCatInfo": "AQUOS PAD"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/arrows/",
+        "twinCatName": "arrows",
+        "twinCatInfo": "arrows",
+        "child": [
+          {
+            "twinCatName": "#docomo",
+            "twinCatInfo": "ARROWS Tab (docomo)"
+          },
+          {
+            "twinCatName": "#android",
+            "twinCatInfo": "ARROWS Tab (Android Wi-Fi版)"
+          },
+          {
+            "twinCatName": "#windows",
+            "twinCatInfo": "ARROWS Tab (Windows)"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/memopad/",
+        "twinCatName": "memopad",
+        "twinCatInfo": "memopad",
+        "child": [
+          {
+            "twinCatName": "#memopad7",
+            "twinCatInfo": "MeMO Pad 7"
+          },
+          {
+            "twinCatName": "#memopad8",
+            "twinCatInfo": "MeMO Pad 8"
+          },
+          {
+            "twinCatName": "#memopad10",
+            "twinCatInfo": "MeMO Pad 10"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/iconia/",
+        "twinCatName": "iconia",
+        "twinCatInfo": "iconia",
+        "child": [
+          {
+            "twinCatName": "#android",
+            "twinCatInfo": "Android"
+          },
+          {
+            "twinCatName": "#windows",
+            "twinCatInfo": "Windows"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/lavietab/",
+        "twinCatName": "lavietab",
+        "twinCatInfo": "lavietab",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/tablet/lavie_t12.jpg",
+            "twinCatName": "#lavie_t12",
+            "twinCatInfo": "LAVIE T12"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NmY5YzgxYW",
+            "twinCatName": "#lavietab_t10",
+            "twinCatInfo": "LAVIE Tab T10"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MGE3NzU3ZT",
+            "twinCatName": "#lavie_t11",
+            "twinCatInfo": "LAVIE T11"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=NTFiOGQ1Mm",
+            "twinCatName": "#lavie_t7",
+            "twinCatInfo": "LAVIE T7"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=OGEyNjA0ZW",
+            "twinCatName": "#lavie_t8",
+            "twinCatInfo": "LAVIE T8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=ZmVlMjJmYT",
+            "twinCatName": "#lavietab_e",
+            "twinCatInfo": "LaVie Tab E"
+          },
+          {
+            "img": "https://k-tai-iosys.com/script/image_get.php?gid=MmQxZjk0Nj",
+            "twinCatName": "#lavietab_s",
+            "twinCatInfo": "LAVIE Tab S"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/tablet/yogatablet/",
+        "twinCatName": "yogatablet",
+        "twinCatInfo": "yogatablet",
+        "child": [
+          {
+            "twinCatName": "#yoga2",
+            "twinCatInfo": "YOGA Tablet 2"
+          },
+          {
+            "twinCatName": "#yoga8",
+            "twinCatInfo": "YOGA Tablet 8"
+          },
+          {
+            "twinCatName": "#yoga10",
+            "twinCatInfo": "YOGA Tablet 10"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "twinCatName": "notepc",
+    "twinCatInfo": " ノートパソコン",
+    "child": [
+      {
+        "url": "https://k-tai-iosys.com/pricelist/notepc/macbook/",
+        "twinCatName": "macbook",
+        "twinCatInfo": "macbook",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/notepc/macbook/macbook.jpg",
+            "twinCatName": "macbook",
+            "twinCatInfo": "MacBook"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/notepc/macbook/macbookpro.jpg",
+            "twinCatName": "macbookpro",
+            "twinCatInfo": "MacBook Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/notepc/macbook/macbookair.jpg",
+            "twinCatName": "macbookair",
+            "twinCatInfo": "MacBook Air"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "twinCatName": "wearable",
+    "twinCatInfo": " スマートウォッチ",
+    "child": [
+      {
+        "url": "https://k-tai-iosys.com/pricelist/wearable/smartwatch/applewatch/",
+        "twinCatName": "smartwatch",
+        "twinCatInfo": "smartwatch",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/wearable/series9_list.png",
+            "twinCatName": "series9",
+            "twinCatInfo": "Series9"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/wearable/ultra2_list.png",
+            "twinCatName": "ultra2",
+            "twinCatInfo": "Ultra2"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/wearable/series8_list.png",
+            "twinCatName": "series8",
+            "twinCatInfo": "Series8"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/wearable/se2_list.png",
+            "twinCatName": "se2",
+            "twinCatInfo": "SE第2世代"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/wearable/ultra_list.png",
+            "twinCatName": "ultra",
+            "twinCatInfo": "Ultra"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/wearable/series7_list.png",
+            "twinCatName": "series7",
+            "twinCatInfo": "Series7"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/wearable/series6_list.png",
+            "twinCatName": "series6",
+            "twinCatInfo": "Series6"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/wearable/se_list.png",
+            "twinCatName": "se",
+            "twinCatInfo": "SE"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/wearable/series5-list.png",
+            "twinCatName": "series5",
+            "twinCatInfo": "Series5"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/wearable/series4-list.png",
+            "twinCatName": "series4",
+            "twinCatInfo": "Series4"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/wearable/series3-list.png",
+            "twinCatName": "series3",
+            "twinCatInfo": "Series3"
+          },
+          {
+            "twinCatName": "series2",
+            "twinCatInfo": "Series2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "twinCatName": "accessory",
+    "twinCatInfo": " アクセサリー",
+    "child": [
+      {
+        "url": "https://k-tai-iosys.com/pricelist/accessory/earphone/",
+        "twinCatName": "earphone",
+        "twinCatInfo": "earphone",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/accessory/earphone/airpods3.jpg",
+            "twinCatName": "#apple",
+            "twinCatInfo": "Apple AirPods"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/accessory/earphone/SONY.jpg",
+            "twinCatName": "#sony",
+            "twinCatInfo": "SONY WF,LinkBuds など"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/accessory/earphone/Galaxy.jpg",
+            "twinCatName": "#galaxy",
+            "twinCatInfo": "Galaxy Galaxy Buds"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/accessory/earphone/Google.jpg",
+            "twinCatName": "#google",
+            "twinCatInfo": "Google Google Pixel Buds"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/accessory/earphone/BOSE.jpg",
+            "twinCatName": "#bose",
+            "twinCatInfo": "BOSE Sport Earbuds など"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/accessory/earphone/SENNHEISER.jpg",
+            "twinCatName": "#sennheiser",
+            "twinCatInfo": "SENNHEISER CX など"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/accessory/earphone/audio-technica.jpg",
+            "twinCatName": "#audio-technica",
+            "twinCatInfo": "audio-technica ATH など"
+          }
+        ]
+      },
+      {
+        "url": "https://k-tai-iosys.com/pricelist/accessory/apple/airpods/",
+        "twinCatName": "apple",
+        "twinCatInfo": "apple",
+        "child": [
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/airpods_pro2.jpg",
+            "twinCatName": "#airpods_pro2",
+            "twinCatInfo": "AirPods Pro第2世代"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/airpods3.jpg",
+            "twinCatName": "#airpods_3",
+            "twinCatInfo": "AirPods第3世代"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/airpods_pro2021.jpg",
+            "twinCatName": "#airpods_pro2021",
+            "twinCatInfo": "AirPods Pro2021"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/airpods_max.jpg",
+            "twinCatName": "#airpods_max",
+            "twinCatInfo": "AirPods Max"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/airpods_pro.jpg",
+            "twinCatName": "#airpods_pro",
+            "twinCatInfo": "AirPods Pro"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/airpods_2.jpg",
+            "twinCatName": "#airpods_2",
+            "twinCatInfo": "AirPods 第2世代ワイヤレス充電非対応モデル（2019年発売）"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/airpods_2_wireless.jpg",
+            "twinCatName": "#airpods_2_wireless",
+            "twinCatInfo": "AirPods 第2世代ワイヤレス充電モデル（2019年発売）"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/airpods_case.jpg",
+            "twinCatName": "#airpods_case",
+            "twinCatInfo": "AirPodsワイヤレス充電ケース"
+          },
+          {
+            "img": "https://k-tai-iosys.com/pricelist/images/airpods.jpg",
+            "twinCatName": "#airpods_1",
+            "twinCatInfo": "AirPods 第1世代（2017年発売）"
+          }
+        ]
+      }
+    ]
+  }
+]

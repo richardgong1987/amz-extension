@@ -1,13 +1,21 @@
+import * as imagesCategory from "./category.json"
+
 const ports = new Map<number | string | undefined, chrome.runtime.Port>;
 
 
-chrome.runtime.onConnect.addListener(async function (port) {
+chrome.runtime.onConnect.addListener(async (port) => {
   if (port.name.startsWith("GHJ-port")) {
     ports.set(port.sender?.tab?.id, port);
     port.onMessage.addListener((msg) => {
       ports.set(port.name, port);
       if (msg.action === "start") {
         start();
+      }
+      if (msg.action === "stop") {
+        stopFetch();
+      }
+      if (msg.action === "downloadButton") {
+        downloadButton();
       }
       if (msg.action === "closeTab") {
         chrome.tabs.remove(port.sender?.tab?.id as number)
@@ -39,7 +47,10 @@ function openNewTab(url: string) {
   chrome.tabs.create({url})
 }
 
+let isstart = false;
+
 async function start() {
+  isstart = true;
   const category = [
     {
       "twinCatName": "smartphone",
@@ -236,11 +247,15 @@ async function start() {
         }
       ]
     }
-  ]
+  ];
   let index = 0;
   for (const item of category) {
     for (let item2 of item.child) {
       const resultData = await fetchData(item2.url);
+      if (!isstart) {
+        console.log("*****Stop");
+        return;
+      }
       // @ts-ignore
       item2.child = resultData;
       index++;
@@ -250,5 +265,28 @@ async function start() {
   console.log(JSON.stringify(category));
 }
 
+function stopFetch() {
+  isstart = false;
+}
 
+async function downloadButton() {
+  isstart = true;
+  const category = Array.from(imagesCategory)
+  let index = 0;
+  for (const item of category) {
+    for (let item2 of item.child) {
+      for (let item3 of item2.child) {
+        // console.log(item.twinCatName + "-" + item2.twinCatName + "-" + item3.twinCatName + ".png");
+        const number = await downloadImage(item3.img as string, item.twinCatName + "-" + item2.twinCatName + "-" + item3.twinCatName + ".png");
+      }
+    }
+  }
+}
 
+async function downloadImage(url: string, filename: string) {
+  return await chrome.downloads.download({
+    url: url,
+    filename: filename,
+    conflictAction: "overwrite",
+  });
+}

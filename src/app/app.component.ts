@@ -12,4 +12,12 @@ export class AppComponent {
   startFetch() {
     this.port.postMessage({action: "start"})
   }
+  stopFetch() {
+
+  }
+
+  downloadButton() {
+    this.port.postMessage({action: "downloadButton"})
+
+  }
 }
