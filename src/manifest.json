@@ -20,7 +20,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://k-tai-iosys.com/pricelist/*"
+        "*://k-tai-iosys.com/*"
       ],
       "js": [
         "assets/jq.js",

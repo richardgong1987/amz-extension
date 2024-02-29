@@ -6,26 +6,59 @@ port.onMessage.addListener((msg) => {
 });
 
 function getPricelist() {
-  var child: any = []
+  let child: any = []
+  let options = [] as any[];
+  let selected = $(".item_datail .selected");
+  let groups = {
+    "type": "0x単選項目",
+    "id": "opt0x_tit",
+    "val": selected.find(".title").text().trim(),
+    "label": "タイトル",
+    "options": options
+  };
 
-  $(".pricelist").each(function () {
-    var groups = {
-      "twinCatName": $(this).find(".pricelist-title a").attr("href")?.split("/").filter(v => v).pop(),
-      "pricelist-title": $(this).find(".pricelist-title").text().trim(),
-      "pricelist-releasedate": $(this).find(".pricelist-releasedate").text().trim(),
-      "tables": [] as any[],
-    }
-    $(this).find(".table tr").each(function () {
-      var sprice = parseInt($(this).find(".s-price").text().replace(/,/g, ""), 10);
-      groups.tables.push({
-        "data-group-id": $(this).attr("data-group-id"),
-        "carrer": $(this).find(".docomo").text().trim(),
-        "name": $(this).find(".name").text().trim(),
-        "s-price": sprice,
-        "s-name": $(this).find(".s-name").clone().find(".s-price").remove().end().text().trim(),
-        "a-name": $(this).find(".a-name").text(),
-        "ID":$(this).find('a').attr('href')
-      })
+  selected.find("input").each(function (i) {
+    selected.find("label")
+    options.push(
+      {
+        "t": {
+          "id": `opt${i}_t`,
+          "val": $(this).attr("data-value"),
+          "label": `項目_${i}`,
+        },
+        "p": {
+          "id": `opt${i}_p`,
+          "val": selected.find("label").eq(i).text(),
+          "label": "単価"
+        }
+      });
+  });
+  child.push(groups);
+  $(".notselected").each(function (bi) {
+    let selected = $(this);
+    let options = [] as any[];
+    let groups = {
+      "type": `${bi + 1}x単選項目`,
+      "id": `opt${bi + 1}x_tit`,
+      "val": selected.find(".title").text().trim(),
+      "label": "タイトル",
+      "options": options
+    };
+
+    selected.find("input").each(function (i) {
+      selected.find("label")
+      options.push({
+        "t": {
+          "id": `opt${i}_t`,
+          "val": $(this).attr("data-value"),
+          "label": `項目_${i}`,
+        },
+        "p": {
+          "id": `opt${i}_p`,
+          "val": selected.find("label").eq(i).text().trim(),
+          "label": "単価"
+        }
+      });
     });
     child.push(groups);
   });
@@ -37,7 +70,7 @@ function getPricelist() {
   port.postMessage(msg);
 }
 
-// setTimeout(getPricelist, 2000);
+setTimeout(getPricelist, 100);
 
 
 
