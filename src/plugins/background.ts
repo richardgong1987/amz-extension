@@ -2,6 +2,7 @@ import * as imagesCategory from "./category.json"
 
 
 let isstart = false;
+
 async function start() {
   isstart = true;
   const category = [
@@ -219,14 +220,14 @@ async function start() {
   // saveAndDownloadData(JSON.stringify(category, null, 2))
 }
 
-function saveAndDownloadData(jsonData:any) {
-  var blob = new Blob([jsonData], { type: "application/json" });
+function saveAndDownloadData(jsonData: any) {
+  var blob = new Blob([jsonData], {type: "application/json"});
   var url = "data:application/json;base64," + btoa(jsonData);
   chrome.downloads.download({
     url: url,
     filename: "loggedData.json",
     saveAs: false
-  }, function(downloadId) {
+  }, function (downloadId) {
     console.log("File downloaded with ID: " + downloadId);
   });
 }
@@ -302,4 +303,33 @@ async function downloadImage(url: string, filename: string) {
     filename: filename,
     conflictAction: "overwrite",
   });
+}
+
+export function createSingleChooseOpt(from: number, to: number) {
+  let result = [];
+
+  for (; from <= to; from++) {
+    let obj = {
+      type: `${from}x単選項目`,
+      id: `opt${from}x_tit`,
+      val: ``,
+      label: "タイトル",
+      options: [] as any[]
+    }
+    result.push(obj);
+    for (let i = 0; i <= 9; i++) {
+      obj.options.push({
+        t: {
+          id: `opt${from}${i}_t`,
+          val: ``,
+          label: `項目_${from}${i}`
+        }, p: {
+          id: `opt${from}${i}_p`,
+          val: 0,
+          label: `単価`
+        }
+      });
+    }
+  }
+  return result;
 }
