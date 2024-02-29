@@ -1,54 +1,7 @@
 import * as imagesCategory from "./category.json"
 
-const ports = new Map<number | string | undefined, chrome.runtime.Port>;
-
-
-chrome.runtime.onConnect.addListener(async (port) => {
-  if (port.name.startsWith("GHJ-port")) {
-    ports.set(port.sender?.tab?.id, port);
-    port.onMessage.addListener((msg) => {
-      ports.set(port.name, port);
-      if (msg.action === "start") {
-        start();
-      }
-      if (msg.action === "stop") {
-        stopFetch();
-      }
-      if (msg.action === "downloadButton") {
-        downloadButton();
-      }
-      if (msg.action === "closeTab") {
-        chrome.tabs.remove(port.sender?.tab?.id as number)
-      } else if (msg.action === "reloadTab") {
-        chrome.tabs.reload(port.sender?.tab?.id as number)
-        chrome.tabs.remove(port.sender?.tab?.id as number)
-      } else if (msg.action === "appendData") {
-        chrome.tabs.remove(port.sender?.tab?.id as number)
-        resolveData(msg.data);
-      }
-    });
-    // Handle disconnections
-    port.onDisconnect.addListener(function () {
-      ports.delete(port.sender?.tab?.id || port.name)
-    });
-  }
-});
-
-let resolveData: Function;
-
-function fetchData(url: string) {
-  return new Promise((resolve, reject) => {
-    openNewTab(url);
-    resolveData = resolve;
-  });
-}
-
-function openNewTab(url: string) {
-  chrome.tabs.create({url})
-}
 
 let isstart = false;
-
 async function start() {
   isstart = true;
   const category = [
@@ -263,7 +216,67 @@ async function start() {
     }
   }
   console.log(JSON.stringify(category));
+  // saveAndDownloadData(JSON.stringify(category, null, 2))
 }
+
+function saveAndDownloadData(jsonData:any) {
+  var blob = new Blob([jsonData], { type: "application/json" });
+  var url = "data:application/json;base64," + btoa(jsonData);
+  chrome.downloads.download({
+    url: url,
+    filename: "loggedData.json",
+    saveAs: false
+  }, function(downloadId) {
+    console.log("File downloaded with ID: " + downloadId);
+  });
+}
+
+
+const ports = new Map<number | string | undefined, chrome.runtime.Port>;
+chrome.runtime.onConnect.addListener(async (port) => {
+  if (port.name.startsWith("GHJ-port")) {
+    ports.set(port.sender?.tab?.id, port);
+    port.onMessage.addListener((msg) => {
+      ports.set(port.name, port);
+      if (msg.action === "start") {
+        start();
+      }
+      if (msg.action === "stop") {
+        stopFetch();
+      }
+      if (msg.action === "downloadButton") {
+        downloadButton();
+      }
+      if (msg.action === "closeTab") {
+        chrome.tabs.remove(port.sender?.tab?.id as number)
+      } else if (msg.action === "reloadTab") {
+        chrome.tabs.reload(port.sender?.tab?.id as number)
+        chrome.tabs.remove(port.sender?.tab?.id as number)
+      } else if (msg.action === "appendData") {
+        chrome.tabs.remove(port.sender?.tab?.id as number)
+        resolveData(msg.data);
+      }
+    });
+    // Handle disconnections
+    port.onDisconnect.addListener(function () {
+      ports.delete(port.sender?.tab?.id || port.name)
+    });
+  }
+});
+
+let resolveData: Function;
+
+function fetchData(url: string) {
+  return new Promise((resolve, reject) => {
+    openNewTab(url);
+    resolveData = resolve;
+  });
+}
+
+function openNewTab(url: string) {
+  chrome.tabs.create({url})
+}
+
 
 function stopFetch() {
   isstart = false;
