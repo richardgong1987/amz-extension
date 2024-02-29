@@ -37,7 +37,7 @@ function getPricelist() {
   port.postMessage(msg);
 }
 
-setTimeout(getPricelist, 2000);
+// setTimeout(getPricelist, 2000);
 
 
 
