@@ -2,7 +2,7 @@ npm run build
 
 cd dist
 
-rm mobadeko-extension.zip
+rm amz-extension.zip
 
-zip -r mobadeko-extension.zip mobadeko-extension/
+zip -r amz-extension.zip amz-extension/
 

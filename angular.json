@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mobadeko-extension": {
+    "amz-extension": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
             "customWebpackConfig": {
               "path": "./custom-webpack.config.ts"
             },
-            "outputPath": "dist/mobadeko-extension",
+            "outputPath": "dist/amz-extension",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -83,10 +83,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "mobadeko-extension:build:production"
+              "browserTarget": "amz-extension:build:production"
             },
             "development": {
-              "browserTarget": "mobadeko-extension:build:development"
+              "browserTarget": "amz-extension:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -94,7 +94,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mobadeko-extension:build"
+            "browserTarget": "amz-extension:build"
           }
         },
         "test": {
