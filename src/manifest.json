@@ -1,5 +1,5 @@
 {
-  "name": "mobadeko",
+  "name": "amz-extension",
   "version": "3.0.0",
   "description": "",
   "icons": {
@@ -20,7 +20,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://k-tai-iosys.com/*"
+        "*://www.amazon.co.jp/*"
       ],
       "js": [
         "assets/jq.js",
