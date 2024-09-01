@@ -24,7 +24,6 @@
       ],
       "js": [
         "assets/jq.js",
-        "assets/socket.io.js",
         "content_scripts.js"
       ],
       "run_at": "document_idle"
