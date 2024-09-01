@@ -1,3 +1,4 @@
+// @ts-ignore
 const port = chrome.runtime.connect({name: "amz-port"})
 port.onMessage.addListener((msg) => {
   if (msg.action == "data") {
@@ -6,17 +7,18 @@ port.onMessage.addListener((msg) => {
 });
 
 function getPricelist() {
-  let child: any = []
-  let options = [] as any[];
-
   const msg = {
-    action: "appendData",
-    data: child
+    action: "amz-data",
+    data: ""
   }
+  // @ts-ignore
+  const inputCode = $(`script:contains('ImageBlockATF')`).text();
+  const start = inputCode.indexOf('var data =');
+  const end = inputCode.indexOf('tableOfContentsIconImage');
+  msg.data =inputCode.slice(start + 10, end - 2) + '}';
   port.postMessage(msg);
 }
-
-setTimeout(getPricelist, 100);
+getPricelist();
 
 
 
